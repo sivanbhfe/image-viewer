@@ -1,0 +1,11 @@
+.header{
+    text-align: left;
+    background-color: #263238;
+    color:#fff;
+    text-transform: uppercase;
+    width:100%;
+    font-weight:bold;
+	font-size:18px;
+	vertical-align: middle;
+	padding:25px 0 25px 0;
+}
