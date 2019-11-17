@@ -17,34 +17,59 @@ class Login extends Component {
 	constructor() {
         super();
         this.state = {
-            loggedIn: sessionStorage.getItem("access-token") == null ? false : true
+			loggedIn: sessionStorage.getItem("access-token") == null ? false : true,
+			usernameRequired:"dispNone",
+			loginPasswordRequired:"dispNone",
+			successful:"dispNone",
+			failure:"dispBlock",
+			username:"",
+			loginPassword:""
         }
 	}
+
+    inputUsernameChangeHandler = (e) => {
+        this.setState({ username: e.target.value });
+    }
+
+    inputLoginPasswordChangeHandler = (e) => {
+        this.setState({ loginPassword: e.target.value });
+    }
+
 	loginClickHandler = () => {
-        this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
-        this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
-
-        let dataLogin = null;
-        let xhrLogin = new XMLHttpRequest();
-        let that = this;
-        xhrLogin.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                sessionStorage.setItem("uuid", JSON.parse(this.responseText).id);
-                sessionStorage.setItem("access-token", xhrLogin.getResponseHeader("access-token"));
-
+		this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+		this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
+        let accessToken = "8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
+		let that = this;
+	
+		if(that.state.username==="validuser" &&  that.state.loginPassword==="validpassword" ){  
+   //   sessionStorage.setItem("uuid", JSON.parse(this.responseText).id);
+                sessionStorage.setItem("access-token", accessToken);
                 that.setState({
-                    loggedIn: true
+					loggedIn: true,
+					successful:"successText"
                 });
-
-                that.closeModalHandler();
-            }
-        });
-
+				//route here             
+			} else {
+				if(that.state.username==="" || that.state.loginPassword===""){
+				that.setState({
+					loggedIn: false,
+					failure:"dispNone"
+				});
+			} else {
+				that.setState({
+					loggedIn: false,
+					failure:"dispBlock"
+				});
+			}
+			}
+/*
         xhrLogin.open("POST", this.props.baseUrl + "auth/login");
         xhrLogin.setRequestHeader("Authorization", "Basic " + window.btoa(this.state.username + ":" + this.state.loginPassword));
         xhrLogin.setRequestHeader("Content-Type", "application/json");
         xhrLogin.setRequestHeader("Cache-Control", "no-cache");
-        xhrLogin.send(dataLogin);
+		xhrLogin.send(dataLogin);
+		*/
+		
     }
 render(){
 return(
@@ -70,18 +95,26 @@ return(
 		<FormControl required>
 			<InputLabel htmlFor="loginPassword">Password</InputLabel>
 			<Input id="loginPassword" type="password" loginpassword={this.state.loginPassword} onChange={this.inputLoginPasswordChangeHandler} />
-			<FormHelperText className={this.state.loginPasswordRequired}>
+			<FormHelperText className={this.state.usernameRequired}>
 				<span className="red">required</span>
 			</FormHelperText>
 		</FormControl>
 		<br /><br />
 		{this.state.loggedIn === true &&
 			<FormControl>
-				<span className="successText">
+				<span className={this.state.successful}>
 					Login Successful!
 				</span>
 			</FormControl>
 		}
+		{this.state.loggedIn === false &&
+			<FormControl>
+				<span className={this.state.failure}>
+					<span className="red">Incorrect username and/or password</span>
+				</span>
+			</FormControl>
+		}
+
 		<br /><br />
 		<Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
 	</CardContent>
