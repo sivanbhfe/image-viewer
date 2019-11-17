@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Login.css';
 import Header from '../../common/Header';
 
+
 //Materal UI components
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -48,18 +49,22 @@ class Login extends Component {
 					loggedIn: true,
 					successful:"successText"
                 });
-				//route here             
+				//Route to home here  
+					this.props.history.push('/home/');       
 			} else {
 				sessionStorage.setItem("access-token", "null");
 				if(that.state.username==="" || that.state.loginPassword===""){
+					
 				that.setState({
 					loggedIn: false,
 					failure:"dispNone"
 				});
+				
 			} else {
 				that.setState({
 					loggedIn: false,
-					failure:"dispBlock"
+					failure:"dispBlock",
+					 
 				});
 			}
 			}
