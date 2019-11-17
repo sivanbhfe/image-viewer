@@ -50,7 +50,7 @@ render(){
 return(
 
 <div >
-	<div>
+	<div className="header-container">
 	<Header heading="Image Viewer"/><br />
 	</div>
 	<div className="card-container">

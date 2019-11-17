@@ -4,13 +4,6 @@
 .card-container{
     height:80px;
     width:380px;
-    padding-bottom:250px;
+    padding:120px 0 0 650px;
+    align-self:center;
 }
-.page-background{
-display:flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-height:100%;
-width:100%;
-}   
