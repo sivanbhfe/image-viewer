@@ -42,7 +42,7 @@ class Login extends Component {
 		let that = this;
 	
 		if(that.state.username==="validuser" &&  that.state.loginPassword==="validpassword" ){  
-   //   sessionStorage.setItem("uuid", JSON.parse(this.responseText).id);
+      sessionStorage.setItem("access-token", accessToken);
                 sessionStorage.setItem("access-token", accessToken);
                 that.setState({
 					loggedIn: true,
@@ -50,6 +50,7 @@ class Login extends Component {
                 });
 				//route here             
 			} else {
+				sessionStorage.setItem("access-token", "null");
 				if(that.state.username==="" || that.state.loginPassword===""){
 				that.setState({
 					loggedIn: false,
