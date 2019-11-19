@@ -22,7 +22,7 @@ class Login extends Component {
 			usernameRequired:"dispNone",
 			loginPasswordRequired:"dispNone",
 			successful:"dispNone",
-			failure:"dispBlock",
+			failure:"dispNone",
 			username:"",
 			loginPassword:""
         }
@@ -50,7 +50,7 @@ class Login extends Component {
 					successful:"successText"
                 });
 				//Route to home here  
-					this.props.history.push('/home/');       
+					this.props.history.push({pathname:'/home/',access:accessToken});   
 			} else {
 				sessionStorage.setItem("access-token", "null");
 				if(that.state.username==="" || that.state.loginPassword===""){
