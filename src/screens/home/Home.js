@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import './Home.css';
+import Header from '../../common/Header';
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 
 class Home extends Component {
 
@@ -13,8 +11,7 @@ class Home extends Component {
             userphotos: [] }
     }
     componentWillMount() {
-        // Get upcoming movies
-        let data = null;
+      let data = null;
         let baseUrl="https://api.instagram.com/v1/users/self/media/recent?access_token=";
         let xhr = new XMLHttpRequest();
         let that = this;
@@ -35,11 +32,10 @@ class Home extends Component {
     }
 
 render(){
-    return(<div><span>Home Page
-        {this.state.userphotos.map(photo=>(<span key={"grid" + photo.id}><p>{photo.id}</p></span>))}
-    </span>
- 
-    </div>)
+    return(<div>
+        <div><Header heading="Image Viewer" search="searh box  " logo="logo icon" /></div>
+        {this.state.userphotos.map(photo=>(<span key={"grid" + photo.id}><p><img src={photo.images.low_resolution.url}></img></p></span>))}
+    </div>) 
 }
 }
 export default Home;

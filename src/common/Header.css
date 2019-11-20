@@ -11,4 +11,10 @@
 }
 .header-text{
    padding-top: 25px;
+   display:inline-block;
+}
+
+.search-and-icon {
+    display:inline-block;
+    margin-left:1300px;
 }
