@@ -1,16 +1,15 @@
 .header{
     background-color: #263238;
     color:#fff;
-    text-transform: uppercase;
     font-weight:bold;
     font-size:18px;
     display:flex;
     flex-direction: row;
-
+    height:80px;
+    align-items: center ;
 }
 .header-text{
-    padding-top:20px;
-    padding-bottom:20px;
+
     display:inline-block;
     width:60%;
 }
@@ -21,11 +20,14 @@
  display: none;
 }
 .dispSearch {
-    padding-top:20px;
     text-align: right;
     width:37%
 }
 .dispIcon{
     display: inline-block;
-    widows: 3%;
+    width: 3%;
+}
+.image{
+display: flex;
+align-items: center ;
 }

@@ -11,9 +11,11 @@ const Header = function(props){
         <span className="header-text">{props.heading}</span>
        <div className={props.searchDisplay}><span className={props.noSearchBox}>{props.searchDisplay}</span></div>
        <div className={props.iconDisplay}>
+         <div className="image">
        <Link to="/profile/">
         <img src={logo} alt="profile-icon"/>{props.logo}
         </Link>
+        </div>
       </div>
       </div>);   
 }
