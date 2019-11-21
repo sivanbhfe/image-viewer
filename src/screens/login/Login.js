@@ -37,8 +37,7 @@ class Login extends Component {
     }
 
 	loginClickHandler = () => {
-		this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
-		this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
+	
         let accessToken = "8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
 		let that = this;
 	
@@ -54,28 +53,20 @@ class Login extends Component {
 			} else {
 				sessionStorage.setItem("access-token", "null");
 				if(that.state.username==="" || that.state.loginPassword===""){
+					this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+					this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
 					
-				that.setState({
-					loggedIn: false,
-					failure:"dispNone"
-				});
-				
-			} else {
+						that.setState({
+							loggedIn: false,
+							failure:"dispNone",
+						});			
+				} else {
 				that.setState({
 					loggedIn: false,
 					failure:"dispBlock",
-					 
 				});
 			}
 			}
-/*
-        xhrLogin.open("POST", this.props.baseUrl + "auth/login");
-        xhrLogin.setRequestHeader("Authorization", "Basic " + window.btoa(this.state.username + ":" + this.state.loginPassword));
-        xhrLogin.setRequestHeader("Content-Type", "application/json");
-        xhrLogin.setRequestHeader("Cache-Control", "no-cache");
-		xhrLogin.send(dataLogin);
-		*/
-		
     }
 render(){
 return(
@@ -101,7 +92,7 @@ return(
 		<FormControl required>
 			<InputLabel htmlFor="loginPassword">Password</InputLabel>
 			<Input id="loginPassword" type="password" loginpassword={this.state.loginPassword} onChange={this.inputLoginPasswordChangeHandler} />
-			<FormHelperText className={this.state.usernameRequired}>
+			<FormHelperText className={this.state.loginPasswordRequired}>
 				<span className="red">required</span>
 			</FormHelperText>
 		</FormControl>
