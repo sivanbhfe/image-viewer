@@ -33,7 +33,7 @@ class Home extends Component {
 
 render(){
     return(<div>
-        <div><Header heading="Image Viewer" search="searh box  " logo="logo icon" /></div>
+        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
         {this.state.userphotos.map(photo=>(<span key={"grid" + photo.id}><p><img src={photo.images.low_resolution.url}></img></p></span>))}
     </div>) 
 }
