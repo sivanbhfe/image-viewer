@@ -15,6 +15,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 class Login extends Component {
+
 	constructor() {
         super();
         this.state = {
@@ -34,14 +35,15 @@ class Login extends Component {
 
     inputLoginPasswordChangeHandler = (e) => {
         this.setState({ loginPassword: e.target.value });
-    }
-
+	}
+	
 	loginClickHandler = () => {
 	
         let accessToken = "8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
 		let that = this;
-	
-		if(that.state.username==="validuser" &&  that.state.loginPassword==="validpassword" ){  
+		let username="validuser";
+		let password="validpassword";
+		if(that.state.username===username &&  that.state.loginPassword===password ){  
       sessionStorage.setItem("access-token", accessToken);
                 sessionStorage.setItem("access-token", accessToken);
                 that.setState({
