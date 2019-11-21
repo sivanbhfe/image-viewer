@@ -32,7 +32,7 @@ class Profile extends Component {
     
     render(){
         return(<div>
-            <div><Header heading="Image Viewer" search="searh box  " logo="logo icon" /></div>
+            <div><Header heading="Image Viewer" noSearchBox="dispNone"searchDisplay="dispSearch" iconDisplay="dispIcon" /></div>
             {this.state.userprofile.map(profile=>(<span key={"grid" + profile.id}><p><img src={profile.images.low_resolution.url}></img></p></span>))}
         </div>) 
 
