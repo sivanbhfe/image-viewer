@@ -82,7 +82,7 @@ return(
 
 <div >
 	<div className="header-container">
-	<Header heading="Image Viewer"/><br />
+	<Header heading="Image Viewer" searchDisplay="dispNone" iconDisplay="dispNone"/><br />
 	</div>
 	<div className="card-container">
 <Card className="cardStyle">
