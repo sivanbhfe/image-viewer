@@ -78,7 +78,7 @@ return(
 	<div className="card-container">
 <Card className="cardStyle">
 	<CardContent>
-<		Typography variant="headline" component="h2">
+		<Typography variant="h2">
 		LOGIN
 		</Typography>
 		<FormControl required>
