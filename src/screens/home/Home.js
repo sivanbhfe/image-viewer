@@ -16,6 +16,8 @@ class Home extends Component {
         let xhr = new XMLHttpRequest();
         let that = this;
         let access_token = sessionStorage.getItem("access-token");
+        alert(this.props.location.pathname);
+        alert(this.props.history.location.state.detail);
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 that.setState({

@@ -53,7 +53,7 @@ class Login extends Component {
 					successful:"successText"
                 });
 				//Route to home here  
-					this.props.history.push({pathname:'/home/',access:accessToken});   
+					this.props.history.push({pathname:'/home/',state:{ detail: 'TENT' }});
 			} else {
 				sessionStorage.setItem("access-token", "null");
 				if(that.state.username==="" || that.state.loginPassword===""){
