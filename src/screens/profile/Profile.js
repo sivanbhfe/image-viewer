@@ -11,10 +11,10 @@ class Profile extends Component {
     }
     componentWillMount() {
         let data = null;
-          let baseUrl="https://api.instagram.com/v1/users/self/media/recent?access_token=";
+        let baseUrl=this.props.baseUrl;
           let xhr = new XMLHttpRequest();
           let that = this;
-          let access_token=this.props.access;
+          let access_token = sessionStorage.getItem("access-token");
           xhr.addEventListener("readystatechange", function () {
               if (this.readyState === 4) {
                   that.setState({
@@ -25,14 +25,14 @@ class Profile extends Component {
           });
   
          // xhr.open("GET", baseUrl + access_token);
-         xhr.open("GET", baseUrl + '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784');
+         xhr.open("GET", baseUrl + access_token);
           xhr.setRequestHeader("Cache-Control", "no-cache");
           xhr.send(data);
       }
     
     render(){
         return(<div>
-            <div><Header heading="Image Viewer" noSearchBox="dispNone"searchDisplay="dispSearch" iconDisplay="dispIcon" /></div>
+            <div><Header heading="Image Viewer" noSearchBox="dispNone" searchDisplay="dispSearch" iconDisplay="dispBlock" /></div>
             {this.state.userprofile.map(profile=>(<span key={"grid" + profile.id}><p><img src={profile.images.low_resolution.url}></img></p></span>))}
         </div>) 
 
