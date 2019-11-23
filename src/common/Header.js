@@ -14,7 +14,7 @@ const Header = function(props){
        <div className={props.searchDisplay}><span className={props.noSearchBox}>{props.searchDisplay}</span></div>
        <div className={props.iconDisplay}>
          <div className="image">
-       <Link to={{pathname: '/profile/'}}>
+       <Link to={{pathname: '/profile/',state:{accessToken:props.accc,loggedIn:props.loggedIn}}}>
         <img src={logo} alt="profile-icon"/>{props.logo}
         </Link>
         </div>

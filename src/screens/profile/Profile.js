@@ -17,10 +17,11 @@ class Profile extends Component {
           let access_token = sessionStorage.getItem("access-token");
           let loggedIn = false;
 
-          let accessToken = this.props.location;
-          loggedIn = this.props.location;
+          let accessToken = this.props.location.state.accessToken;
+          loggedIn = this.props.location.state.loggedIn;
           alert(this.props.location.pathname);
-        alert(this.props.pathname);
+          alert(this.props.location.state.accessToken);
+          alert(this.props.location.state.loggedIn);
         if(access_token===accessToken && loggedIn==='true'){
           xhr.addEventListener("readystatechange", function () {
               if (this.readyState === 4) {
