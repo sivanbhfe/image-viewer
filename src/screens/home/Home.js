@@ -26,13 +26,16 @@ class Home extends Component {
         let loggedIn = false;
         
       
-       
+       try{
         this.state.accessToken = this.props.history.location.state.accessToken;
         loggedIn = this.props.history.location.state.loggedIn;
 
        alert(this.state.access_token);
        alert(this.props.history.location.state.loggedIn);
-        
+       } catch(exception){
+           alert(exception);
+        this.props.history.push({pathname:'/'});
+       }
                 
         if(access_token===this.state.accessToken && loggedIn===true){
             that.state.loggedIn='true';

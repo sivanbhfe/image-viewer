@@ -16,12 +16,17 @@ class Profile extends Component {
           let that = this;
           let access_token = sessionStorage.getItem("access-token");
           let loggedIn = false;
-
-          let accessToken = this.props.location.state.accessToken;
+          let accessToken='';
+          try{
+          accessToken = this.props.location.state.accessToken;
           loggedIn = this.props.location.state.loggedIn;
-          alert(this.props.location.pathname);
-          alert(this.props.location.state.accessToken);
-          alert(this.props.location.state.loggedIn);
+        //  alert(this.props.location.pathname);
+        //  alert(this.props.location.state.accessToken);
+        //  alert(this.props.location.state.loggedIn);
+          } catch(exception){
+            alert(exception);
+         this.props.history.push({pathname:'/'});
+        }
         if(access_token===accessToken && loggedIn==='true'){
           xhr.addEventListener("readystatechange", function () {
               if (this.readyState === 4) {
