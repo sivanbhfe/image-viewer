@@ -25,14 +25,15 @@ componentWillMount() {
     let accessToken = this.state.accessToken;
     let loggedIn = false;
     
-    
+// Redirecting to login page if not logged in    
     try{
     this.state.accessToken = this.props.history.location.state.accessToken;
     loggedIn = this.props.history.location.state.loggedIn;
     } catch(exception){
     this.props.history.push({pathname:'/'});
     }
-            
+    
+// Getting data from API if logged in
     if(access_token===this.state.accessToken && loggedIn===true){
         that.state.loggedIn='true';
     xhr.addEventListener("readystatechange", function () {
