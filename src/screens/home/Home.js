@@ -26,7 +26,7 @@ class Home extends Component {
         });
 
        // xhr.open("GET", baseUrl + access_token);
-       xhr.open("GET", baseUrl + access_token);
+       xhr.open("GET", baseUrl+access_token);
         xhr.setRequestHeader("Cache-Control", "no-cache");
         xhr.send(data);
     }
