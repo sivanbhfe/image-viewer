@@ -66,6 +66,8 @@ class Login extends Component {
 							failure:"dispNone",
 						});			
 				} else {
+					this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
+					this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
 				that.setState({
 					loggedIn: false,
 					failure:"dispBlock",

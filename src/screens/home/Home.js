@@ -44,7 +44,6 @@ class Home extends Component {
                 that.setState({
                     userphotos: JSON.parse(this.responseText).data
                 });
-                //alert(that.state.userphotos);
             }
         });
 

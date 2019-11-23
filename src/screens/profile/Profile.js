@@ -20,24 +20,18 @@ class Profile extends Component {
           try{
           accessToken = this.props.location.state.accessToken;
           loggedIn = this.props.location.state.loggedIn;
-        //  alert(this.props.location.pathname);
-        //  alert(this.props.location.state.accessToken);
-        //  alert(this.props.location.state.loggedIn);
+
           } catch(exception){
-            alert(exception);
          this.props.history.push({pathname:'/'});
         }
-        if(access_token===accessToken && loggedIn==='true'){
+       if(access_token===accessToken && loggedIn==='true'){
           xhr.addEventListener("readystatechange", function () {
               if (this.readyState === 4) {
                   that.setState({
                     userprofile: JSON.parse(this.responseText).data
                   });
-                  //alert(that.state.userphotos);
               }
           });
-  
-         // xhr.open("GET", baseUrl + access_token);
          xhr.open("GET", baseUrl+access_token);
           xhr.setRequestHeader("Cache-Control", "no-cache");
           xhr.send(data);
