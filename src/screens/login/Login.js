@@ -19,7 +19,7 @@ class Login extends Component {
 	constructor() {
         super();
         this.state = {
-			loggedIn: sessionStorage.getItem("access-token") == null ? false : true,
+			loggedIn:false,
 			usernameRequired:"dispNone",
 			loginPasswordRequired:"dispNone",
 			successful:"dispNone",
@@ -46,15 +46,14 @@ class Login extends Component {
 		let password="s";
 		let that = this;
 		if(that.state.username===username &&  that.state.loginPassword===password ){  
-      sessionStorage.setItem("access-token", accessToken);
-                sessionStorage.setItem("access-token", accessToken);
-                that.setState({
-					loggedIn: true,
-					successful:"successText"
-                });
+			alert(that.state.username);
+			alert(username);
+			alert(that.state.loginPassword);
+			alert(password);
+      			sessionStorage.setItem("access-token", accessToken);
 				//Route to home here  
 					this.props.history.push({pathname:'/home/',state:{ accessToken: accessToken
-					, loggedIn:that.state.loggedIn}});
+					, loggedIn:true}});
 			} else {
 				sessionStorage.setItem("access-token", "null");
 				if(that.state.username==="" || that.state.loginPassword===""){
@@ -104,13 +103,6 @@ return(
 			</FormHelperText>
 		</FormControl>
 		<br /><br />
-		{this.state.loggedIn === true &&
-			<FormControl>
-				<span className={this.state.successful}>
-					Login Successful!
-				</span>
-			</FormControl>
-		}
 		{this.state.loggedIn === false &&
 			<FormControl>
 				<span className={this.state.failure}>
