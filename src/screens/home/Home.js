@@ -8,16 +8,34 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            userphotos: [] }
+            userphotos: [],
+            access_token:sessionStorage.getItem("access-token"),
+            loggedIn:'false',
+            hasError:false,
+            accessToken:''
+         }
     }
+
     componentWillMount() {
       let data = null;
         let baseUrl=this.props.baseUrl;
         let xhr = new XMLHttpRequest();
         let that = this;
-        let access_token = sessionStorage.getItem("access-token");
-        alert(this.props.location.pathname);
-        alert(this.props.history.location.state.detail);
+        let access_token = this.state.access_token;
+        let accessToken = this.state.accessToken;
+        let loggedIn = false;
+        
+      
+       
+        this.state.accessToken = this.props.history.location.state.accessToken;
+        loggedIn = this.props.history.location.state.loggedIn;
+
+       alert(this.state.access_token);
+       alert(this.props.history.location.state.loggedIn);
+        
+                
+        if(access_token===this.state.accessToken && loggedIn===true){
+            that.state.loggedIn='true';
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 that.setState({
@@ -27,15 +45,20 @@ class Home extends Component {
             }
         });
 
-       // xhr.open("GET", baseUrl + access_token);
+
        xhr.open("GET", baseUrl+access_token);
         xhr.setRequestHeader("Cache-Control", "no-cache");
         xhr.send(data);
+       
+    } else {
+        this.props.history.push({pathname:'/'});
+    }
+        
     }
 
 render(){
     return(<div>
-        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
+        <div><Header heading="Image Viewer" accc={this.state.access_token} loggedIn={this.state.loggedIn} searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
         {this.state.userphotos.map(photo=>(<span key={"grid" + photo.id}><p><img src={photo.images.low_resolution.url}></img></p></span>))}
     </div>) 
 }

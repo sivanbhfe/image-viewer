@@ -15,6 +15,13 @@ class Profile extends Component {
           let xhr = new XMLHttpRequest();
           let that = this;
           let access_token = sessionStorage.getItem("access-token");
+          let loggedIn = false;
+
+          let accessToken = this.props.location;
+          loggedIn = this.props.location;
+          alert(this.props.location.pathname);
+        alert(this.props.pathname);
+        if(access_token===accessToken && loggedIn==='true'){
           xhr.addEventListener("readystatechange", function () {
               if (this.readyState === 4) {
                   that.setState({
@@ -28,7 +35,10 @@ class Profile extends Component {
          xhr.open("GET", baseUrl+access_token);
           xhr.setRequestHeader("Cache-Control", "no-cache");
           xhr.send(data);
+      }  else {
+        this.props.history.push({pathname:'/'});
       }
+    }
     
     render(){
         return(<div>
