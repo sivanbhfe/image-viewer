@@ -11,6 +11,36 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+const styles = theme => ({
+    root: {
+        width: '100%',
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    card: {
+        maxWidth: '100%',
+        margin: '8px',
+        shadow: '20px',
+    },
+    bigAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+    input: {
+        display: 'none',
+    },
+    gridListMain: {
+        transform: 'translateZ(0)',
+        cursor: 'pointer',
+        
+        },          
+});
+
 class Home extends Component {
 
 constructor() {
@@ -20,8 +50,10 @@ userphotos: [],
 access_token:sessionStorage.getItem("access-token"),
 loggedIn:'false',
 hasError:false,
-accessToken:''
+accessToken:'',
+
 }
+
 }
 
 componentWillMount() {
@@ -32,6 +64,7 @@ let that = this;
 let access_token = this.state.access_token;
 let accessToken = this.state.accessToken;
 let loggedIn = false;
+
 
 // Redirecting to login page if not logged in    
 try{
@@ -46,13 +79,13 @@ if(access_token===this.state.accessToken && loggedIn===true){
 that.state.loggedIn='true';
 xhr.addEventListener("readystatechange", function () {
 if (this.readyState === 4) {
+    
 that.setState({
-userphotos: JSON.parse(this.responseText).data
+userphotos: JSON.parse(this.responseText).data,
 });
+
 }
 });
-
-
 xhr.open("GET", baseUrl+access_token);
 xhr.setRequestHeader("Cache-Control", "no-cache");
 xhr.send(data);
@@ -65,16 +98,8 @@ this.props.history.push({pathname:'/'});
 
 render(){
 return(<div>
-<div><Header heading="Image Viewer" accc={this.state.access_token} loggedIn={this.state.loggedIn} searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
-<div className="try">
-{this.state.userphotos.map(photo=>
-<Card key={"grid" + photo.id}>
-    <CardContent>
-        <img className="user-images" src={photo.images.standard_resolution.url}/>
-    </CardContent>
-</Card>
-)}
-</div>
+<div><Header heading="Image Viewer"  accc={this.state.access_token} loggedIn={this.state.loggedIn} noSearchBox="box" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
+{this.state.userphotos.map(profile=>(<span key={"grid" + profile.id}><p><img src={profile.images.low_resolution.url}></img></p></span>))}
 </div>) 
 }
 }

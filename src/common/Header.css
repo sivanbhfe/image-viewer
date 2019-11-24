@@ -21,13 +21,31 @@
 }
 .dispSearch {
     text-align: right;
-    width:36.5%
-}
+    width:36.5%;
+ margin-bottom: 1%;
+    }
+
+    .box{
+        border-radius: 4px;
+        background-color: #c0c0c0;
+        display:inline-block;
+        margin-top:10px;
+        height:40px;
+        align-content: left;
+    }
 .dispIcon{
     display: inline-block;
     width: 3%;
+    
 }
 .image{
 display: flex;
 align-items: center ;
 }
+
+.iconButton{
+    display:inline-block;
+color:black;
+
+}
+
