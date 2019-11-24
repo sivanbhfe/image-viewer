@@ -6,7 +6,6 @@
     font-size:18px;
     display:flex;
     flex-direction: row;
-
 }
 .header-text{
     padding-top:20px;
@@ -28,4 +27,15 @@
 .dispIcon{
     display: inline-block;
     widows: 3%;
+}
+.searchDisplay{
+    border-radius: 4px;
+    width: 300px;
+    background-color: #c0c0c0;
+    margin: 10px;
+    text-align: left;
+}
+.searchIcon{
+    display: inline-block;
+    color: black;
 }
