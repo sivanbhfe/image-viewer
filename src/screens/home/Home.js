@@ -73,7 +73,20 @@ render(){
                 <Grid container className={classes.root} spacing={14}>
                     <Grid item>
                     <Card className={classes.card}>
-                    <img src={photo.images.low_resolution.url} alt={photo.text} className="imageProp" />
+                    <CardHeader 
+                             avatar={
+                                 <Avatar className={classes.profileAvatar}>
+                                    <img src={logo}/>
+                                    </Avatar>
+                              }
+                                title="Upgrad"//{photo.images.username}
+                                subheader="26th Apr 2008"//{photo.created_time} 
+                    />
+                    <CardContent>
+                            <img src={photo.images.low_resolution.url} alt={photo.text} className="imageProp" />
+
+                    </CardContent>
+
 
                     </Card>
 
