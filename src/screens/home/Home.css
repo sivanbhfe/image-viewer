@@ -1,20 +1,70 @@
-.iconDisplay{
-    color: black;
+.header{
+  background-color: #263238;
+  color:#fff;
+  text-transform: uppercase;
+  font-weight:bold;
+  font-size:18px;
+  display:flex;
+  flex-direction: row;
+}
+.header-text{
+  padding-top:20px;
+  padding-bottom:20px;
+  display:inline-block;
+  width:60%;
+}
+.dispNone {
+  display:none;
+}
+.noSearchBox {
+display: none;
+}
+.dispSearch {
+  padding-top:20px;
+  text-align: right;
+  width:37%
+}
+.dispIcon{
+  display: inline-block;
+  widows: 3%;
+}
+.searchDisplay{
+  border-radius: 4px;
+  width: 300px;
+  background-color: #c0c0c0;
+  margin: 10px;
+  text-align: left;
+}
+.searchIcon{
+  display: inline-block;
+  color: black;
+}
+.imageProp{
+  display:flex;
+  justify-content: center;
+  padding: 20px;
+  width: 'auto';
+  height:'auto';
+
+}
+.cardHeader {
+  display:flex;
+  float:flex-start;
+}
+.cardContent {
+  display:flex;
+  justify-content: center;
+
+}
+.likesProp {
+  font-size: 60px;
+  display:flex;
+  justify-content: flex-start;
+  vertical-align: center;
+}
+.hash-tags {
+  font-size: 16px;
+  color: #61dafb;
 }
 
-.imageProp {
-    display:flex;
-    justify-content: center;
-    padding: 20px;
-    width: 'auto';
-    height:'auto';
-  
-  }
-  .cardHeader {
-    display:flex;
-    float:flex-start;
-  }
-  .cardContent {
-    display:flex;
-    justify-content: center;  
-  }
+    
