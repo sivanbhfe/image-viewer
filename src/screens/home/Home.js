@@ -65,7 +65,25 @@ class Home extends Component {
 render(){
    // const { classes } = this.props;
     return(<div>
-        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>        
+        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
+        <div className= "homeBody">
+        <GridList cellHeight={"auto"}  cols={2}>
+        {this.state.userphotos.map(photo=>(
+            <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
+                <Grid container className={classes.root} spacing={14}>
+                    <Grid item>
+                    <Card className={classes.card}>
+                    <img src={photo.images.low_resolution.url} alt={photo.text} className="imageProp" />
+
+                    </Card>
+
+                    </Grid>
+                </Grid>         
+                
+            )</GridListTile> ))}
+            </GridList>
+
+        </div>        
         
 
         
