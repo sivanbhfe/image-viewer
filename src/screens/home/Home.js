@@ -11,6 +11,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+
+
 const styles = theme => ({
     root: {
         width: '100%',
@@ -51,9 +53,10 @@ access_token:sessionStorage.getItem("access-token"),
 loggedIn:'false',
 hasError:false,
 accessToken:'',
-
+filtered:[]
 }
 this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
+
 
 }
 
@@ -84,7 +87,6 @@ if (this.readyState === 4) {
 that.setState({
 userphotos: JSON.parse(this.responseText).data,
 });
-
 }
 });
 xhr.open("GET", baseUrl+access_token);
@@ -100,7 +102,20 @@ this.props.history.push({pathname:'/'});
 render(){
 return(<div>
 <div><Header heading="Image Viewer" prof={this.singleUserUrl} accc={this.state.access_token} loggedIn={this.state.loggedIn} noSearchBox="box" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
-{this.state.userphotos.map(profile=>(<span key={"grid" + profile.id}><p><img src={profile.images.low_resolution.url}></img></p></span>))}
+
+{this.state.userphotos.map(profile=>(
+((true) ?
+
+(<Card key={"grid" + profile.id}><CardContent><p><img src=
+{profile.images.low_resolution.url}></img></p>
+<p>{profile.caption.text}</p></CardContent>   </Card>)
+:
+(true)?
+<Card key={"grid" + profile.id}><CardContent><p><img src=
+{profile.images.low_resolution.url}></img></p>
+<p>{profile.caption.text}</p></CardContent>   </Card>:"Test"
+))
+)}
 </div>) 
 }
 }

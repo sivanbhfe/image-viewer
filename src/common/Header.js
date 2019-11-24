@@ -7,8 +7,11 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
+import { classes } from 'istanbul-lib-coverage';
 
-const styles = theme => ({
+
+const styles = theme => (
+      {
 grow: {
 flexGrow: 1,
 },
@@ -59,9 +62,14 @@ menuIsOpen: false,
 ownerInfo: [],
 loggedIn: sessionStorage.getItem("access-token") == null ? false : true
 }
+this.searchData='';
+}
+serachInputHandler = (e) => {
+      this.searchData= e.target.value;
 }
 
 componentWillMount() {
+      
 
 // Get owner info after authenticating the  accessToken generated 
 let ownerData = null;
@@ -82,6 +90,7 @@ xhr.send(ownerData);
 
 render(){
 return (<div className='header'>
+
 <span className="header-text">{this.props.heading}</span>
 
 <div className={this.props.searchDisplay}>
@@ -91,7 +100,7 @@ return (<div className='header'>
             <SearchIcon />
           </IconButton>
 </span>
-<InputBase placeholder="Search…"/>          
+<InputBase id="testing" placeholder="Search…"  onChange={this.serachInputHandler} />
 </span>
       </div>
 <div className={this.props.iconDisplay}>
@@ -102,10 +111,11 @@ return (<div className='header'>
 <img src={this.state.ownerInfo.profile_picture} alt="profile-icon"/>
 </Avatar>
 </Link>
+</div>
+</div>
 
-</div>
-</div>
 </div>);  
 }
+
 }
 export default Header;

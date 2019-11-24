@@ -31,7 +31,8 @@ background-color: #c0c0c0;
 display:inline-block;
 margin-top:10px;
 height:40px;
-align-content: left;
+width:300px;
+text-align: left;
 }
 .dispIcon{
 display: inline-block;
