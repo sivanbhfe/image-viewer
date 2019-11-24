@@ -1,12 +1,20 @@
-.try {
-    display: flex;
-    flex-wrap:wrap;
-    flex-direction: row;
+.iconDisplay{
+    color: black;
+}
+
+.imageProp {
+    display:flex;
     justify-content: center;
-}
-
-
-.user-images{
-    height:600px;
-    width:600px;
-}
+    padding: 20px;
+    width: 'auto';
+    height:'auto';
+  
+  }
+  .cardHeader {
+    display:flex;
+    float:flex-start;
+  }
+  .cardContent {
+    display:flex;
+    justify-content: center;  
+  }

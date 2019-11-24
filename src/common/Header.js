@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import './Header.css';
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
-
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import { classes } from 'istanbul-lib-coverage';
-
 
 const styles = theme => (
       {
@@ -118,4 +116,5 @@ return (<div className='header'>
 }
 
 }
+
 export default Header;
