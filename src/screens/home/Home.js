@@ -19,7 +19,9 @@ const styles = theme => ({
         width: '100%',
     },
     card: {
-      maxWidth: 145
+        maxWidth: '100%',
+        margin: '8px',
+        shadow: '20px',
     },
     profileAvatar: {
         margin: 10,
@@ -29,25 +31,12 @@ const styles = theme => ({
     gridListMain: {
         transform: 'translateZ(0)',
         cursor: 'pointer',
-
     },
     avatar: {
         backgroundColor: red[500],
-      }
-});
-
-
-const styles = theme => ({
-    root: {
-        width: '100%',
-    },
-    grow: {
+      },
+      grow: {
         flexGrow: 1,
-    },
-    card: {
-        maxWidth: '100%',
-        margin: '8px',
-        shadow: '20px',
     },
     bigAvatar: {
         margin: 10,
@@ -60,11 +49,6 @@ const styles = theme => ({
     input: {
         display: 'none',
     },
-    gridListMain: {
-        transform: 'translateZ(0)',
-        cursor: 'pointer',
-        
-        },          
 });
 
 class Home extends Component {
@@ -127,7 +111,9 @@ render(){
 
    // const { classes } = this.props;
     return(<div>
-        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
+        <div><Header heading="Image Viewer" noSearchBox="box" 
+                loggedIn={this.state.loggedIn} accc={this.state.access_token} prof={this.singleUserUrl}
+                searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
         <div className= "homeBody">
         <GridList cellHeight={"auto"}  cols={2}>
         {this.state.userphotos.map(photo=>(
