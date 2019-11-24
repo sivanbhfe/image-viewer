@@ -1,7 +1,38 @@
 import React, {Component} from 'react';
 import './Home.css';
 import Header from '../../common/Header';
+import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+import { red } from '@material-ui/core/colors';
+import { classes } from 'istanbul-lib-coverage';
 
+const styles = theme => ({
+    root: {
+        width: '100%',
+    },
+    card: {
+      maxWidth: 145
+    },
+    profileAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+    },
+    gridListMain: {
+        transform: 'translateZ(0)',
+        cursor: 'pointer',
+
+    },
+    avatar: {
+        backgroundColor: red[500],
+      }
+});
 
 class Home extends Component {
 
@@ -32,9 +63,16 @@ class Home extends Component {
     }
 
 render(){
+   // const { classes } = this.props;
     return(<div>
-        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
-        {this.state.userphotos.map(photo=>(<span key={"grid" + photo.id}><p><img src={photo.images.low_resolution.url}></img></p></span>))}
+        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>        
+        
+
+        
+
+
+
+        
     </div>) 
 }
 }
