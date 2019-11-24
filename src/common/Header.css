@@ -1,42 +1,41 @@
 .header{
-    background-color: #263238;
-    color:#fff;
-    font-weight:bold;
-    font-size:18px;
-    display:flex;
-    flex-direction: row;
-    height:80px;
-    align-items: center ;
+background-color: #263238;
+color:#fff;
+font-weight:bold;
+font-size:18px;
+display:flex;
+flex-direction: row;
+height:80px;
+align-items: center ;
 }
 .header-text{
-
-    display:inline-block;
-    width:60%;
+display:inline-block;
+width:60%;
 }
 .dispNone {
-    display:none;
+display:none;
 }
 .noSearchBox {
- display: none;
+display: none;
 }
 .dispSearch {
-    text-align: right;
-    width:36.5%;
- margin-bottom: 1%;
-    }
+text-align: right;
+width:36.5%;
+margin-bottom: 0.5%;
+margin-right: 0.5%;
+}
 
-    .box{
-        border-radius: 4px;
-        background-color: #c0c0c0;
-        display:inline-block;
-        margin-top:10px;
-        height:40px;
-        align-content: left;
-    }
+.box{
+border-radius: 4px;
+background-color: #c0c0c0;
+display:inline-block;
+margin-top:10px;
+height:40px;
+align-content: left;
+}
 .dispIcon{
-    display: inline-block;
-    width: 3%;
-    
+display: inline-block;
+width: 3%;
 }
 .image{
 display: flex;
@@ -44,8 +43,6 @@ align-items: center ;
 }
 
 .iconButton{
-    display:inline-block;
+display:inline-block;
 color:black;
-
 }
-

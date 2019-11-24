@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
 grow: {
@@ -58,7 +59,6 @@ menuIsOpen: false,
 ownerInfo: [],
 loggedIn: sessionStorage.getItem("access-token") == null ? false : true
 }
-this.baseUrl = "https://api.instagram.com/v1/users/self/?access_token=8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
 }
 
 componentWillMount() {
@@ -76,7 +76,7 @@ ownerInfo: JSON.parse(this.responseText).data
 
 }
 })
-xhr.open("GET", this.baseUrl);
+xhr.open("GET", this.props.prof+this.props.accc);
 xhr.send(ownerData);
 }
 
@@ -96,9 +96,13 @@ return (<div className='header'>
       </div>
 <div className={this.props.iconDisplay}>
 <div className="image">
+
 <Link to={{pathname: '/profile/',state:{accessToken:this.props.accc,loggedIn:this.props.loggedIn}}}>
+<Avatar className="avatar">
 <img src={this.state.ownerInfo.profile_picture} alt="profile-icon"/>
+</Avatar>
 </Link>
+
 </div>
 </div>
 </div>);  

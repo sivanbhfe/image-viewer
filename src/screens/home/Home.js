@@ -53,6 +53,7 @@ hasError:false,
 accessToken:'',
 
 }
+this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
 
 }
 
@@ -98,7 +99,7 @@ this.props.history.push({pathname:'/'});
 
 render(){
 return(<div>
-<div><Header heading="Image Viewer"  accc={this.state.access_token} loggedIn={this.state.loggedIn} noSearchBox="box" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
+<div><Header heading="Image Viewer" prof={this.singleUserUrl} accc={this.state.access_token} loggedIn={this.state.loggedIn} noSearchBox="box" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
 {this.state.userphotos.map(profile=>(<span key={"grid" + profile.id}><p><img src={profile.images.low_resolution.url}></img></p></span>))}
 </div>) 
 }

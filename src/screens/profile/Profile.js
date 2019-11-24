@@ -8,6 +8,7 @@ constructor() {
     this.state = {
         userprofile: []
     }
+    this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
 }
 componentWillMount() {
     let data = null;
@@ -44,7 +45,7 @@ componentWillMount() {
 
 render(){
     return(<div>
-        <div><Header heading="Image Viewer" noSearchBox="dispNone" searchDisplay="dispSearch" iconDisplay="dispBlock" /></div>
+        <div><Header heading="Image Viewer"  noSearchBox="dispNone" searchDisplay="dispSearch" iconDisplay="dispBlock" /></div>
         {this.state.userprofile.map(profile=>(<span key={"grid" + profile.id}><p><img src={profile.images.low_resolution.url}></img></p></span>))}
     </div>) 
 
