@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import ReactDOM from 'react-dom';
 import './Header.css';
+import Profile from '../screens/profile/Profile';
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
@@ -92,6 +95,11 @@ logoutHandler = () => {
           menuIsOpen: false
       });
   }
+test=()=>{
+      alert("test");
+    return ReactDOM.render(<Profile/>,document.getElementById("root"));
+}
+  
 
 componentWillMount() {
 
@@ -149,6 +157,7 @@ return (<div className='header'>
                                     <MenuItem >My Account</MenuItem></Link><hr />
                                 <Link to='/'>
                                     <MenuItem onClick={this.logoutHandler}>Logout</MenuItem></Link>
+                                    <MenuItem onClick={this.test}>Test</MenuItem>
                             </Menu>
                         </div>
 </div>
