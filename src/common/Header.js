@@ -97,7 +97,9 @@ logoutHandler = () => {
   }
 test=()=>{
       alert("test");
+      this.render()
     return ReactDOM.render(<Profile/>,document.getElementById("root"));
+      
 }
   
 
