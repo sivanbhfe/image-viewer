@@ -67,7 +67,7 @@ serachInputHandler = (e) => {
 }
 
 componentWillMount() {
-      
+
 
 // Get owner info after authenticating the  accessToken generated 
 let ownerData = null;
