@@ -1,16 +1,40 @@
 import React, {Component} from 'react';
 import './Home.css';
 import Header from '../../common/Header';
+
+import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+import { red } from '@material-ui/core/colors';
+import { classes } from 'istanbul-lib-coverage';
 
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+    },
+    card: {
+      maxWidth: 145
+    },
+    profileAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+    },
+    gridListMain: {
+        transform: 'translateZ(0)',
+        cursor: 'pointer',
+
+    },
+    avatar: {
+        backgroundColor: red[500],
+      }
+});
 
 
 const styles = theme => ({
@@ -100,23 +124,50 @@ this.props.history.push({pathname:'/'});
 }
 
 render(){
-return(<div>
-<div><Header heading="Image Viewer" prof={this.singleUserUrl} accc={this.state.access_token} loggedIn={this.state.loggedIn} noSearchBox="box" searchDisplay="dispSearch" iconDisplay="dispBlock"/></div>
 
-{this.state.userphotos.map(profile=>(
-((true) ?
+   // const { classes } = this.props;
+    return(<div>
+        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
+        <div className= "homeBody">
+        <GridList cellHeight={"auto"}  cols={2}>
+        {this.state.userphotos.map(photo=>(
+            <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
+                <Grid container className={classes.root} spacing={14}>
+                    <Grid item>
+                    <Card className={classes.card}>
+                    <CardHeader 
+                             avatar={
+                                 <Avatar className={classes.profileAvatar}>
+                                    <img src={logo}/>
+                                    </Avatar>
+                              }
+                                title="Upgrad"//{photo.images.username}
+                                subheader="26th Apr 2008"//{photo.created_time} 
+                    />
+                    <CardContent>
+                            <img src={photo.images.low_resolution.url} alt={photo.text} className="imageProp" />
 
-(<Card key={"grid" + profile.id}><CardContent><p><img src=
-{profile.images.low_resolution.url}></img></p>
-<p>{profile.caption.text}</p></CardContent>   </Card>)
-:
-(true)?
-<Card key={"grid" + profile.id}><CardContent><p><img src=
-{profile.images.low_resolution.url}></img></p>
-<p>{profile.caption.text}</p></CardContent>   </Card>:"Test"
-))
-)}
-</div>) 
+                    </CardContent>
+
+
+                    </Card>
+
+                    </Grid>
+                </Grid>         
+                
+            )</GridListTile> ))}
+            </GridList>
+
+        </div>        
+        
+
+        
+
+
+
+        
+    </div>) 
+
 }
 }
 export default Home;
