@@ -13,6 +13,11 @@ import { red } from '@material-ui/core/colors';
 import { classes } from 'istanbul-lib-coverage';
 import hearticon from '../../assets/hearticon.svg';
 import moment from "moment";
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 
 
 const styles = theme => ({
@@ -45,8 +50,21 @@ class Home extends Component {
             userphotos: [],
             ownerInfo:{
                 username: "upgrad_sde"
-            }}
+            },
+            addComment:"dispComment"
+        }
     }
+
+    commentOnChangeChangeHandler = (e) => {
+        this.setState({imagecomment: e.target.value});
+    }
+
+    addCommentOnClickHandler = (e) => {
+        this.setState({addedComment :this.state.imagecomment});
+
+    }
+
+
     componentWillMount() {
       let data = null;
         let baseUrl="https://api.instagram.com/v1/users/self/media/recent?access_token=";
@@ -92,13 +110,21 @@ render(){
                     <CardContent>
                             <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
                             <hr/>
-                            <Typography>{photo.caption.text}</Typography>
-                            <Typography><div className="hash-tags"> #{photo.tags} </div></Typography>
+                            <Typography variant="h6">{(photo.caption.text).split(/\#/)[0]}</Typography>
+                            {photo.tags.map(tag=><span className="hash-tags">#{tag} </span>)}
                             <div className="likesProp">
                                <Typography variant="h5" >
                                     <img src={hearticon} alt={"heartlogoTransparent"}   onClick={() => this.iconClickHandler} />
                                     {photo.likes.count} Likes</Typography></div>
                                 <br /><br />
+                                <FormControl >
+                                    <FormHelperText className={this.state.addComment}><div><Typography>: {this.state.addedComment}</Typography></div></FormHelperText>
+                                </FormControl>
+                                <FormControl>
+                                    <InputLabel htmlFor="comment">Add a Comment</InputLabel>
+                                     <Input id="comment" type="text" onChange={this.commentOnChangeChangeHandler} />
+                                </FormControl>
+                                    <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
                                 
 
                     </CardContent>

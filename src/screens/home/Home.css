@@ -62,9 +62,12 @@ display: none;
   justify-content: flex-start;
   vertical-align: center;
 }
+.image-Text{
+  font-size: 22px;
+  font-weight: bold;
+}
 .hash-tags {
-  font-size: 16px;
-  color: #61dafb;
+  font-size: 20px;
+  color: #5cc1dd;
 }
 
-    
