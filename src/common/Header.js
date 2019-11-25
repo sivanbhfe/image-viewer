@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import ReactDOM from 'react-dom';
 import './Header.css';
+import Profile from '../screens/profile/Profile';
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
@@ -7,6 +10,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import { classes } from 'istanbul-lib-coverage';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
+function name(parameter1, parameter2, parameter3) {
+      // code to be executed
+    }
+
 
 const styles = theme => (
       {
@@ -65,9 +75,34 @@ this.searchData='';
 serachInputHandler = (e) => {
       this.searchData= e.target.value;
 }
+logoutHandler = () => {
+      sessionStorage.removeItem("access-token");
+      this.setState({
+          loggedIn: false
+      });
+  }
+ 
+  openMenuHandler = () => {
+     
+      this.setState({
+          menuIsOpen: true,
+      });
+ 
+  }
+
+  closeMenuHandler = () => {
+      this.setState({
+          menuIsOpen: false
+      });
+  }
+test=()=>{
+      alert("test");
+      this.render()
+    return ReactDOM.render(<Profile/>,document.getElementById("root"));
+}
+  
 
 componentWillMount() {
-
 
 // Get owner info after authenticating the  accessToken generated 
 let ownerData = null;
@@ -77,7 +112,6 @@ xhr.addEventListener("readystatechange", function () {
 if (this.readyState === 4) {
 that.setState({
 ownerInfo: JSON.parse(this.responseText).data
-
 });
 
 }
@@ -104,11 +138,27 @@ return (<div className='header'>
 <div className={this.props.iconDisplay}>
 <div className="image">
 
-<Link to={{pathname: '/profile/',state:{accessToken:this.props.accc,loggedIn:this.props.loggedIn}}}>
+
 <Avatar className="avatar">
-<img src={this.state.ownerInfo.profile_picture} alt="profile-icon"/>
+      
+<img  aria-controls="simple-menu" aria-haspopup="true" onClick={this.openMenuHandler} src={this.state.ownerInfo.profile_picture} alt="profile-icon"/>
 </Avatar>
-</Link>
+<div >
+                            <Menu 
+                                id="simple-menu"
+                                keepMounted
+                                open={this.state.menuIsOpen}
+                                onClose={this.closeMenuHandler}
+                                anchorReference="anchorPosition"
+                                anchorPosition={{ top: 64, left:1560}}
+                            >
+                                <Link to={{pathname: '/profile/',state:{accessToken:this.props.accc,loggedIn:this.props.loggedIn}}}>
+                                    <MenuItem >My Account</MenuItem></Link><hr />
+                                <Link to='/'>
+                                    <MenuItem onClick={this.logoutHandler}>Logout</MenuItem></Link>
+                                    <MenuItem onClick={this.test}>Test</MenuItem>
+                            </Menu>
+                        </div>
 </div>
 </div>
 
