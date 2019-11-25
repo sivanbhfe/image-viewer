@@ -11,13 +11,13 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { red } from '@material-ui/core/colors';
 import { classes } from 'istanbul-lib-coverage';
-import hearticon from '../../assets/hearticon.svg';
 import moment from "moment";
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 
 const styles = theme => ({
@@ -51,16 +51,23 @@ class Home extends Component {
             ownerInfo:{
                 username: "upgrad_sde"
             },
+            comment:"",
             addComment:"dispComment"
         }
     }
 
-    commentOnChangeChangeHandler = (e) => {
-        this.setState({imagecomment: e.target.value});
+    iconClickHandler = (e) => {
+        this.setState({
+            backgroundColor: 'red'
+        })
+    }
+
+    commentOnChangeHandler = (e) => {
+        this.setState({comment: e.target.value});
     }
 
     addCommentOnClickHandler = (e) => {
-        this.setState({addedComment :this.state.imagecomment});
+        this.setState({addedComment :this.state.comment});
 
     }
 
@@ -76,7 +83,6 @@ class Home extends Component {
                 that.setState({
                     userphotos: JSON.parse(this.responseText).data
                 });
-                //alert(that.state.userphotos);
             }
         });
 
@@ -112,17 +118,19 @@ render(){
                             <hr/>
                             <Typography variant="h6">{(photo.caption.text).split(/\#/)[0]}</Typography>
                             {photo.tags.map(tag=><span className="hash-tags">#{tag} </span>)}
+                            <br></br>
+                            <br></br>
                             <div className="likesProp">
                                <Typography variant="h5" >
-                                    <img src={hearticon} alt={"heartlogoTransparent"}   onClick={() => this.iconClickHandler} />
-                                    {photo.likes.count} Likes</Typography></div>
-                                <br /><br />
+                                    <FavoriteBorderIcon onClick={() => this.iconClickHandler} />
+                                     {photo.likes.count} Likes</Typography></div>
+                                    <br /><br />
                                 <FormControl >
-                                    <FormHelperText className={this.state.addComment}><div><Typography>: {this.state.addedComment}</Typography></div></FormHelperText>
-                                </FormControl>
+                                    <FormHelperText className={this.state.addComment}><Typography> {this.state.addedComment}</Typography></FormHelperText>
+                                </FormControl> <br></br>
                                 <FormControl>
                                     <InputLabel htmlFor="comment">Add a Comment</InputLabel>
-                                     <Input id="comment" type="text" onChange={this.commentOnChangeChangeHandler} />
+                                     <Input id="comment" type="text" onChange={this.commentOnChangeHandler} />
                                 </FormControl>
                                     <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
                                 
