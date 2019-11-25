@@ -1,0 +1,20 @@
+.iconDisplay{
+    color: black;
+}
+
+.imageProp {
+    display:flex;
+    justify-content: center;
+    padding: 20px;
+    width: 'auto';
+    height:'auto';
+  
+  }
+  .cardHeader {
+    display:flex;
+    float:flex-start;
+  }
+  .cardContent {
+    display:flex;
+    justify-content: center;  
+  }
