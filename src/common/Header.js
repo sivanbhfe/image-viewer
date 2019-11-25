@@ -99,12 +99,10 @@ test=()=>{
       alert("test");
       this.render()
     return ReactDOM.render(<Profile/>,document.getElementById("root"));
-      
 }
   
 
 componentWillMount() {
-
 
 // Get owner info after authenticating the  accessToken generated 
 let ownerData = null;
@@ -114,7 +112,6 @@ xhr.addEventListener("readystatechange", function () {
 if (this.readyState === 4) {
 that.setState({
 ownerInfo: JSON.parse(this.responseText).data
-
 });
 
 }
