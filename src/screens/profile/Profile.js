@@ -27,19 +27,10 @@ const styles = theme => ({
     width: 50,
     height: 50
   },
-  paper_big: {
-    position: "absolute",
-    width: 600,
-    backgroundColor: "white",
-    padding: 16,
-    outline: "none",
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, -50%)`
-  },
   fab: {
     margin: 8
   },
+  
   paper: {
     position: "absolute",
     width: 250,
@@ -49,7 +40,20 @@ const styles = theme => ({
     top: `50%`,
     left: `50%`,
     transform: `translate(-50%, -50%)`
+  },
+  
+  paper_big: {
+    position: "absolute",
+    width: 600,
+    backgroundColor: "white",
+    padding: 16,
+    outline: "none",
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`
   }
+  
+  
 });
 
 class Profile extends Component {
