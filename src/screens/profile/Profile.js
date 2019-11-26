@@ -21,13 +21,14 @@ componentWillMount() {
       let accessToken='';
 // Redirecting to login page if not logged in        
       try{
-     accessToken = this.props.location.state.accessToken;
-  loggedIn = this.props.location.state.loggedIn; 
+      accessToken = this.props.location.state.accessToken;
+      loggedIn = this.props.location.state.loggedIn; 
    } catch(exception){
    this.props.history.push({pathname:'/'});
  }
 // Getting data from API if logged in
    if(access_token===accessToken && loggedIn==='true'){
+
       xhr.addEventListener("readystatechange", function () {
           if (this.readyState === 4) {
               that.setState({

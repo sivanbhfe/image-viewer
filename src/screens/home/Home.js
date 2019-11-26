@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { red } from '@material-ui/core/colors';
 import { classes } from 'istanbul-lib-coverage';
-import moment from "moment";
+//import moment from "moment";
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -48,12 +48,17 @@ class Home extends Component {
         super();
         this.state = {
             userphotos: [],
+            access_token:sessionStorage.getItem("access-token"),
             ownerInfo:{
                 username: "upgrad_sde"
             },
             comment:"",
-            addComment:"dispComment"
+            addComment:"dispComment",
+            loggedIn:'false',
+hasError:false,
+accessToken:'',
         }
+        this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
     }
 
     iconClickHandler = (e) => {
@@ -73,30 +78,50 @@ class Home extends Component {
 
 
     componentWillMount() {
-      let data = null;
-        let baseUrl="https://api.instagram.com/v1/users/self/media/recent?access_token=";
+        let data = null;
+        let baseUrl=this.props.baseUrl;
         let xhr = new XMLHttpRequest();
         let that = this;
-        let access_token=this.props.access;
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                that.setState({
-                    userphotos: JSON.parse(this.responseText).data
-                });
-            }
-        });
+        let access_token = this.state.access_token;
+        let accessToken = this.state.accessToken;
+        let loggedIn = false;
+        
+        // Redirecting to login page if not logged in    
+try{
+    this.state.accessToken = this.props.history.location.state.accessToken;
+    loggedIn = this.props.history.location.state.loggedIn;
+    } catch(exception){
+    this.props.history.push({pathname:'/'});
+    }
 
-       // xhr.open("GET", baseUrl + access_token);
-       xhr.open("GET", baseUrl + '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784');
-        xhr.setRequestHeader("Cache-Control", "no-cache");
-        xhr.send(data);
+	// Getting data from API if logged in
+	if(access_token===this.state.accessToken && loggedIn===true){
+        that.state.loggedIn='true';
+        xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            
+        that.setState({
+        userphotos: JSON.parse(this.responseText).data,
+        });
+        }
+        });
+        xhr.open("GET", baseUrl+access_token);
+    xhr.setRequestHeader("Cache-Control", "no-cache");
+    xhr.send(data);
+    
+    } else {
+    this.props.history.push({pathname:'/'});
+    }
+    
     }
 
 render(){
    // const { classes } = this.props;
    
     return(<div>
-        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
+               <div><Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
+                loggedIn={this.state.loggedIn} accc={this.state.access_token} prof={this.singleUserUrl}
+                searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
         <div className= "homeBody">
         <GridList cellHeight={"auto"}  cols={2}>
         {this.state.userphotos.map(photo=>(
