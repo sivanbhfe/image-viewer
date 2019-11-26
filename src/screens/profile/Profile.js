@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Profile.css';
-import Header from '../../common/Header';
+import Header from '../../common/header/Header';
 
 //Material-UI Components
 import Avatar from "@material-ui/core/Avatar";
@@ -89,15 +89,17 @@ componentWillMount() {
         let accessToken='';
 // Redirecting to login page if not logged in        
       try{
-            accessToken = this.props.location.state.accessToken;
-            loggedIn = this.props.location.state.loggedIn; 
-        } catch(exception){
-            this.props.history.push({pathname:'/'});
-        }
+
+      accessToken = this.props.location.state.accessToken;
+      loggedIn = this.props.location.state.loggedIn; 
+   } catch(exception){
+   this.props.history.push({pathname:'/'});
+ }
 // Getting data from API if logged in
    if(access_token===accessToken && loggedIn==='true'){
-      // Gets User Profile 
-      xhr_UserProfile.addEventListener("readystatechange", function () {
+
+      xhr.addEventListener("readystatechange", function () {
+
           if (this.readyState === 4) {
                 const data = JSON.parse(this.responseText).data;
                 that.setState({

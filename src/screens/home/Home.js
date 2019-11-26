@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './Home.css';
-import Header from '../../common/Header';
+import Header from '../../common/header/Header';
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
-import { withStyles } from '@material-ui/core/styles';
+//import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -11,13 +11,14 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { red } from '@material-ui/core/colors';
 import { classes } from 'istanbul-lib-coverage';
-import moment from "moment";
+//import moment from "moment";
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+//import hearticon from '../../assets/hearticon.svg';
 
 
 const styles = theme => ({
@@ -48,18 +49,44 @@ class Home extends Component {
         super();
         this.state = {
             userphotos: [],
+            heartIcon: {
+                id: 1,
+                stateId: "heart1",
+                color:"black"
+
+            access_token:sessionStorage.getItem("access-token"),
             ownerInfo:{
                 username: "upgrad_sde"
+
             },
             comment:"",
-            addComment:"dispComment"
+            addComment:"dispComment",
+            loggedIn:'false',
+hasError:false,
+accessToken:'',
         }
+        this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
     }
 
-    iconClickHandler = (e) => {
-        this.setState({
-            backgroundColor: 'red'
-        })
+    heartClickHandler = (id) => {
+        console.log("clicking the icon");
+            if (this.state.heartIcon.id === id){
+            //    console.log("inside if");
+                this.setState({
+                    heartIcon: {
+                        color:"red"                    }
+                    
+                });
+             //   this.setState.userphotos.likes.count += 1;
+            } else {
+             //   console.log("inside else if");
+                this.setState({
+                    heartIcon: {
+                        color:"black"                    }
+                    
+                });
+            }           
+            
     }
 
     commentOnChangeHandler = (e) => {
@@ -73,30 +100,51 @@ class Home extends Component {
 
 
     componentWillMount() {
-      let data = null;
-        let baseUrl="https://api.instagram.com/v1/users/self/media/recent?access_token=";
+        let data = null;
+        let baseUrl=this.props.baseUrl;
         let xhr = new XMLHttpRequest();
         let that = this;
-        let access_token=this.props.access;
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                that.setState({
-                    userphotos: JSON.parse(this.responseText).data
-                });
-            }
-        });
+        let access_token = this.state.access_token;
+        let accessToken = this.state.accessToken;
+        let loggedIn = false;
+        
+        // Redirecting to login page if not logged in    
+try{
+    this.state.accessToken = this.props.history.location.state.accessToken;
+    loggedIn = this.props.history.location.state.loggedIn;
+    } catch(exception){
+    this.props.history.push({pathname:'/'});
+    }
 
-       // xhr.open("GET", baseUrl + access_token);
-       xhr.open("GET", baseUrl + '8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784');
-        xhr.setRequestHeader("Cache-Control", "no-cache");
-        xhr.send(data);
+	// Getting data from API if logged in
+	if(access_token===this.state.accessToken && loggedIn===true){
+        that.state.loggedIn='true';
+        xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+            
+        that.setState({
+        userphotos: JSON.parse(this.responseText).data,
+        });
+        }
+        });
+        xhr.open("GET", baseUrl+access_token);
+    xhr.setRequestHeader("Cache-Control", "no-cache");
+    xhr.send(data);
+    
+    } else {
+    this.props.history.push({pathname:'/'});
+    }
+    
     }
 
 render(){
    // const { classes } = this.props;
+   const DATE_OPTIONS= {day:'numeric', month:'numeric', year:'numeric'}
    
     return(<div>
-        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
+               <div><Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
+                loggedIn={this.state.loggedIn} accc={this.state.access_token} prof={this.singleUserUrl}
+                searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
         <div className= "homeBody">
         <GridList cellHeight={"auto"}  cols={2}>
         {this.state.userphotos.map(photo=>(
@@ -110,8 +158,8 @@ render(){
                                     <img src={logo}/>
                                     </Avatar>
                               }
-                                title={this.state.ownerInfo.username}
-                                subheader={photo.created_time}
+                                title={photo.caption.from.username}
+                                subheader={ moment(photo.caption.created_time).fromNow() }
                     />
                     <CardContent>
                             <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
@@ -121,13 +169,14 @@ render(){
                             <br></br>
                             <br></br>
                             <div className="likesProp">
-                               <Typography variant="h5" >
-                                    <FavoriteBorderIcon onClick={() => this.iconClickHandler} />
-                                     {photo.likes.count} Likes</Typography></div>
-                                    <br /><br />
+                                <Typography variant="h5" >
+                                    <FavoriteBorderIcon className ={this.state.heartIcon.color} key={this.state.heartIcon.id} 
+                                              onClick={() => this.heartClickHandler(this.state.heartIcon.id)} />
+                                           {photo.likes.count} Likes</Typography> </div>
+                                   
                                 <FormControl >
                                     <FormHelperText className={this.state.addComment}><Typography> {this.state.addedComment}</Typography></FormHelperText>
-                                </FormControl> <br></br>
+                                </FormControl> <br></br>  <br></br>
                                 <FormControl>
                                     <InputLabel htmlFor="comment">Add a Comment</InputLabel>
                                      <Input id="comment" type="text" onChange={this.commentOnChangeHandler} />

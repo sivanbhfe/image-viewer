@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import './Header.css';
-import Profile from '../screens/profile/Profile';
-import logo from '../assets/logo.png';
+import Profile from '../../screens/profile/Profile';
+import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
@@ -113,7 +113,6 @@ if (this.readyState === 4) {
 that.setState({
 ownerInfo: JSON.parse(this.responseText).data
 });
-
 }
 })
 xhr.open("GET", this.props.prof+this.props.accc);
@@ -152,7 +151,7 @@ return (<div className='header'>
                                 anchorReference="anchorPosition"
                                 anchorPosition={{ top: 64, left:1560}}
                             >
-                                <Link to={{pathname: '/profile/',state:{accessToken:this.props.accc,loggedIn:this.props.loggedIn}}}>
+                                <Link to={{pathname: '/profile/',state:{baseUrl:this.props.baseUrl,accessToken:this.props.accc,loggedIn:this.props.loggedIn}}}>
                                     <MenuItem >My Account</MenuItem></Link><hr />
                                 <Link to='/'>
                                     <MenuItem onClick={this.logoutHandler}>Logout</MenuItem></Link>
