@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import './Header.css';
-import Profile from '../screens/profile/Profile';
-import logo from '../assets/logo.png';
+import Profile from '../../screens/profile/Profile';
+import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';

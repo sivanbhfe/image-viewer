@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Home.css';
-import Header from '../../common/Header';
+import Header from '../../common/header/Header';
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
