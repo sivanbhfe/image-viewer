@@ -3,7 +3,7 @@ import './Home.css';
 import Header from '../../common/header/Header';
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
-import { withStyles } from '@material-ui/core/styles';
+//import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -18,6 +18,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+//import hearticon from '../../assets/hearticon.svg';
 
 
 const styles = theme => ({
@@ -48,9 +49,15 @@ class Home extends Component {
         super();
         this.state = {
             userphotos: [],
+            heartIcon: {
+                id: 1,
+                stateId: "heart1",
+                color:"black"
+
             access_token:sessionStorage.getItem("access-token"),
             ownerInfo:{
                 username: "upgrad_sde"
+
             },
             comment:"",
             addComment:"dispComment",
@@ -61,10 +68,25 @@ accessToken:'',
         this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
     }
 
-    iconClickHandler = (e) => {
-        this.setState({
-            backgroundColor: 'red'
-        })
+    heartClickHandler = (id) => {
+        console.log("clicking the icon");
+            if (this.state.heartIcon.id === id){
+            //    console.log("inside if");
+                this.setState({
+                    heartIcon: {
+                        color:"red"                    }
+                    
+                });
+             //   this.setState.userphotos.likes.count += 1;
+            } else {
+             //   console.log("inside else if");
+                this.setState({
+                    heartIcon: {
+                        color:"black"                    }
+                    
+                });
+            }           
+            
     }
 
     commentOnChangeHandler = (e) => {
@@ -117,6 +139,7 @@ try{
 
 render(){
    // const { classes } = this.props;
+   const DATE_OPTIONS= {day:'numeric', month:'numeric', year:'numeric'}
    
     return(<div>
                <div><Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
@@ -135,8 +158,8 @@ render(){
                                     <img src={logo}/>
                                     </Avatar>
                               }
-                                title={this.state.ownerInfo.username}
-                                subheader={photo.created_time}
+                                title={photo.caption.from.username}
+                                subheader={ moment(photo.caption.created_time).fromNow() }
                     />
                     <CardContent>
                             <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
@@ -146,13 +169,14 @@ render(){
                             <br></br>
                             <br></br>
                             <div className="likesProp">
-                               <Typography variant="h5" >
-                                    <FavoriteBorderIcon onClick={() => this.iconClickHandler} />
-                                     {photo.likes.count} Likes</Typography></div>
-                                    <br /><br />
+                                <Typography variant="h5" >
+                                    <FavoriteBorderIcon className ={this.state.heartIcon.color} key={this.state.heartIcon.id} 
+                                              onClick={() => this.heartClickHandler(this.state.heartIcon.id)} />
+                                           {photo.likes.count} Likes</Typography> </div>
+                                   
                                 <FormControl >
                                     <FormHelperText className={this.state.addComment}><Typography> {this.state.addedComment}</Typography></FormHelperText>
-                                </FormControl> <br></br>
+                                </FormControl> <br></br>  <br></br>
                                 <FormControl>
                                     <InputLabel htmlFor="comment">Add a Comment</InputLabel>
                                      <Input id="comment" type="text" onChange={this.commentOnChangeHandler} />
