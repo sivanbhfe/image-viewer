@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './Profile.css';
 import Header from '../../common/Header';
+import ReactDOM from 'react-dom';
+import Login from '../login/Login';
 
 class Profile extends Component {
 constructor() {
@@ -21,10 +23,13 @@ componentWillMount() {
       let accessToken='';
 // Redirecting to login page if not logged in        
       try{
-     accessToken = this.props.location.state.accessToken;
-  loggedIn = this.props.location.state.loggedIn; 
+     accessToken = this.props.accessToken;
+  loggedIn = this.props.loggedIn; 
    } catch(exception){
-   this.props.history.push({pathname:'/'});
+//   this.props.history.push({pathname:'/'});
+  {
+    alert("test");
+return(ReactDOM.render(<Login baseUrl={this.props.baseUrl} accessToken={this.props.accc} loggedIn={this.props.loggedIn}/>,document.getElementById("root")));}
  }
 // Getting data from API if logged in
    if(access_token===accessToken && loggedIn==='true'){

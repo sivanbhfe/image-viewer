@@ -1,15 +1,77 @@
 import React, {Component} from 'react';
 import './Home.css';
 import Header from '../../common/Header';
+import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+import { red } from '@material-ui/core/colors';
+import { classes } from 'istanbul-lib-coverage';
+import moment from "moment";
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+    },
+    card: {
+      maxWidth: 145
+    },
+    profileAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+    },
+    gridListMain: {
+        transform: 'translateZ(0)',
+        cursor: 'pointer',
+
+    },
+    avatar: {
+        backgroundColor: red[500],
+      }
+});
 
 class Home extends Component {
 
     constructor() {
         super();
         this.state = {
-            userphotos: [] }
+            userphotos: [],
+            ownerInfo:{
+                username: "upgrad_sde"
+            },
+            comment:"",
+            addComment:"dispComment"
+        }
     }
+
+    iconClickHandler = (e) => {
+        this.setState({
+            backgroundColor: 'red'
+        })
+    }
+
+    commentOnChangeHandler = (e) => {
+        this.setState({comment: e.target.value});
+    }
+
+    addCommentOnClickHandler = (e) => {
+        this.setState({addedComment :this.state.comment});
+
+    }
+
+
     componentWillMount() {
       let data = null;
         let baseUrl="https://api.instagram.com/v1/users/self/media/recent?access_token=";
@@ -21,7 +83,6 @@ class Home extends Component {
                 that.setState({
                     userphotos: JSON.parse(this.responseText).data
                 });
-                //alert(that.state.userphotos);
             }
         });
 
@@ -32,9 +93,60 @@ class Home extends Component {
     }
 
 render(){
+   // const { classes } = this.props;
+   
     return(<div>
-        <div><Header heading="Image Viewer" search="searh box  " logo="logo icon" /></div>
-        {this.state.userphotos.map(photo=>(<span key={"grid" + photo.id}><p><img src={photo.images.low_resolution.url}></img></p></span>))}
+        <div><Header heading="Image Viewer" searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
+        <div className= "homeBody">
+        <GridList cellHeight={"auto"}  cols={2}>
+        {this.state.userphotos.map(photo=>(
+            <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
+                <Grid container className={classes.root} spacing={10}>
+                    <Grid item>
+                    <Card className={classes.card}>
+                    <CardHeader 
+                             avatar={
+                                 <Avatar className={classes.profileAvatar}>
+                                    <img src={logo}/>
+                                    </Avatar>
+                              }
+                                title={this.state.ownerInfo.username}
+                                subheader={photo.created_time}
+                    />
+                    <CardContent>
+                            <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
+                            <hr/>
+                            <Typography variant="h6">{(photo.caption.text).split(/\#/)[0]}</Typography>
+                            {photo.tags.map(tag=><span className="hash-tags">#{tag} </span>)}
+                            <br></br>
+                            <br></br>
+                            <div className="likesProp">
+                               <Typography variant="h5" >
+                                    <FavoriteBorderIcon onClick={() => this.iconClickHandler} />
+                                     {photo.likes.count} Likes</Typography></div>
+                                    <br /><br />
+                                <FormControl >
+                                    <FormHelperText className={this.state.addComment}><Typography> {this.state.addedComment}</Typography></FormHelperText>
+                                </FormControl> <br></br>
+                                <FormControl>
+                                    <InputLabel htmlFor="comment">Add a Comment</InputLabel>
+                                     <Input id="comment" type="text" onChange={this.commentOnChangeHandler} />
+                                </FormControl>
+                                    <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
+                                
+
+                    </CardContent>
+
+
+                    </Card>
+
+                    </Grid>
+                </Grid>         
+                
+            )</GridListTile> ))}
+            </GridList>
+
+        </div>              
     </div>) 
 }
 }
