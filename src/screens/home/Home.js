@@ -47,6 +47,7 @@ class Home extends Component {
 
     constructor() {
         super();
+        this.addCommentOnClickHandler = this.addCommentOnClickHandler.bind(this);
         this.state = {
             userphotos: [],
             heartIcon: {
@@ -90,12 +91,17 @@ accessToken:'',
     }
 
     commentOnChangeHandler = (e) => {
-        this.setState({comment: e.target.value});
+        let that =this;
+        that.setState({ comment: e.target.value
+        });
+        that.title.childNodes[0].value=that.state.comment;
     }
 
     addCommentOnClickHandler = (e) => {
-        this.setState({addedComment :this.state.comment});
-
+        alert((this.title).childNodes[0].value);
+        alert((this.typ).className);
+        (this.typ).innerText=(this.title).childNodes[0].value;
+        alert((this.typ).innerText);
     }
 
 
@@ -175,16 +181,16 @@ render(){
                                     <FavoriteBorderIcon className ={this.state.heartIcon.color} key={this.state.heartIcon.id} 
                                               onClick={() => this.heartClickHandler(this.state.heartIcon.id)} />
                                            {photo.likes.count} Likes</Typography> </div>
-                                   
+                                           <div>
                                 <FormControl >
-                                    <FormHelperText className={this.state.addComment}><Typography> {this.state.addedComment}</Typography></FormHelperText>
+                                    <FormHelperText className={this.state.addComment}><span ref={(d) => this.typ = d} className="GIN" name="typ"></span></FormHelperText>
                                 </FormControl> <br></br>  <br></br>
-                                <FormControl>
+                                <FormControl>   
                                     <InputLabel htmlFor="comment">Add a Comment</InputLabel>
-                                     <Input id="comment" type="text" onChange={this.commentOnChangeHandler} />
+                                     <Input id="comment" type="text" onChange={this.commentOnChangeHandler} ref={(c) => this.title = c} name="title"/>
                                 </FormControl>
-                                    <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
-                                
+                                    <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler.bind(this)}>ADD</Button>
+                                </div>
 
                     </CardContent>
 
