@@ -102,6 +102,7 @@ accessToken:'',
         alert((this.typ).className);
         (this.typ).innerText=(this.title).childNodes[0].value;
         alert((this.typ).innerText);
+        (this.title).childNodes[0].value="";
     }
 
 
