@@ -52,7 +52,7 @@ class Home extends Component {
         this.state = {
             userphotos:null,
             matchingsearch:null,
-            searched:"no",
+            searched:"NO",
             username:"",
             heartIcon: {
                 id: 1,
@@ -85,7 +85,7 @@ accessToken:'',
    );
    this.setState({
     matchingsearch: matchingsearch,
-    searched:"yes"
+    searched:"YES"
 });
 }
 
@@ -129,7 +129,7 @@ accessToken:'',
                 alert("it comes here");
                 alert("PhotoLikeIndex: "+photoLikeIndex);
                 alert("Liked matching first: "+matchingsearchlike[photoLikeIndex].user_has_liked);
-if(this.state.searched==="no"){
+if(this.state.searched==="NO"){
                 if(matchingsearchlike[photoLikeIndex].user_has_liked ) {
                     
                     matchingsearchlike[photoLikeIndex].user_has_liked = false;
