@@ -67,7 +67,7 @@ constructor() {
 super();
 this.state = {
 menuIsOpen: false,
-ownerInfo: [],
+ownerInfo_self: [],
 loggedIn: sessionStorage.getItem("access-token") == null ? false : true
 }
 this.searchData='';
@@ -111,7 +111,7 @@ let that = this;
 xhr.addEventListener("readystatechange", function () {
 if (this.readyState === 4) {
 that.setState({
-ownerInfo: JSON.parse(this.responseText).data
+ownerInfo_self: JSON.parse(this.responseText).data
 });
 }
 })
@@ -140,7 +140,7 @@ return (<div className='header'>
 
 <Avatar className="avatar">
       
-<img  aria-controls="simple-menu" aria-haspopup="true" onClick={this.openMenuHandler} src={this.state.ownerInfo.profile_picture} alt="profile-icon"/>
+<img  aria-controls="simple-menu" aria-haspopup="true" onClick={this.openMenuHandler} src={this.state.ownerInfo_self.profile_picture} alt="profile-icon"/>
 </Avatar>
 <div >
                             <Menu 

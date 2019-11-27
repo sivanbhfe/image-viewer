@@ -53,7 +53,7 @@ class Home extends Component {
                 id: 1,
                 stateId: "heart1",
                 color:"black",
-            access_token:sessionStorage.getItem("access-token"),
+            
             ownerInfo:{
                 username: "upgrad_sde"
             },
@@ -64,8 +64,8 @@ hasError:false,
 accessToken:'',
         }
     }
-        this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token="
-        
+        this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
+        this.access_token=sessionStorage.getItem("access-token")  
 }
 
     heartClickHandler = (id) => {
@@ -104,21 +104,23 @@ accessToken:'',
         let baseUrl=this.props.baseUrl;
         let xhr = new XMLHttpRequest();
         let that = this;
-        let access_token = this.state.access_token;
-        let accessToken = this.state.accessToken;
+        let access_token = this.access_token;
+        let accessToken = '';
         let loggedIn = false;
         
         // Redirecting to login page if not logged in    
 try{
-    this.state.accessToken = this.props.history.location.state.accessToken;
+    accessToken = this.props.history.location.state.accessToken;
     loggedIn = this.props.history.location.state.loggedIn;
     } catch(exception){
     this.props.history.push({pathname:'/'});
     }
 
 	// Getting data from API if logged in
-	if(access_token===this.state.accessToken && loggedIn===true){
-        that.state.loggedIn='true';
+	if(this.access_token===accessToken && loggedIn===true){
+        that.setState({
+            loggedIn: 'true'
+            });
         xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
             
@@ -134,17 +136,17 @@ try{
     } else {
     this.props.history.push({pathname:'/'});
     }
-    
     }
 
 render(){
    // const { classes } = this.props;
    const DATE_OPTIONS= {day:'numeric', month:'numeric', year:'numeric'}
-   
     return(<div>
-               <div><Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
-                loggedIn={this.state.loggedIn} accc={this.state.access_token} prof={this.singleUserUrl}
-                searchDisplay="dispSearch" iconDisplay="dispBlock" onClick/></div>
+               <div>
+                   <Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
+                loggedIn={this.state.loggedIn} accc={this.access_token} prof={this.singleUserUrl}
+                searchDisplay="dispSearch" iconDisplay="dispBlock" /></div>
+
         <div className= "homeBody">
         <GridList cellHeight={"auto"}  cols={2}>
         {this.state.userphotos.map(photo=>(
