@@ -17,7 +17,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Favorite from '@material-ui/icons/Favorite';
 //import hearticon from '../../assets/hearticon.svg';
 
 
@@ -47,9 +48,12 @@ class Home extends Component {
 
     constructor() {
         super();
-        this.addCommentOnClickHandler = this.addCommentOnClickHandler.bind(this);
+      //  this.addCommentOnClickHandler = this.addCommentOnClickHandler.bind(this);
         this.state = {
-            userphotos: [],
+            userphotos:null,
+            matchingsearch:null,
+            searched:"no",
+            username:"",
             heartIcon: {
                 id: 1,
                 stateId: "heart1",
@@ -66,50 +70,158 @@ accessToken:'',
         }
     }
         this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
-        this.access_token=sessionStorage.getItem("access-token")  
+        this.access_token=sessionStorage.getItem("access-token")
 }
 
-    heartClickHandler = (id) => {
-        console.log("clicking the icon");
-            if (this.state.heartIcon.id === id){
-            //    console.log("inside if");
-                this.setState({
-                    heartIcon: {
-                        color:"red"                    }
-                    
-                });
-             //   this.setState.userphotos.likes.count += 1;
-            } else {
-             //   console.log("inside else if");
-                this.setState({
-                    heartIcon: {
-                        color:"black"                    }
-                    
-                });
-            }           
+
+    searchboxfunction = (e) => {
+
+        const searchkey = (e.target.value).toLowerCase();
+        let posts = this.state.userphotos;
+        let matchingsearch = [];
+        if(posts !== null && posts.length > 0){
+        matchingsearch = posts.filter((post) => 
+        (post.caption.text.split(/\#/)[0].toLowerCase()).indexOf(searchkey) > -1 
+   );
+   this.setState({
+    matchingsearch: matchingsearch,
+    searched:"yes"
+});
+}
+
+    }
+
+    heartClickHandler = (photoId, photoLikeIndex) => {
+        alert("testing");
+        alert(photoId);
+        alert(photoLikeIndex);
+
+        let photolistlike = this.state.userphotos;
+        let matchingsearchlike = this.state.matchingsearch;
+        alert(photolistlike);
+        alert(matchingsearchlike);
+
+        if(photolistlike !== null && photolistlike.length > 0){
+
+            // Updating main array
+            let postWithLike =  photolistlike.map((photoPostlike,photoIndex) => {
+                alert("Photopostlike: "+photoPostlike.id);
+                alert("PhotoId: "+photoId);
+                if(photoPostlike.id === photoId){
+                    alert("Liked first: "+photoPostlike.user_has_liked);
+                    if (photoPostlike.user_has_liked) {
+                        photoPostlike.user_has_liked = false;
+                        alert("Liked second: "+photoPostlike.user_has_liked);
+                        photoPostlike.likes.count = (photoPostlike.likes.count) + 1;
+                    } else {
+                        alert("Liked first in else: "+photoPostlike.user_has_liked);
+                        photoPostlike.user_has_liked = true;
+                        alert("Liked second in else: "+photoPostlike.user_has_liked);
+                        photoPostlike.likes.count = (photoPostlike.likes.count) - 1;
+                    }
+                } else {alert("ID no match");}
+                return photoPostlike;
+            });
             
+             //  Search key matching array
+             alert("MMMMMMMM :::::"+matchingsearchlike);
+            if(matchingsearchlike !== null && matchingsearchlike.length > 0) {
+                alert("it comes here");
+                alert("PhotoLikeIndex: "+photoLikeIndex);
+                alert("Liked matching first: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+if(this.state.searched==="no"){
+                if(matchingsearchlike[photoLikeIndex].user_has_liked ) {
+                    
+                    matchingsearchlike[photoLikeIndex].user_has_liked = false;
+                    alert("Liked matching second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+                    alert("Liked count first: "+matchingsearchlike[photoLikeIndex].likes.count);
+                    matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count) + 1;
+                    alert("Liked count second: "+matchingsearchlike[photoLikeIndex].likes.count);
+                } else {
+                    alert("Liked else first: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+                    matchingsearchlike[photoLikeIndex].user_has_liked = true;
+                    alert("Liked else second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+                    alert("Liked else count first: "+matchingsearchlike[photoLikeIndex].likes.count);
+                    matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count) - 1;
+                    alert("Liked else count second: "+matchingsearchlike[photoLikeIndex].likes.count);
+                }
+            } else {
+                if(matchingsearchlike[photoLikeIndex].user_has_liked===false) {
+                    
+                    matchingsearchlike[photoLikeIndex].user_has_liked = false;
+                    alert("Liked matching second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+                    alert("Liked count first: "+matchingsearchlike[photoLikeIndex].likes.count);
+                    matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
+                    alert("Liked count second: "+matchingsearchlike[photoLikeIndex].likes.count);
+                } else {
+                    alert("Liked else first: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+                    matchingsearchlike[photoLikeIndex].user_has_liked = true;
+                    alert("Liked else second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+                    alert("Liked else count first: "+matchingsearchlike[photoLikeIndex].likes.count);
+                    matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
+                    alert("Liked else count second: "+matchingsearchlike[photoLikeIndex].likes.count);
+                }
+            }
+            }
+            this.setState({
+                userphotos: postWithLike,
+                matchingsearch:matchingsearchlike
+            });
+       }
     }
 
-    commentOnChangeHandler = (e) => {
-        let that =this;
-        that.setState({ comment: e.target.value
-        });
-        that.title.childNodes[0].value=that.state.comment;
-    }
+    addCommentOnClickHandler = (photoId, photoIndex) => {
+      //  alert((this.title).childNodes[0].value);
+        const inputcomment = document.getElementById('comment'+photoId).value;
+        
+        if (inputcomment === '') {
+            return;
+        } else {
+            let photolist = this.state.userphotos;
+            if(photolist !== null && photolist.length > 0){
+            
+        //    alert(photolist);
+        //  Main array update
+            let postsWithComment =  photolist.map((photoPost,index) => {
+                if(photoPost.id === photoId){
+                    photoPost.comments['data'] = photoPost.comments['data'] || [];
+                    photoPost.comments['data'].push({
+                        id: (photoPost.comments['data'].length + 1),
+                        commentUser: this.state.username,
+                        commentInput: inputcomment
+                    });
+                }
+                return photoPost;
+            });
 
-    addCommentOnClickHandler = (e) => {
-        alert((this.title).childNodes[0].value);
-        alert((this.typ).className);
-        (this.typ).innerText=(this.title).childNodes[0].value;
-        alert((this.typ).innerText);
-        (this.title).childNodes[0].value="";
-    }
+        //  Search key matching array
+            let matchingsearch = this.state.matchingsearch;
+if(matchingsearch!==null && matchingsearch.length>0){
+                matchingsearch[photoIndex].comments['data'] = matchingsearch[photoIndex].comments['data'] || [];
+                matchingsearch[photoIndex].comments['data'].push({
+                        id: (matchingsearch[photoIndex].comments['data'].length + 1) ,
+                        commentUser: this.state.username,
+                        commentInput: inputcomment
+                });
+        }
 
+                        this.setState({
+                            userphotos: postsWithComment,
+                            matchingsearch:matchingsearch
+                        });
+     //   alert(this.state.userphotos);
+    //    innerspan.innerText= innerspan.innerText + "\n"+ "\n"+ username+": "+inputcomment.value;
+        document.getElementById('comment'+photoId).value="";
+        }
+    }
+    }
 
     componentWillMount() {
         let data = null;
+        let singledata=null;
         let baseUrl=this.props.baseUrl;
         let xhr = new XMLHttpRequest();
+        let singlexhr = new XMLHttpRequest();
         let that = this;
         let access_token = this.access_token;
         let accessToken = '';
@@ -123,6 +235,19 @@ try{
     this.props.history.push({pathname:'/'});
     }
 
+    let profiledata = null;
+    let xhrprofiledata = new XMLHttpRequest();
+    xhrprofiledata.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+        that.setState({
+            username: JSON.parse(this.responseText).data.username,
+        }); 
+    }
+    });
+    xhrprofiledata.open("GET", this.singleUserUrl + this.access_token);
+    //xhrUserProfile.setRequestHeader("Cache-Control", "no-cache");
+    xhrprofiledata.send(xhrprofiledata);
+
 	// Getting data from API if logged in
 	if(this.access_token===accessToken && loggedIn===true){
         that.setState({
@@ -130,16 +255,15 @@ try{
             });
         xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
-            
         that.setState({
         userphotos: JSON.parse(this.responseText).data,
+        matchingsearch: JSON.parse(this.responseText).data
         });
         }
         });
         xhr.open("GET", baseUrl+access_token);
     xhr.setRequestHeader("Cache-Control", "no-cache");
-    xhr.send(data);
-    
+    xhr.send(data);        
     } else {
     this.props.history.push({pathname:'/'});
     }
@@ -151,17 +275,17 @@ render(){
     return(<div>
                <div>
                    <Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
-                loggedIn={this.state.loggedIn} accc={this.access_token} prof={this.singleUserUrl}
+                loggedIn={this.state.loggedIn} searchenable={this.searchboxfunction}accc={this.access_token} prof={this.singleUserUrl}
                 searchDisplay="dispSearch" iconDisplay="dispBlock" /></div>
 
         <div className= "homeBody">
         <GridList cellHeight={"auto"}  cols={2}>
-        {this.state.userphotos.map(photo=>(
+        {(this.state.matchingsearch || []).map((photo,index)=>(
             <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
                 <Grid container className={classes.root} spacing={10}>
                     <Grid item>
                     <Card className={classes.card}>
-                    <CardHeader 
+                    <CardHeader id={'cardheader'+photo.id}
                              avatar={
                                  <Avatar className={classes.profileAvatar}>
                                     <img src={logo}/>
@@ -179,31 +303,45 @@ render(){
                             <br></br>
                             <div className="likesProp">
                                 <Typography variant="h5" >
-                                    <FavoriteBorderIcon className ={this.state.heartIcon.color} key={this.state.heartIcon.id} 
-                                              onClick={() => this.heartClickHandler(this.state.heartIcon.id)} />
-                                           {photo.likes.count} Likes</Typography> </div>
+                                {photo.user_has_liked ? 
+                                                    <FavoriteBorder className="noLike" 
+                                                                    onClick={this.heartClickHandler.bind(this, photo.id, index)} 
+                                                    />
+                                                    :
+                                                    <Favorite className="Liked" 
+                                                              onClick={this.heartClickHandler.bind(this, photo.id, index)} 
+                                                    />                                                                                                       
+                                                }</Typography>
+                                                <Grid>
+                                                    {(photo.likes.count)} likes
+                                            </Grid>
+                                            </div>
                                            <div>
+                                           <Grid container>
+	                                        <Grid item>
+		                                        {(photo.comments.data || []).map((comment) => {
+			                                    return <Typography key={comment.id}>
+				                                            <span className="userNameSpan"><b>{comment.commentUser} :</b></span><span className="commenttext"> {comment.commentInput}</span>
+                                                        </Typography>
+                                                })}
+                                            </Grid>
+                                        </Grid> 
                                 <FormControl >
-                                    <FormHelperText className={this.state.addComment}><span ref={(d) => this.typ = d} className="GIN" name="typ"></span></FormHelperText>
+                                    <FormHelperText id={'formhelper'+photo.id}className={this.state.addComment}><span id={"innerspan"+photo.id} ></span></FormHelperText>
                                 </FormControl> <br></br>  <br></br>
                                 <FormControl>   
                                     <InputLabel htmlFor="comment">Add a Comment</InputLabel>
-                                     <Input id="comment" type="text" onChange={this.commentOnChangeHandler} ref={(c) => this.title = c} name="title"/>
+                                     <Input id={"comment"+photo.id} type="text"  />
                                 </FormControl>
-                                    <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler.bind(this)}>ADD</Button>
+                                    <Button id={"addcomment"+photo.id} variant="contained" color="primary" onClick={this.addCommentOnClickHandler.bind(this,photo.id,index)}>ADD</Button>
                                 </div>
-
                     </CardContent>
-
-
                     </Card>
-
                     </Grid>
                 </Grid>         
                 
             )</GridListTile> ))}
             </GridList>
-
         </div>              
     </div>) 
 }

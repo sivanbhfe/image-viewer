@@ -100,10 +100,8 @@ test=()=>{
       this.render()
     return ReactDOM.render(<Profile/>,document.getElementById("root"));
 }
-  
-
+s
 componentWillMount() {
-
 // Get owner info after authenticating the  accessToken generated 
 let ownerData = null;
 let xhr = new XMLHttpRequest();
@@ -131,15 +129,12 @@ return (<div className='header'>
             <SearchIcon />
           </IconButton>
 </span>
-<InputBase id="testing" placeholder="Search…"  onChange={this.serachInputHandler} />
+<InputBase id="testing" placeholder="Search…"  onChange={this.props.searchenable} />
 </span>
       </div>
 <div className={this.props.iconDisplay}>
 <div className="image">
-
-
 <Avatar className="avatar">
-      
 <img  aria-controls="simple-menu" aria-haspopup="true" onClick={this.openMenuHandler} src={this.state.ownerInfo_self.profile_picture} alt="profile-icon"/>
 </Avatar>
 <div >
