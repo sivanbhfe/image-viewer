@@ -54,11 +54,7 @@ class Home extends Component {
             matchingsearch:null,
             searched:"NO",
             username:"",
-            heartIcon: {
-                id: 1,
-                stateId: "heart1",
-                color:"black",
-            
+                
             ownerInfo:{
                 username: "upgrad_sde"
             },
@@ -68,12 +64,9 @@ class Home extends Component {
 hasError:false,
 accessToken:'',
         }
-    }
         this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
         this.access_token=sessionStorage.getItem("access-token")
 }
-
-
     searchboxfunction = (e) => {
 
         const searchkey = (e.target.value).toLowerCase();
@@ -92,74 +85,48 @@ accessToken:'',
     }
 
     heartClickHandler = (photoId, photoLikeIndex) => {
-        alert("testing");
-        alert(photoId);
-        alert(photoLikeIndex);
+
 
         let photolistlike = this.state.userphotos;
         let matchingsearchlike = this.state.matchingsearch;
-        alert(photolistlike);
-        alert(matchingsearchlike);
+
 
         if(photolistlike !== null && photolistlike.length > 0){
 
             // Updating main array
             let postWithLike =  photolistlike.map((photoPostlike,photoIndex) => {
-                alert("Photopostlike: "+photoPostlike.id);
-                alert("PhotoId: "+photoId);
                 if(photoPostlike.id === photoId){
-                    alert("Liked first: "+photoPostlike.user_has_liked);
                     if (photoPostlike.user_has_liked) {
                         photoPostlike.user_has_liked = false;
-                        alert("Liked second: "+photoPostlike.user_has_liked);
                         photoPostlike.likes.count = (photoPostlike.likes.count) + 1;
                     } else {
-                        alert("Liked first in else: "+photoPostlike.user_has_liked);
                         photoPostlike.user_has_liked = true;
-                        alert("Liked second in else: "+photoPostlike.user_has_liked);
                         photoPostlike.likes.count = (photoPostlike.likes.count) - 1;
                     }
-                } else {alert("ID no match");}
+                } else {}
                 return photoPostlike;
             });
             
              //  Search key matching array
-             alert("MMMMMMMM :::::"+matchingsearchlike);
             if(matchingsearchlike !== null && matchingsearchlike.length > 0) {
-                alert("it comes here");
-                alert("PhotoLikeIndex: "+photoLikeIndex);
-                alert("Liked matching first: "+matchingsearchlike[photoLikeIndex].user_has_liked);
+//Logic to be reversed if search function is triggered. Otherwise it overwrites it's own values
 if(this.state.searched==="NO"){
                 if(matchingsearchlike[photoLikeIndex].user_has_liked ) {
                     
                     matchingsearchlike[photoLikeIndex].user_has_liked = false;
-                    alert("Liked matching second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
-                    alert("Liked count first: "+matchingsearchlike[photoLikeIndex].likes.count);
                     matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count) + 1;
-                    alert("Liked count second: "+matchingsearchlike[photoLikeIndex].likes.count);
                 } else {
-                    alert("Liked else first: "+matchingsearchlike[photoLikeIndex].user_has_liked);
                     matchingsearchlike[photoLikeIndex].user_has_liked = true;
-                    alert("Liked else second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
-                    alert("Liked else count first: "+matchingsearchlike[photoLikeIndex].likes.count);
                     matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count) - 1;
-                    alert("Liked else count second: "+matchingsearchlike[photoLikeIndex].likes.count);
                 }
             } else {
                 if(matchingsearchlike[photoLikeIndex].user_has_liked===false) {
                     
                     matchingsearchlike[photoLikeIndex].user_has_liked = false;
-                    alert("Liked matching second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
-                    alert("Liked count first: "+matchingsearchlike[photoLikeIndex].likes.count);
                     matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
-                    alert("Liked count second: "+matchingsearchlike[photoLikeIndex].likes.count);
                 } else {
-                    alert("Liked else first: "+matchingsearchlike[photoLikeIndex].user_has_liked);
                     matchingsearchlike[photoLikeIndex].user_has_liked = true;
-                    alert("Liked else second: "+matchingsearchlike[photoLikeIndex].user_has_liked);
-                    alert("Liked else count first: "+matchingsearchlike[photoLikeIndex].likes.count);
                     matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
-                    alert("Liked else count second: "+matchingsearchlike[photoLikeIndex].likes.count);
                 }
             }
             }
@@ -196,6 +163,7 @@ if(this.state.searched==="NO"){
 
         //  Search key matching array
             let matchingsearch = this.state.matchingsearch;
+//No need to run this if search function is triggered. Otherwise it creates duplicate entries
 if(this.state.searched==="NO"){
 if(matchingsearch!==null && matchingsearch.length>0){
                 matchingsearch[photoIndex].comments['data'] = matchingsearch[photoIndex].comments['data'] || [];
@@ -205,7 +173,7 @@ if(matchingsearch!==null && matchingsearch.length>0){
                         commentInput: inputcomment
                 });
         } }else {
-
+           
         }
 
                         this.setState({
