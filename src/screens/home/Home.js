@@ -196,6 +196,7 @@ if(this.state.searched==="NO"){
 
         //  Search key matching array
             let matchingsearch = this.state.matchingsearch;
+if(this.state.searched==="NO"){
 if(matchingsearch!==null && matchingsearch.length>0){
                 matchingsearch[photoIndex].comments['data'] = matchingsearch[photoIndex].comments['data'] || [];
                 matchingsearch[photoIndex].comments['data'].push({
@@ -203,6 +204,8 @@ if(matchingsearch!==null && matchingsearch.length>0){
                         commentUser: this.state.username,
                         commentInput: inputcomment
                 });
+        } }else {
+
         }
 
                         this.setState({
