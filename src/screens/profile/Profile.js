@@ -98,7 +98,7 @@ componentWillMount() {
 // Getting data from API if logged in
    if(access_token===accessToken && loggedIn==='true'){
 
-      xhr.addEventListener("readystatechange", function () {
+      xhr_UserProfile.addEventListener("readystatechange", function () {
 
           if (this.readyState === 4) {
                 const data = JSON.parse(this.responseText).data;
@@ -387,4 +387,4 @@ render(){
 }
 
 export default withStyles(styles)(Profile);
-3
+

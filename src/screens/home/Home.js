@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { red } from '@material-ui/core/colors';
 import { classes } from 'istanbul-lib-coverage';
-//import moment from "moment";
+import moment from "moment";
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -52,12 +52,10 @@ class Home extends Component {
             heartIcon: {
                 id: 1,
                 stateId: "heart1",
-                color:"black"
-
+                color:"black",
             access_token:sessionStorage.getItem("access-token"),
             ownerInfo:{
                 username: "upgrad_sde"
-
             },
             comment:"",
             addComment:"dispComment",
@@ -65,8 +63,10 @@ class Home extends Component {
 hasError:false,
 accessToken:'',
         }
-        this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
     }
+        this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token="
+        
+}
 
     heartClickHandler = (id) => {
         console.log("clicking the icon");
