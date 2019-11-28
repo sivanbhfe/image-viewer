@@ -95,12 +95,7 @@ logoutHandler = () => {
           menuIsOpen: false
       });
   }
-test=()=>{
-      alert("test");
-      this.render()
-    return ReactDOM.render(<Profile/>,document.getElementById("root"));
-}
-s
+
 componentWillMount() {
 // Get owner info after authenticating the  accessToken generated 
 let ownerData = null;
@@ -149,7 +144,6 @@ return (<div className='header'>
                                     <MenuItem >My Account</MenuItem></Link><hr />
                                 <Link to='/'>
                                     <MenuItem onClick={this.logoutHandler}>Logout</MenuItem></Link>
-                                    <MenuItem onClick={this.test}>Test</MenuItem>
                             </Menu>
                         </div>
 </div>
