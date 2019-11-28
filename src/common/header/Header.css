@@ -9,12 +9,12 @@
     height:80px;
     align-items: center ;
     flex-grow: 1;
-	text-transform:none;
-    
+    text-transform:none;    
     }
     .header-text{
     display:inline-block;
     width:60%;
+    text-transform: capitalize;
     }
     .dispNone {
     display:none;
