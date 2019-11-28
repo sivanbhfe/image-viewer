@@ -134,8 +134,7 @@ return (<div className='header'>
       </div>
 <div className={this.props.iconDisplay}>
 <div className="image">
-<Avatar className="avatar">
-<img  aria-controls="simple-menu" aria-haspopup="true" onClick={this.openMenuHandler} src={this.state.ownerInfo_self.profile_picture} alt="profile-icon"/>
+<Avatar aria-controls="simple-menu" aria-haspopup="true" onClick={this.openMenuHandler} src={this.state.ownerInfo_self.profile_picture} alt="profile-icon">
 </Avatar>
 <div >
                             <Menu 
