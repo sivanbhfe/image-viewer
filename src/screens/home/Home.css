@@ -104,3 +104,9 @@ font-size:16px;
   .Liked{
     color:red;
   }
+  .likeCount{
+    font-size:20px;
+    display:inline-block;
+    margin-left: 2px;
+  }
+  

@@ -54,7 +54,6 @@ class Home extends Component {
             matchingsearch:null,
             searched:"NO",
             username:"",
-                
             ownerInfo:{
                 username: "upgrad_sde"
             },
@@ -256,14 +255,15 @@ render(){
                 <Grid container className={classes.root} spacing={10}>
                     <Grid item>
                     <Card className={classes.card}>
-                    <CardHeader id={'cardheader'+photo.id}
+                    <CardHeader 
                              avatar={
                                  <Avatar className={classes.profileAvatar}>
                                     <img src={logo}/>
                                     </Avatar>
                               }
                                 title={photo.caption.from.username}
-                                subheader={ moment(photo.caption.created_time).fromNow() }
+                             //   subheader={ moment(photo.caption.created_time,"x").format("DD MMM YYYY hh:mm a")}
+                             subheader={moment.unix(photo.caption.created_time).format("DD/MM/YYYY HH:mm:ss")}
                     />
                     <CardContent>
                             <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
@@ -283,13 +283,13 @@ render(){
                                                               onClick={this.heartClickHandler.bind(this, photo.id, index)} 
                                                     />                                                                                                       
                                                 }</Typography>
-                                                <Grid>
-                                                    {(photo.likes.count)} likes
-                                            </Grid>
+                                                <div className="likeCount">
+                                                   <span >{(photo.likes.count)} likes</span>
+                                                    </div>
                                             </div>
                                            <div>
-                                           <Grid container>
-	                                        <Grid item>
+                                           <Grid >
+	                                        <Grid >
 		                                        {(photo.comments.data || []).map((comment) => {
 			                                    return <Typography key={comment.id}>
 				                                            <span className="userNameSpan"><b>{comment.commentUser} :</b></span><span className="commenttext"> {comment.commentInput}</span>
