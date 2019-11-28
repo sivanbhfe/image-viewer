@@ -54,18 +54,18 @@ class Home extends Component {
             matchingsearch:null,
             searched:"NO",
             username:"",
-            ownerInfo:{
-                username: "upgrad_sde"
-            },
+           /* ownerInfo:{
+                username: ""
+                },*/
             comment:"",
             addComment:"dispComment",
             loggedIn:'false',
-hasError:false,
-accessToken:'',
+            hasError:false,
+            accessToken:'',
         }
         this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
         this.access_token=sessionStorage.getItem("access-token")
-}
+    }
     searchboxfunction = (e) => {
 
         const searchkey = (e.target.value).toLowerCase();
@@ -73,13 +73,12 @@ accessToken:'',
         let matchingsearch = [];
         if(posts !== null && posts.length > 0){
         matchingsearch = posts.filter((post) => 
-        (post.caption.text.split(/\#/)[0].toLowerCase()).indexOf(searchkey) > -1 
-   );
-   this.setState({
-    matchingsearch: matchingsearch,
-    searched:"YES"
-});
-}
+        (post.caption.text.split(/\#/)[0].toLowerCase()).indexOf(searchkey) > -1 );
+        this.setState({
+                   matchingsearch: matchingsearch,
+                   searched:"YES"
+        });
+       }
 
     }
 
@@ -108,8 +107,8 @@ accessToken:'',
             
              //  Search key matching array
             if(matchingsearchlike !== null && matchingsearchlike.length > 0) {
-//Logic to be reversed if search function is triggered. Otherwise it overwrites it's own values
-if(this.state.searched==="NO"){
+               //Logic to be reversed if search function is triggered. Otherwise it overwrites it's own values
+            if(this.state.searched==="NO"){
                 if(matchingsearchlike[photoLikeIndex].user_has_liked ) {
                     
                     matchingsearchlike[photoLikeIndex].user_has_liked = false;
@@ -210,7 +209,7 @@ try{
     xhrprofiledata.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
         that.setState({
-            username: JSON.parse(this.responseText).data.username,
+            username: JSON.parse(this.responseText).data.username
         }); 
     }
     });
