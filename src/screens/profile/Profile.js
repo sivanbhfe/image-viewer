@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import Create from "@material-ui/icons/Create";
 import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
@@ -353,12 +354,21 @@ render(){
                     </Grid>
                     <Grid container spacing={1} alignItems="center" justify="flex-start"  >
                     <Grid item>
-                        <Favorite
+                        {this.state.selectedPost.user_has_liked ? 
+                          <FavoriteBorder className={'greyLike'} 
+                                    onClick={this.ClickLikesHandler} 
+                         />
+                         :
+                          <Favorite className={'redLike'} 
+                           onClick={this.ClickLikesHandler} 
+                          />                                                                                                       
+                         }   
+                           {/*  <Favorite
                           className={
                             this.state.selectedPost.user_has_liked ? "greyLike": "redLike"
                           }
                           onClick={this.ClickLikesHandler}
-                        />
+                        />*/}
                       </Grid>
                       <Grid item>
                         <Typography variant="caption">{this.state.selectedPost.likes.count} likes </Typography>
