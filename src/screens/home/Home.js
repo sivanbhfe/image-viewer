@@ -46,40 +46,41 @@ backgroundColor: red[500],
 
 class Home extends Component {
 
-constructor() {
-super();
-//  this.addCommentOnClickHandler = this.addCommentOnClickHandler.bind(this);
-this.state = {
-    userphotos:null,
-    matchingsearch:null,
-    searched:"NO",
-    username:"",
-    ownerInfo:{
-        username: "upgrad_sde"
-    },
-    comment:"",
-    addComment:"dispComment",
-    loggedIn:'false',
-hasError:false,
-accessToken:'',
-}
-this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
-this.access_token=sessionStorage.getItem("access-token")
-}
-searchboxfunction = (e) => {
 
-const searchkey = (e.target.value).toLowerCase();
-let posts = this.state.userphotos;
-let matchingsearch = [];
-if(posts !== null && posts.length > 0){
-matchingsearch = posts.filter((post) => 
-(post.caption.text.split(/\#/)[0].toLowerCase()).indexOf(searchkey) > -1 
-);
-this.setState({
-matchingsearch: matchingsearch,
-searched:"YES"
-});
-}
+    constructor() {
+        super();
+      //  this.addCommentOnClickHandler = this.addCommentOnClickHandler.bind(this);
+        this.state = {
+            userphotos:null,
+            matchingsearch:null,
+            searched:"NO",
+            username:"",
+           /* ownerInfo:{
+                username: ""
+                },*/
+            comment:"",
+            addComment:"dispComment",
+            loggedIn:'false',
+            hasError:false,
+            accessToken:'',
+        }
+        this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
+        this.access_token=sessionStorage.getItem("access-token")
+    }
+    searchboxfunction = (e) => {
+
+        const searchkey = (e.target.value).toLowerCase();
+        let posts = this.state.userphotos;
+        let matchingsearch = [];
+        if(posts !== null && posts.length > 0){
+        matchingsearch = posts.filter((post) => 
+        (post.caption.text.split(/\#/)[0].toLowerCase()).indexOf(searchkey) > -1 );
+        this.setState({
+                   matchingsearch: matchingsearch,
+                   searched:"YES"
+        });
+       }
+
 
 }
 
@@ -107,12 +108,14 @@ let matchingsearchlike = this.state.matchingsearch;
 
 if(photolistlike !== null && photolistlike.length > 0){
 
+
     // Updating main array
     let postWithLike =  photolistlike.map((photoPostlike,photoIndex) => {
         if(photoPostlike.id === photoId){
             if (photoPostlike.user_has_liked) {
                 photoPostlike.user_has_liked = false;
                 photoPostlike.likes.count = (photoPostlike.likes.count) + 1;
+
             } else {
                 photoPostlike.user_has_liked = true;
                 photoPostlike.likes.count = (photoPostlike.likes.count) - 1;
@@ -222,10 +225,12 @@ this.props.history.push({pathname:'/'});
 
 
 
+
 // Getting data from API if logged in
 if(this.access_token===accessToken && loggedIn===true){
 that.setState({
     loggedIn: 'true'
+
     });
 // Calling first API
     let profiledata = null;
