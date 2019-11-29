@@ -143,7 +143,7 @@ return (<div className='header'>
                 >
                     {this.props.noSearchBox ==="box" ?
                     
-                        <MenuItem onClick={this.props.profileredirect}>My Account<hr /></MenuItem>:""}
+                       <span> <MenuItem onClick={this.props.profileredirect}>My Account</MenuItem><hr/></span>:""}
                         <MenuItem onClick={this.props.logoutHandler}>Logout</MenuItem>
                 </Menu>
             </div>

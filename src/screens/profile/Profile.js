@@ -36,9 +36,7 @@ const styles = theme => ({
   card: {
       maxWidth: 145
     },
-  avatar: {
-        backgroundColor: red[500],
-      },
+  
   fab: {
     margin: 8
   },
@@ -493,7 +491,7 @@ render(){
                         )}
                       </Grid>
                     </Grid>
-                {/*<Grid container spacing={1} alignItems="center" justify="flex-start"  >
+                <Grid container spacing={1} alignItems="center" justify="flex-start"  >
                     <Grid item>
                         {this.state.selectedPost.user_has_liked ? 
                           <FavoriteBorder className={'greyLike'} 
@@ -527,9 +525,8 @@ render(){
                          </Grid>
                     </Grid>
                   </Grid>
-                </Grid>*/}
                 </Grid>
-                </Grid>
+
                 <GridList cellHeight={"auto"}  cols={3}>
         {(this.state.matchingsearch || []).map((photo,index)=>(
             <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
@@ -606,4 +603,3 @@ render(){
 }
 
 export default withStyles(styles)(Profile);
-
