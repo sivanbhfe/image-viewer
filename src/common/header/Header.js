@@ -139,7 +139,7 @@ return (<div className='header'>
                     open={this.state.menuIsOpen}
                     onClose={this.closeMenuHandler}
                     anchorReference="anchorPosition"
-                    anchorPosition={{ top: 64, left:1560}}
+                    anchorPosition={{ top: 62, left:2000}}
                 >
                     {this.props.noSearchBox ==="box" ?
                     
