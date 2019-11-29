@@ -1,68 +1,13 @@
 import React, {Component} from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
-import ReactDOM from 'react-dom';
 import './Header.css';
-import Profile from '../../screens/profile/Profile';
-import logo from '../../assets/logo.png';
-import { Link } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
-import { classes } from 'istanbul-lib-coverage';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-function name(parameter1, parameter2, parameter3) {
-      // code to be executed
-    }
-
-
-const styles = theme => (
-      {
-grow: {
-flexGrow: 1,
-},
-title: {
-color: 'initial',
-},
-bigAvatar: {
-margin: 10,
-width: 60,
-height: 60,
-},
-search: {
-position: 'relative',
-borderRadius: '4px',
-backgroundColor: '#c0c0c0',
-marginLeft: '70%',
-width: '300px',
-verticalAlign: 'center',
-},
-searchIcon: {
-height: '100%',
-color: 'black',
-position: 'absolute',
-pointerEvents: 'none',
-display: 'flex',
-alignItems: 'center',
-justifyContent: 'center',
-},
-inputRoot: {
-color: 'inherit',
-},
-inputInput: {
-transition: theme.transitions.create('width'),
-width: '100%',
-[theme.breakpoints.up('md')]: {
-width: 200,
-},
-},
-
-});
-
 class Header extends Component {
-
 constructor() {
 super();
 this.state = {
