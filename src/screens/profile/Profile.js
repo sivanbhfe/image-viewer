@@ -113,8 +113,8 @@ componentWillMount() {
         let accessToken='';
 // Redirecting to login page if not logged in        
       try{
-      accessToken = this.props.location.state.accessToken;
-      loggedIn = this.props.location.state.loggedIn; 
+      accessToken = this.props.history.location.state.accessToken;
+      loggedIn = this.props.history.location.state.loggedIn; 
    } catch(exception){
    this.props.history.push({pathname:'/'});
  }
@@ -238,7 +238,22 @@ EditFullNameModalCloseHandler = () => {
     });
   };
 
-  
+
+  redirecting =()=>{
+   let accessToken = sessionStorage.getItem("access-token");
+			//Route to home here  
+				this.props.history.push({pathname:'/home/',state:{ accessToken: accessToken
+				, loggedIn:true}});
+}
+
+  loginredirect=()=>{
+    sessionStorage.removeItem("access-token");
+    this.setState({
+        loggedIn: false
+    });
+    this.props.history.push({pathname:'/'});
+}
+
   inputAddCommentHandler = e => {
     this.setState({ newComment: e.target.value });
   };
@@ -382,7 +397,11 @@ render(){
             prof={this.singleUserUrl} 
             noSearchBox="dispNone" 
             searchDisplay="dispSearch" 
-            iconDisplay="dispBlock" />
+            iconDisplay="dispBlock"
+            logoutHandler={this.loginredirect} 
+            homeredirect={this.redirecting}
+            />
+            
         </div>
         {this.state.userprofile.map(profile=>
             (<span key={"grid" + profile.id}>
