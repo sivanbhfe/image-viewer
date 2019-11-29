@@ -103,6 +103,7 @@ test=()=>{
 s
 componentWillMount() {
 // Get owner info after authenticating the  accessToken generated 
+    try{
 let ownerData = null;
 let xhr = new XMLHttpRequest();
 let that = this;
@@ -114,7 +115,9 @@ ownerInfo_self: JSON.parse(this.responseText).data
 }
 })
 xhr.open("GET", this.props.prof+this.props.accc);
-xhr.send(ownerData);
+xhr.send(ownerData);} catch (exception) {
+    // do nothing
+}
 }
 
 render(){

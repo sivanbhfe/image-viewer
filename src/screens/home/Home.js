@@ -205,7 +205,15 @@ try{
     this.props.history.push({pathname:'/'});
     }
 
-    let profiledata = null;
+    
+
+	// Getting data from API if logged in
+	if(this.access_token===accessToken && loggedIn===true){
+        that.setState({
+            loggedIn: 'true'
+            });
+// Calling first API
+            let profiledata = null;
     let xhrprofiledata = new XMLHttpRequest();
     xhrprofiledata.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
@@ -218,11 +226,7 @@ try{
     //xhrUserProfile.setRequestHeader("Cache-Control", "no-cache");
     xhrprofiledata.send(xhrprofiledata);
 
-	// Getting data from API if logged in
-	if(this.access_token===accessToken && loggedIn===true){
-        that.setState({
-            loggedIn: 'true'
-            });
+// Calling second API
         xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4) {
         that.setState({
