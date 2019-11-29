@@ -36,9 +36,7 @@ const styles = theme => ({
   card: {
       maxWidth: 145
     },
-  avatar: {
-        backgroundColor: red[500],
-      },
+  
   fab: {
     margin: 8
   },
@@ -113,8 +111,8 @@ componentWillMount() {
         let accessToken='';
 // Redirecting to login page if not logged in        
       try{
-      accessToken = this.props.location.state.accessToken;
-      loggedIn = this.props.location.state.loggedIn; 
+      accessToken = this.props.history.location.state.accessToken;
+      loggedIn = this.props.history.location.state.loggedIn; 
    } catch(exception){
    this.props.history.push({pathname:'/'});
  }
@@ -238,7 +236,22 @@ EditFullNameModalCloseHandler = () => {
     });
   };
 
-  
+
+  redirecting =()=>{
+   let accessToken = sessionStorage.getItem("access-token");
+			//Route to home here  
+				this.props.history.push({pathname:'/home/',state:{ accessToken: accessToken
+				, loggedIn:true}});
+}
+
+  loginredirect=()=>{
+    sessionStorage.removeItem("access-token");
+    this.setState({
+        loggedIn: false
+    });
+    this.props.history.push({pathname:'/'});
+}
+
   inputAddCommentHandler = e => {
     this.setState({ newComment: e.target.value });
   };
@@ -382,7 +395,11 @@ render(){
             prof={this.singleUserUrl} 
             noSearchBox="dispNone" 
             searchDisplay="dispSearch" 
-            iconDisplay="dispBlock" />
+            iconDisplay="dispBlock"
+            logoutHandler={this.loginredirect} 
+            homeredirect={this.redirecting}
+            />
+            
         </div>
         {this.state.userprofile.map(profile=>
             (<span key={"grid" + profile.id}>
@@ -474,7 +491,7 @@ render(){
                         )}
                       </Grid>
                     </Grid>
-                {/*<Grid container spacing={1} alignItems="center" justify="flex-start"  >
+                <Grid container spacing={1} alignItems="center" justify="flex-start"  >
                     <Grid item>
                         {this.state.selectedPost.user_has_liked ? 
                           <FavoriteBorder className={'greyLike'} 
@@ -508,9 +525,8 @@ render(){
                          </Grid>
                     </Grid>
                   </Grid>
-                </Grid>*/}
                 </Grid>
-                </Grid>
+
                 <GridList cellHeight={"auto"}  cols={3}>
         {(this.state.matchingsearch || []).map((photo,index)=>(
             <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
@@ -587,4 +603,3 @@ render(){
 }
 
 export default withStyles(styles)(Profile);
-
