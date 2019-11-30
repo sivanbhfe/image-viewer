@@ -293,13 +293,13 @@ return(this.mounted===true ? <div>
                                             </div>
                                     </div>
                                     <div className="comemntbox">
-                    <Grid className="commentgrid">
-                        <Grid >
+                    <Grid>
+                        <Grid className="gridComment">
                             {(photo.comments.data || []).map((comment) => {
-                                return <Typography key={comment.id}>
-                                    <span className="userNameSpan"><b>{comment.commentUser}:</b></span>
+                                return<div> <Typography className="commentTypography" key={comment.id}>
+                                   <span className="userNameSpan"><b>{comment.commentUser}:</b></span>
                                     <span className="commenttext"> {comment.commentInput}</span>
-                                </Typography>
+                                </Typography></div>
                             })}
                         </Grid>
                     </Grid>

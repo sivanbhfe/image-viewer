@@ -5,6 +5,7 @@
   .min-height-comments-box {
     min-height: 50px;
     margin-bottom: 20px;
+    word-wrap: break-word;
   }
   
   .grid-content {
@@ -20,5 +21,25 @@
     cursor: pointer;
   }
 
+  .MuiGridListTile-tile{
+    display:flex !important;
+    flex-direction:row !important;
+    margin:5px !important;
+  }
+
+  .MuiGridList-root{
+    width:100% !important;
+    height:100%  !important;
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+  }
+  .MuiGridListTile-imgFullWidth{
+    width:98% !important;
+  }
+
+  .MuiTypography-root.MuiTypography-caption.MuiTypography-displayBlock{
+    width:100% !important;
+    word-break: break-all;
+  }
   
 
