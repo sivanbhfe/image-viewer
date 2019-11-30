@@ -21,7 +21,6 @@ import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import { classes } from 'istanbul-lib-coverage';
 
 const styles = theme => ({
   bigAvatar: {
@@ -89,7 +88,6 @@ componentDidMount() {
 componentWillMount() {
         this.mounted = false;
         let data_UserProfile = null;
-        let baseUrl=this.props.baseUrl;
         let xhr_UserProfile = new XMLHttpRequest();
         let that = this;
         let access_token = sessionStorage.getItem("access-token");
@@ -289,12 +287,11 @@ render(){
         </div>
         {this.state.userprofile.map(profile=>
             (<span key={"grid" + profile.id}>
-                <p><img src={profile.images.low_resolution.url}></img></p></span>))}
-        
+                <p><img src={profile.images.low_resolution.url} alt="User Profile Logo"></img></p></span>))}
         <Container fixed>
           <Grid container spacing={3} alignItems="center" style={{ justifyContent: "center" }} >
             <Grid item>
-                <Avatar className={classes.bigAvatar} alt={this.state.username} src={this.state.profile_picture} className={classes.bigAvatar} />
+                <Avatar className={classes.bigAvatar} alt={this.state.username} src={this.state.profile_picture} />
             </Grid>
 
           <Grid item><Typography variant="h6" component="h6"> {this.state.username} </Typography>

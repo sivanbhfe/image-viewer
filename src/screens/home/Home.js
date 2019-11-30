@@ -8,8 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import logo from '../../assets/logo.png';
-import { red } from '@material-ui/core/colors';
-import { classes } from 'istanbul-lib-coverage';
 import moment from "moment";
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -62,7 +60,7 @@ class Home extends Component {
         let matchingsearch = [];
         if(posts !== null && posts.length > 0){
         matchingsearch = posts.filter((post) => 
-        (post.caption.text.split(/\#/)[0].toLowerCase()).indexOf(searchkey) > -1 );
+        (post.caption.text.split(/#/)[0].toLowerCase()).indexOf(searchkey) > -1 );
         this.setState({
                    matchingsearch: matchingsearch,
                    searched:"YES"
@@ -128,10 +126,10 @@ if(this.state.searched==="NO"){
         if(matchingsearchlike[photoLikeIndex].user_has_liked===false) {
             
             matchingsearchlike[photoLikeIndex].user_has_liked = false;
-            matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
+         //   matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
         } else {
             matchingsearchlike[photoLikeIndex].user_has_liked = true;
-            matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
+         // matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
         }
     }
     }
@@ -199,10 +197,8 @@ componentDidMount(){
 componentWillMount() {
     this.mounted = false;
 let data = null;
-let singledata=null;
 let baseUrl=this.props.baseUrl;
 let xhr = new XMLHttpRequest();
-let singlexhr = new XMLHttpRequest();
 let that = this;
 let access_token = this.access_token;
 let accessToken = '';
@@ -226,7 +222,7 @@ that.setState({
 
     });
 // Calling first API
-    let profiledata = null;
+
 let xhrprofiledata = new XMLHttpRequest();
 xhrprofiledata.addEventListener("readystatechange", function () {
 if (this.readyState === 4) {
@@ -258,8 +254,6 @@ this.props.history.push({pathname:'/'});
 
 render(){
 const { classes } = this.props;
-const DATE_OPTIONS= {day:'numeric', month:'numeric', year:'numeric'}
-
 return(this.mounted===true ? <div>
         <div>
             <Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
@@ -276,7 +270,7 @@ return(this.mounted===true ? <div>
             <CardHeader 
                         avatar={
                             <Avatar className={classes.profileAvatar}>
-                            <img src={logo}/>
+                            <img src={logo} alt="User Profile   logo"/>
                             </Avatar>
                         }
                         title={photo.caption.from.username}
@@ -286,7 +280,7 @@ return(this.mounted===true ? <div>
             <CardContent>
                     <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
                     <hr/>
-                    <Typography variant="h6">{(photo.caption.text).split(/\#/)[0]}</Typography>
+                    <Typography variant="h6">{(photo.caption.text).split(/#/)[0]}</Typography>
                     {photo.tags.map((tag,index)=><span key={"span"+photo.id+index} className="hash-tags">#{tag} </span>)}
                     <br></br>
                     <br></br>
@@ -304,25 +298,32 @@ return(this.mounted===true ? <div>
                                          <span >{(photo.likes.count)} likes</span>
                                             </div>
                                     </div>
-                                    <div>
-                                    <Grid >
-                                    <Grid >
-                                {(photo.comments.data || []).map((comment) => {
+                                    <div className="comemntbox">
+                    <Grid className="commentgrid">
+                        <Grid >
+                            {(photo.comments.data || []).map((comment) => {
                                 return <Typography key={comment.id}>
-                                <span className="userNameSpan"><b>{comment.commentUser}:</b></span><span className="commenttext"> {comment.commentInput}</span>
-                        </Typography>
-                                        })}
-                                    </Grid>
-                                </Grid> 
-                        <FormControl >
-                            <FormHelperText id={'formhelper'+photo.id}className={this.state.addComment}><span id={"innerspan"+photo.id} ></span></FormHelperText>
-                        </FormControl> <br></br>  <br></br>
-                        <FormControl>   
-                            <InputLabel htmlFor="comment">Add a Comment</InputLabel>
-                                <Input id={"comment"+photo.id} type="text"  />
-                        </FormControl>
-                            <Button id={"addcomment"+photo.id} variant="contained" color="primary" onClick={this.addCommentOnClickHandler.bind(this,photo.id,index)}>ADD</Button>
-                        </div>
+                                    <span className="userNameSpan"><b>{comment.commentUser}:</b></span>
+                                    <span className="commenttext"> {comment.commentInput}</span>
+                                </Typography>
+                            })}
+                        </Grid>
+                    </Grid>
+                    <div className="innercommentbox">
+                    <FormControl >
+                        <FormHelperText id={'formhelper' + photo.id} className={this.state.addComment}>
+                            <span id={"innerspan" + photo.id} ></span>
+                        </FormHelperText>
+                    </FormControl> <br></br>  <br></br>
+                    <FormControl className="commentinputbox">
+                        <InputLabel htmlFor="comment">Add a Comment</InputLabel>
+                        <Input id={"comment" + photo.id} type="text" />
+                    </FormControl>
+                    <Button className="addcommentbutton" id={"addcomment" + photo.id} variant="contained" color="primary" 
+                        onClick={this.addCommentOnClickHandler.bind(this, photo.id, index)}>ADD
+                    </Button>
+                    </div>
+                    </div>
             </CardContent>
             </Card>
             </Grid>
