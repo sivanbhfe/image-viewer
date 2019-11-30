@@ -25,8 +25,10 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 const styles = theme => ({
   bigAvatar: {
     margin: 10,
-    width: 80,
-    height: 80
+    width: 120,
+    height: 120,
+    boxShadow: '1px 2px 2px grey',
+    marginRight:80
   },
   fab: {
     width:50

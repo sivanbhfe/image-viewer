@@ -20,8 +20,9 @@ import { withStyles } from "@material-ui/styles";
 const styles = theme => ({
     profileAvatar: {
         margin: 10,
-        width: 40,
-        height: 40,
+        width: 60,
+        height: 60,
+        boxShadow: '1px 2px 2px grey'
     }
 });
 
