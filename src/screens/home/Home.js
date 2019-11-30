@@ -192,7 +192,12 @@ document.getElementById('comment'+photoId).value="";
 }
 }
 
+componentDidMount(){
+    this.mounted=true;
+}
+
 componentWillMount() {
+    this.mounted = false;
 let data = null;
 let singledata=null;
 let baseUrl=this.props.baseUrl;
@@ -254,7 +259,8 @@ this.props.history.push({pathname:'/'});
 render(){
 const { classes } = this.props;
 const DATE_OPTIONS= {day:'numeric', month:'numeric', year:'numeric'}
-return(<div>
+
+return(this.mounted===true ? <div>
         <div>
             <Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
         loggedIn={this.state.loggedIn} searchenable={this.searchboxfunction}accc={this.access_token} prof={this.singleUserUrl}
@@ -325,7 +331,9 @@ return(<div>
     )</GridListTile> ))}
     </GridList>
 </div>              
-</div>) 
+</div>
+:
+""); 
 }
 }
 export default withStyles(styles)(Home);

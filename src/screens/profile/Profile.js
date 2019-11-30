@@ -81,7 +81,13 @@ constructor(props) {
     }
     this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
 }
+
+componentDidMount() {
+  this.mounted=true;
+}
+
 componentWillMount() {
+        this.mounted = false;
         let data_UserProfile = null;
         let baseUrl=this.props.baseUrl;
         let xhr_UserProfile = new XMLHttpRequest();
@@ -266,7 +272,7 @@ EditFullNameModalCloseHandler = () => {
 
 render(){
     const { classes } = this.props;
-    return(
+    return(this.mounted===true ?
     <div>
         <div>
             <Header heading="Image Viewer" 
@@ -408,6 +414,8 @@ render(){
           )}
         </Container>
       </div>
+      :
+      ""
     );
   }
 }
