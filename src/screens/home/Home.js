@@ -261,12 +261,12 @@ return(this.mounted===true ? <div>
         searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirecting} profileredirect={this.profileredirect} logoutHandler={this.loginredirect}/></div>
 
 <div className= "homeBody">
-<GridList cellHeight={"auto"}  cols={2}>
+<GridList className="HomeGridListRoot" cellHeight={"auto"}  cols={2}>
 {(this.state.matchingsearch || []).map((photo,index)=>(
-    <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
+    <GridListTile className="HomeGridListTile" key={"grid" + photo.id} cols={photo.cols|| 1}>
         <Grid container className={classes.root} spacing={10}>
             <Grid item>
-            <Card className={classes.card}>
+            <Card className="cardRoot">
             <CardHeader 
                         avatar={
                             <Avatar className={classes.profileAvatar}>

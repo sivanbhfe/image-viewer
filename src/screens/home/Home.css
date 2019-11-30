@@ -3,16 +3,20 @@
   text-align: right;
   width:37%
 }
-.MuiGridListTile-tile{
+/*MuiGridListTile-tile*/
+.HomeGridListTile{
   overflow: visible !important;
   width:102% !important;
   margin-top: 20px;
 }
-.MuiGridListTile-root.Home-gridtile-4{
+
+
+.HomeGridListRoot{
   display: block;
 }
 
-.MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded{
+/*MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded*/
+.cardRoot{
   width:95% !important;
 }
 
