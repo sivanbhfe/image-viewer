@@ -205,7 +205,12 @@ class Home extends Component {
         }
     }
 
+    componentDidMount(){
+        this.mounted = true;
+    }
+
     componentWillMount() {
+        this.mounted = false;
         let data = null;
         let baseUrl = this.props.baseUrl;
         let xhr = new XMLHttpRequest();
@@ -264,7 +269,7 @@ class Home extends Component {
     /*Rendering the Home page component */
 render() {
 
-return (<div>
+return (this.mounted===true ? <div>
 <div>
 <Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
 loggedIn={this.state.loggedIn} searchenable={this.searchboxfunction} accc={this.access_token} prof={this.singleUserUrl}
@@ -339,7 +344,9 @@ searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirectin
 )</GridListTile>))}
 </GridList>
 </div>
-</div>)
+</div>
+:
+"")
     }
 }
 export default withStyles(styles)(Home);
