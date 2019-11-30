@@ -290,7 +290,7 @@ class Home extends Component {
                                             <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
                                             <hr />
                                             <Typography variant="h6">{(photo.caption.text).split(/\#/)[0]}</Typography>
-                                            {photo.tags.map((photoId, tag) => <span key={photo.id, "hash#" + photo.caption.id} className="hash-tags">#{tag} </span>)}
+                                            {photo.tags.map((tag,index) => <span key={"hash"+photo.id+index} className="hash-tags">#{tag} </span>)}
                                             <br></br>
                                             <br></br>
                                             <div className="likesProp">
