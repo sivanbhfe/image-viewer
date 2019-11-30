@@ -26,9 +26,9 @@
 }
 .MuiGridList-root{
   display: block;
- justify-content: left;
- padding-left: 8% !important;
- padding-right: 5% !important;
+  justify-content: left;
+  padding-left: 8% !important;
+  padding-right: 5% !important;
 }
 .MuiCardContent-root{
   height:100% !important;
@@ -103,8 +103,8 @@ MuiTypography-root.MuiTypography-body1{
 }
 
 .innercommentbox{
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .commentinputbox{
