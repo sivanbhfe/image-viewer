@@ -12,7 +12,8 @@ class Header extends Component {
         super();
         this.state = {
             menuIsOpen: false,
-            ownerInfo_self: []
+            ownerInfo_self: [],
+            profile_picture:""
         }
     }
 
@@ -30,6 +31,10 @@ class Header extends Component {
     }
 
     componentWillMount() {
+
+        // Getting the profile_picture from other pagse
+        
+
         // Get profile owner info after authenticating the  accessToken generated
         try {
             let ownerData = null;

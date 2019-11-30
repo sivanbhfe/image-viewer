@@ -95,10 +95,12 @@ font-size:16px;
 
   .noLike{
     color:black;
+    cursor: pointer;
   }
 
   .Liked{
     color:red;
+    cursor: pointer;
   }
   .likeCount{
     font-size:20px;

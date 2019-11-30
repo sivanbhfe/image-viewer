@@ -18,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
+import { withStyles } from "@material-ui/styles";
 
 /*Defining the styles to be used by the components in Home page */
 const styles = theme => ({
@@ -27,11 +28,11 @@ const styles = theme => ({
     },
 
     card: {
-        maxWidth: 145
+        maxWidth: 150
     },
 
     profileAvatar: {
-        margin: 10,
+        margin: 90,
         width: 60,
         height: 60,
     }
@@ -66,7 +67,7 @@ class Home extends Component {
         let matchingsearch = [];
         if (posts !== null && posts.length > 0) {
             matchingsearch = posts.filter((post) =>
-                (post.caption.text.split(/\#/)[0].toLowerCase()).indexOf(searchkey) > -1);
+                (post.caption.text.split(/#/)[0].toLowerCase()).indexOf(searchkey) > -1);
             this.setState({
                 matchingsearch: matchingsearch,
                 searched: "YES"
@@ -140,10 +141,10 @@ class Home extends Component {
                     if (matchingsearchlike[photoLikeIndex].user_has_liked === false) {
 
                         matchingsearchlike[photoLikeIndex].user_has_liked = false;
-                        matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
+                    //  matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
                     } else {
                         matchingsearchlike[photoLikeIndex].user_has_liked = true;
-                        matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
+                    //  matchingsearchlike[photoLikeIndex].likes.count = (matchingsearchlike[photoLikeIndex].likes.count);
                     }
                 }
             }
@@ -221,9 +222,6 @@ class Home extends Component {
             this.props.history.push({ pathname: '/' });
         }
 
-
-
-
         // Getting data from API if logged in
         if (this.access_token === accessToken && loggedIn === true) {
             that.setState({
@@ -251,6 +249,8 @@ class Home extends Component {
                         userphotos: JSON.parse(this.responseText).data,
                         matchingsearch: JSON.parse(this.responseText).data
                     });
+
+
                 }
             });
             xhr.open("GET", baseUrl + access_token);
@@ -262,79 +262,84 @@ class Home extends Component {
     }
 
     /*Rendering the Home page component */
-    render() {
+render() {
 
-        return (<div>
-            <div>
-                <Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
-                    loggedIn={this.state.loggedIn} searchenable={this.searchboxfunction} accc={this.access_token} prof={this.singleUserUrl}
-                    searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirecting} profileredirect={this.profileredirect} logoutHandler={this.loginredirect} /></div>
+return (<div>
+<div>
+<Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
+loggedIn={this.state.loggedIn} searchenable={this.searchboxfunction} accc={this.access_token} prof={this.singleUserUrl}
+searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirecting} profileredirect={this.profileredirect} logoutHandler={this.loginredirect} /></div>
 
-            <div className="homeBody">
-                <GridList cellHeight={"auto"} cols={2}>
-                    {(this.state.matchingsearch || []).map((photo, index) => (
-                        <GridListTile key={"grid" + photo.id} cols={photo.cols || 1}>
-                            <Grid container className={classes.root} spacing={10}>
-                                <Grid item>
-                                    <Card className={classes.card}>
-                                        <CardHeader
-                                            avatar={
-                                                <Avatar className={classes.profileAvatar}>
-                                                    <img src={logo} alt={photo.caption.from.username} />
-                                                </Avatar>
-                                            }
-                                            title={photo.caption.from.username}
-                                            subheader={moment.unix(photo.caption.created_time).format("DD/MM/YYYY HH:mm:ss")}
-                                        />
-                                        <CardContent>
-                                            <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
-                                            <hr />
-                                            <Typography variant="h6">{(photo.caption.text).split(/\#/)[0]}</Typography>
-                                            {photo.tags.map((tag,index) => <span key={"hash"+photo.id+index} className="hash-tags">#{tag} </span>)}
-                                            <br></br>
-                                            <br></br>
-                                            <div className="likesProp">
-                                                <Typography variant="h5" >
-                                                    {photo.user_has_liked ?
-                                                        <FavoriteBorder className="noLike"
-                                                            onClick={this.heartClickHandler.bind(this, photo.id, index)} />
-                                                        :
-                                                        <Favorite className="Liked"
-                                                            onClick={this.heartClickHandler.bind(this, photo.id, index)} />
-                                                    }
-                                                </Typography>
-                                                <div className="likeCount">
-                                                    <span >{(photo.likes.count)} likes</span>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <Grid >
-                                                    <Grid >
-                                                        {(photo.comments.data || []).map((comment) => {
-                                                            return <Typography key={comment.id}>
-                                                                <span className="userNameSpan"><b>{comment.commentUser}:</b></span><span className="commenttext"> {comment.commentInput}</span>
-                                                            </Typography>
-                                                        })}
-                                                    </Grid>
-                                                </Grid>
-                                                <FormControl >
-                                                    <FormHelperText id={'formhelper' + photo.id} className={this.state.addComment}><span id={"innerspan" + photo.id} ></span></FormHelperText>
-                                                </FormControl> <br></br>  <br></br>
-                                                <FormControl>
-                                                    <InputLabel htmlFor="comment">Add a Comment</InputLabel>
-                                                    <Input id={"comment" + photo.id} type="text" />
-                                                </FormControl>
-                                                <Button id={"addcomment" + photo.id} variant="contained" color="primary" onClick={this.addCommentOnClickHandler.bind(this, photo.id, index)}>ADD</Button>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                            </Grid>
-
-                            )</GridListTile>))}
-                </GridList>
-            </div>
-        </div>)
+<div className="homeBody">
+<GridList cellHeight={"auto"} cols={2}>
+{(this.state.matchingsearch || []).map((photo, index) => (
+<GridListTile key={"grid" + photo.id} cols={photo.cols || 1}>
+<Grid container className={classes.root} spacing={10}>
+    <Grid item>
+        <Card className={classes.card}>
+            <CardHeader
+                avatar={
+                    <Avatar className={classes.profileAvatar}>
+                        <img src={logo} alt={photo.caption.from.username} />
+                    </Avatar>
+                }
+                title={photo.caption.from.username}
+                subheader={moment.unix(photo.caption.created_time).format("DD/MM/YYYY HH:mm:ss")}
+            />
+            <CardContent>
+                <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
+                <hr />
+                <Typography variant="h6">{(photo.caption.text).split(/#/)[0]}</Typography>
+                {photo.tags.map((tag,index) => <span key={"hash"+photo.id+index} 
+                    className="hash-tags">#{tag} </span>)}
+                <br></br>
+                <br></br>
+                <div className="likesProp">
+                    <Typography variant="h5" >
+                        {photo.user_has_liked ?
+                            <FavoriteBorder className="noLike"
+                                onClick={this.heartClickHandler.bind(this, photo.id, index)} />
+                            :
+                            <Favorite className="Liked"
+                                onClick={this.heartClickHandler.bind(this, photo.id, index)} />
+                        }
+                    </Typography>
+                    <div className="likeCount">
+                        <span >{(photo.likes.count)} likes</span>
+                    </div>
+                </div>
+                <div>
+                    <Grid >
+                        <Grid >
+                            {(photo.comments.data || []).map((comment) => {
+                                return <Typography key={comment.id}>
+                                    <span className="userNameSpan"><b>{comment.commentUser}:</b></span>
+                                    <span className="commenttext"> {comment.commentInput}</span>
+                                </Typography>
+                            })}
+                        </Grid>
+                    </Grid>
+                    <FormControl >
+                        <FormHelperText id={'formhelper' + photo.id} className={this.state.addComment}>
+                            <span id={"innerspan" + photo.id} ></span>
+                        </FormHelperText>
+                    </FormControl> <br></br>  <br></br>
+                    <FormControl>
+                        <InputLabel htmlFor="comment">Add a Comment</InputLabel>
+                        <Input id={"comment" + photo.id} type="text" />
+                    </FormControl>
+                    <Button id={"addcomment" + photo.id} variant="contained" color="primary" 
+                        onClick={this.addCommentOnClickHandler.bind(this, photo.id, index)}>ADD
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    </Grid>
+</Grid>
+)</GridListTile>))}
+</GridList>
+</div>
+</div>)
     }
 }
-export default Home;
+export default withStyles(styles)(Home);
