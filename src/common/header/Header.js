@@ -7,12 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-function name(parameter1, parameter2, parameter3) {
-      // code to be executed
-    }
-
-
-
 class Header extends Component {
 
 constructor() {

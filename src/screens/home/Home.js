@@ -7,7 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import { red } from '@material-ui/core/colors';
 import { classes } from 'istanbul-lib-coverage';
@@ -19,34 +18,23 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Favorite from '@material-ui/icons/Favorite';
+import { withStyles } from "@material-ui/styles";
 //import hearticon from '../../assets/hearticon.svg';
-
-
 const styles = theme => ({
-root: {
-width: '100%',
-},
-card: {
-maxWidth: 145
-},
-profileAvatar: {
-margin: 10,
-width: 60,
-height: 60,
-},
-gridListMain: {
-transform: 'translateZ(0)',
-cursor: 'pointer',
+    root: {
 
-},
-avatar: {
-backgroundColor: red[500],
-}
+    },
+    cardcontent: {
+        maxWidth: '90%'
+    },
+    profileAvatar: {
+        margin: 10,
+        width: 40,
+        height: 40,
+    }
 });
 
 class Home extends Component {
-
-
     constructor() {
         super();
       //  this.addCommentOnClickHandler = this.addCommentOnClickHandler.bind(this);
@@ -264,7 +252,7 @@ this.props.history.push({pathname:'/'});
 }
 
 render(){
-// const { classes } = this.props;
+const { classes } = this.props;
 const DATE_OPTIONS= {day:'numeric', month:'numeric', year:'numeric'}
 return(<div>
         <div>
@@ -293,7 +281,7 @@ return(<div>
                     <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
                     <hr/>
                     <Typography variant="h6">{(photo.caption.text).split(/\#/)[0]}</Typography>
-                    {photo.tags.map(tag=><span className="hash-tags">#{tag} </span>)}
+                    {photo.tags.map((tag,index)=><span key={"span"+photo.id+index} className="hash-tags">#{tag} </span>)}
                     <br></br>
                     <br></br>
                     <div className="likesProp">
@@ -340,4 +328,4 @@ return(<div>
 </div>) 
 }
 }
-export default Home;
+export default withStyles(styles)(Home);
