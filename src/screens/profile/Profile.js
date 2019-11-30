@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import Create from "@material-ui/icons/Create";
 import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
@@ -35,9 +36,7 @@ const styles = theme => ({
   card: {
       maxWidth: 145
     },
-  avatar: {
-        backgroundColor: red[500],
-      },
+  
   fab: {
     margin: 8
   },
@@ -112,8 +111,8 @@ componentWillMount() {
         let accessToken='';
 // Redirecting to login page if not logged in        
       try{
-      accessToken = this.props.location.state.accessToken;
-      loggedIn = this.props.location.state.loggedIn; 
+      accessToken = this.props.history.location.state.accessToken;
+      loggedIn = this.props.history.location.state.loggedIn; 
    } catch(exception){
    this.props.history.push({pathname:'/'});
  }
@@ -237,7 +236,22 @@ EditFullNameModalCloseHandler = () => {
     });
   };
 
-  
+
+  redirecting =()=>{
+   let accessToken = sessionStorage.getItem("access-token");
+			//Route to home here  
+				this.props.history.push({pathname:'/home/',state:{ accessToken: accessToken
+				, loggedIn:true}});
+}
+
+  loginredirect=()=>{
+    sessionStorage.removeItem("access-token");
+    this.setState({
+        loggedIn: false
+    });
+    this.props.history.push({pathname:'/'});
+}
+
   inputAddCommentHandler = e => {
     this.setState({ newComment: e.target.value });
   };
@@ -381,7 +395,11 @@ render(){
             prof={this.singleUserUrl} 
             noSearchBox="dispNone" 
             searchDisplay="dispSearch" 
-            iconDisplay="dispBlock" />
+            iconDisplay="dispBlock"
+            logoutHandler={this.loginredirect} 
+            homeredirect={this.redirecting}
+            />
+            
         </div>
         {this.state.userprofile.map(profile=>
             (<span key={"grid" + profile.id}>
@@ -473,14 +491,23 @@ render(){
                         )}
                       </Grid>
                     </Grid>
-                {/*<Grid container spacing={1} alignItems="center" justify="flex-start"  >
+                <Grid container spacing={1} alignItems="center" justify="flex-start"  >
                     <Grid item>
-                        <Favorite
+                        {this.state.selectedPost.user_has_liked ? 
+                          <FavoriteBorder className={'greyLike'} 
+                                    onClick={this.ClickLikesHandler} 
+                         />
+                         :
+                          <Favorite className={'redLike'} 
+                           onClick={this.ClickLikesHandler} 
+                          />                                                                                                       
+                         }   
+                           {/*  <Favorite
                           className={
                             this.state.selectedPost.user_has_liked ? "greyLike": "redLike"
                           }
                           onClick={this.ClickLikesHandler}
-                        />
+                        />*/}
                       </Grid>
                       <Grid item>
                         <Typography variant="caption">{this.state.selectedPost.likes.count} likes </Typography>
@@ -498,9 +525,8 @@ render(){
                          </Grid>
                     </Grid>
                   </Grid>
-                </Grid>*/}
                 </Grid>
-                </Grid>
+
                 <GridList cellHeight={"auto"}  cols={3}>
         {(this.state.matchingsearch || []).map((photo,index)=>(
             <GridListTile key={"grid" + photo.id} cols={photo.cols|| 1}>
@@ -577,4 +603,3 @@ render(){
 }
 
 export default withStyles(styles)(Profile);
-
