@@ -27,8 +27,8 @@
 .MuiGridList-root{
   display: block;
   justify-content: left;
-  padding-left: 8% !important;
-  padding-right: 5% !important;
+  padding-left: 7% !important;
+  padding-right: 8% !important;
 }
 .MuiCardContent-root{
   height:100% !important;
