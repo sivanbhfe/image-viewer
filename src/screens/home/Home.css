@@ -11,14 +11,13 @@
   margin-top: 20px;
 }
 
-
-
 .HomeGridListRoot{
   display: block;
   justify-content: left;
-  padding-left: 7% !important;
+  padding-left: 9% !important;
   padding-right: 8% !important;
 }
+
 /*
 MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded
 .cardRoot{
@@ -46,7 +45,7 @@ MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded
 */
 .gridItemRoot{
   height:800 !important;
-  width:80% !important;
+  width: 102% !important;
 }
 .imageProp{
 display:flex;
