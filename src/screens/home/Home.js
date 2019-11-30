@@ -23,18 +23,26 @@ import { withStyles } from "@material-ui/styles";
 /*Defining the styles to be used by the components in Home page */
 const styles = theme => ({
     root: {
+        width: '90%',
+    },
+    homebody: {
         width: '100%',
-    },
+        alignText:'center',
+     },
     innerroot : {
-        width: '100%'
+        width: '90%',
+      },
+    gridtile:{
+        marginTop:10,   
+        width: 70, 
     },
-    card: {
-        maxWidth: '100%'
+    cardcontent: {
+        maxWidth: '90%'
     },
     profileAvatar: {
-        margin: 90,
-        width: 60,
-        height: 60,
+        margin: 10,
+        width: 40,
+        height: 40,
     }
 });
 
@@ -232,8 +240,7 @@ class Home extends Component {
             // Calling first API
             let xhrprofiledata = new XMLHttpRequest();
             xhrprofiledata.addEventListener("readystatechange", function () {
-                alert(this.responseText);
-                if (this.readyState === 4) {
+                           if (this.readyState === 4) {
                     that.setState({
                         username: JSON.parse(this.responseText).data.username,
                     });
@@ -270,11 +277,11 @@ return (this.mounted===true ? <div>
 loggedIn={this.state.loggedIn} searchenable={this.searchboxfunction} accc={this.access_token} prof={this.singleUserUrl}
 searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirecting} profileredirect={this.profileredirect} logoutHandler={this.loginredirect} /></div>
 
-<div className="homeBody">
-<GridList cellHeight={"auto"} cols={2}>
+<div className={classes.homebody}>
+<GridList className={classes.gridlist} cellHeight={"auto"} cols={2}>
 {(this.state.matchingsearch || []).map((photo, index) => (
-<GridListTile key={"grid" + photo.id} cols={photo.cols || 1}>
-<Grid container className={classes.root} spacing={10}>
+<GridListTile className={classes.gridtile} key={"grid" + photo.id} cols={photo.cols || 1}>
+<Grid container className={classes.root} spacing={2}>
     <Grid item className={classes.innerroot}>
         <Card className={classes.card}>
             <CardHeader
@@ -286,7 +293,7 @@ searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirectin
                 title={photo.caption.from.username}
                 subheader={moment.unix(photo.caption.created_time).format("DD/MM/YYYY HH:mm:ss")}
             />
-            <CardContent>
+            <CardContent className={classes.cardcontet}>
                 <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
                 <hr />
                 <Typography variant="h6">{(photo.caption.text).split(/#/)[0]}</Typography>

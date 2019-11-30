@@ -3,7 +3,26 @@
   text-align: right;
   width:37%
 }
+.MuiGridListTile-tile{
+  overflow: visible !important;
+}
 
+.MuiGridListTile-root.Home-gridtile-4{
+  overflow: visible !important;
+  width: 800px !important;
+  display: block;
+  align-content: center;
+}
+.MuiGridList-root{
+  display: block;
+ justify-content: center;
+}
+.MuiCardContent-root{
+  height:100% !important;
+}
+.MuiGrid-root.Home-innerroot-3.MuiGrid-item{
+  height:800 !important;
+}
 .imageProp{
 display:flex;
 justify-content: center;
