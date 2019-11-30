@@ -23,18 +23,7 @@ import { withStyles } from "@material-ui/styles";
 /*Defining the styles to be used by the components in Home page */
 const styles = theme => ({
     root: {
-        width: '90%',
-    },
-    homebody: {
-        width: '100%',
-        alignText:'center',
-     },
-    innerroot : {
-        width: '90%',
-      },
-    gridtile:{
-        marginTop:10,   
-        width: 70, 
+
     },
     cardcontent: {
         maxWidth: '90%'
@@ -277,12 +266,12 @@ return (this.mounted===true ? <div>
 loggedIn={this.state.loggedIn} searchenable={this.searchboxfunction} accc={this.access_token} prof={this.singleUserUrl}
 searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirecting} profileredirect={this.profileredirect} logoutHandler={this.loginredirect} /></div>
 
-<div className={classes.homebody}>
-<GridList className={classes.gridlist} cellHeight={"auto"} cols={2}>
+<div >
+<GridList cellHeight={"auto"} cols={2}>
 {(this.state.matchingsearch || []).map((photo, index) => (
-<GridListTile className={classes.gridtile} key={"grid" + photo.id} cols={photo.cols || 1}>
-<Grid container className={classes.root} spacing={2}>
-    <Grid item className={classes.innerroot}>
+<GridListTile  key={"grid" + photo.id} cols={photo.cols || 1}>
+<Grid container className={classes.root} >
+    <Grid item >
         <Card className={classes.card}>
             <CardHeader
                 avatar={
@@ -293,7 +282,7 @@ searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirectin
                 title={photo.caption.from.username}
                 subheader={moment.unix(photo.caption.created_time).format("DD/MM/YYYY HH:mm:ss")}
             />
-            <CardContent className={classes.cardcontet}>
+            <CardContent >
                 <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
                 <hr />
                 <Typography variant="h6">{(photo.caption.text).split(/#/)[0]}</Typography>
@@ -315,8 +304,8 @@ searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirectin
                         <span >{(photo.likes.count)} likes</span>
                     </div>
                 </div>
-                <div>
-                    <Grid >
+                <div className="comemntbox">
+                    <Grid className="commentgrid">
                         <Grid >
                             {(photo.comments.data || []).map((comment) => {
                                 return <Typography key={comment.id}>
@@ -326,18 +315,20 @@ searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirectin
                             })}
                         </Grid>
                     </Grid>
+                    <div className="innercommentbox">
                     <FormControl >
                         <FormHelperText id={'formhelper' + photo.id} className={this.state.addComment}>
                             <span id={"innerspan" + photo.id} ></span>
                         </FormHelperText>
                     </FormControl> <br></br>  <br></br>
-                    <FormControl>
+                    <FormControl className="commentinputbox">
                         <InputLabel htmlFor="comment">Add a Comment</InputLabel>
                         <Input id={"comment" + photo.id} type="text" />
                     </FormControl>
-                    <Button id={"addcomment" + photo.id} variant="contained" color="primary" 
+                    <Button className="addcommentbutton" id={"addcomment" + photo.id} variant="contained" color="primary" 
                         onClick={this.addCommentOnClickHandler.bind(this, photo.id, index)}>ADD
                     </Button>
+                    </div>
                 </div>
             </CardContent>
         </Card>

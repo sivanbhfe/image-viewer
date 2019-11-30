@@ -5,17 +5,30 @@
 }
 .MuiGridListTile-tile{
   overflow: visible !important;
+  width:102%;
+  margin-top: 20px;
+}
+.MuiGridListTile-root.Home-gridtile-4{
+  display: block;
 }
 
-.MuiGridListTile-root.Home-gridtile-4{
-  overflow: visible !important;
-  width: 800px !important;
+.MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded{
+  width:95%;
+}
+
+.MuiPaper-elevation1 {
+  box-shadow: 2px 5px 10px #888888 !important;
+}
+
+.MuiGrid-root.Home-root-1.MuiGrid-container{
   display: block;
-  align-content: center;
+  justify-content: center;
 }
 .MuiGridList-root{
   display: block;
- justify-content: center;
+ justify-content: left;
+ padding-left: 8% !important;
+ padding-right: 5% !important;
 }
 .MuiCardContent-root{
   height:100% !important;
@@ -25,12 +38,9 @@
 }
 .imageProp{
 display:flex;
-justify-content: center;
-padding: 20px;
-width: 'auto';
-height:'auto';
-
-}
+padding-left:2%;
+width:75% !important;
+  }
 .cardHeader {
   display:flex;
   float:flex-start;
@@ -75,6 +85,7 @@ MuiTypography-root.MuiTypography-body1{
 .commenttext{
   color:black;
   font-size:15px;
+  word-wrap: break-word;
 }
 
 .noLike{
@@ -89,4 +100,20 @@ MuiTypography-root.MuiTypography-body1{
   font-size:20px;
   display:inline-block;
   margin-left: 2px;
+}
+
+.innercommentbox{
+display: flex;
+flex-direction: row;
+}
+
+.commentinputbox{
+  display: inline-block;
+  width:80%;
+  margin-right: 2% !important;
+}
+
+.addcommentbutton{
+  display: inline-block;
+  width:12%;
 }
