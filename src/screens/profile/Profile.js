@@ -76,22 +76,26 @@ class Profile extends Component {
 
     }
     this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
-    //  this.access_token=sessionStorage.getItem("access-token")
-  };
+   // this.access_token=sessionStorage.getItem("access-token")
+}
 
+//To avoid state update operation on an unmounted component
+componentDidMount() {
+  this.mounted = true;
+}
+componentWillMount() {
+        //To avoid state update operation on an unmounted component
+        this.mounted = false;
 
-  //On component load - Get user profile data
-  componentWillMount() {
-    // Gets User Profile
-    let data_UserProfile = null;
-    //let baseUrl=this.props.baseUrl;
-    let xhr_UserProfile = new XMLHttpRequest();
-    let that = this;
-    let access_token = sessionStorage.getItem("access-token");
-    let loggedIn = '';
-    let accessToken = '';
-    // Redirecting to login page if not logged in        
-    try {
+        let data_UserProfile = null;
+        let baseUrl=this.props.baseUrl;
+        let xhr_UserProfile = new XMLHttpRequest();
+        let that = this;
+        let access_token = sessionStorage.getItem("access-token");
+        let loggedIn = '';
+        let accessToken='';
+// Redirecting to login page if not logged in        
+      try{
       accessToken = this.props.history.location.state.accessToken;
       loggedIn = this.props.history.location.state.loggedIn;
     } catch (exception) {
@@ -278,9 +282,8 @@ class Profile extends Component {
 
   render() {
     const { classes } = this.props;
-    return (
-      <div>
-        {/* Header for profile.js  */}
+    return(this.mounted===true ?
+    <div>
         <div>
           <Header heading="Image Viewer"
             loggedIn={this.state.loggedIn}
@@ -575,6 +578,8 @@ class Profile extends Component {
 
         </Container>
       </div>
+      :
+      ""
     );
   }
 }
