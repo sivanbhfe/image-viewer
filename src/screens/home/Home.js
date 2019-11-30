@@ -264,7 +264,7 @@ return(this.mounted===true ? <div>
 <GridList className="HomeGridListRoot" cellHeight={"auto"}  cols={2}>
 {(this.state.matchingsearch || []).map((photo,index)=>(
     <GridListTile className="HomeGridListTile" key={"grid" + photo.id} cols={photo.cols|| 1}>
-        <Grid container className={classes.root} spacing={10}>
+        <Grid className="gridContainerRoot" container className={classes.root} spacing={10}>
             <Grid item>
             <Card className="cardRoot">
             <CardHeader 

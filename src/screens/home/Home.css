@@ -20,14 +20,18 @@
   width:95% !important;
 }
 
-.MuiPaper-elevation1 {
+/*.MuiPaper-elevation1*/
+.cardRoot.MuiPaper-elevation1 {
   box-shadow: 2px 5px 10px #888888 !important;
 }
 
-.MuiGrid-root.Home-root-1.MuiGrid-container{
+
+/*.MuiGrid-root.Home-root-1.MuiGrid-container*/
+.gridContainerRoot{
   display: block;
   justify-content: center;
 }
+
 .MuiGridList-root{
   display: block;
   justify-content: left;
