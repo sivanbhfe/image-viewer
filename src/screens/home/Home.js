@@ -19,12 +19,6 @@ import Favorite from '@material-ui/icons/Favorite';
 import { withStyles } from "@material-ui/styles";
 //import hearticon from '../../assets/hearticon.svg';
 const styles = theme => ({
-    root: {
-
-    },
-    cardcontent: {
-        maxWidth: '90%'
-    },
     profileAvatar: {
         margin: 10,
         width: 40,
@@ -265,7 +259,7 @@ return(this.mounted===true ? <div>
 {(this.state.matchingsearch || []).map((photo,index)=>(
     <GridListTile className="HomeGridListTile" key={"grid" + photo.id} cols={photo.cols|| 1}>
         <Grid className="gridContainerRoot" container className={classes.root} spacing={10}>
-            <Grid item>
+            <Grid className="gridItemRoot"item>
             <Card className="cardRoot">
             <CardHeader 
                         avatar={
@@ -277,7 +271,7 @@ return(this.mounted===true ? <div>
                         //   subheader={ moment(photo.caption.created_time,"x").format("DD MMM YYYY hh:mm a")}
                         subheader={moment.unix(photo.caption.created_time).format("DD/MM/YYYY HH:mm:ss")}
             />
-            <CardContent>
+            <CardContent className="cardContentRoot">
                     <img src={photo.images.low_resolution.url} alt={photo.caption.text} className="imageProp" />
                     <hr/>
                     <Typography variant="h6">{(photo.caption.text).split(/#/)[0]}</Typography>

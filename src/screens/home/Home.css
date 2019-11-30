@@ -6,13 +6,15 @@
 /*MuiGridListTile-tile*/
 .HomeGridListTile{
   overflow: visible !important;
-  width:102% !important;
+  width:50% !important;
   margin-top: 20px;
 }
 
-
 .HomeGridListRoot{
   display: block;
+  justify-content: left;
+  padding-left: 7% !important;
+  padding-right: 8% !important;
 }
 
 /*MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded*/
@@ -22,9 +24,8 @@
 
 /*.MuiPaper-elevation1*/
 .cardRoot.MuiPaper-elevation1 {
-  box-shadow: 2px 5px 10px #888888 !important;
+  box-shadow: 0.5px 2px 5px 10px #888888 !important;
 }
-
 
 /*.MuiGrid-root.Home-root-1.MuiGrid-container*/
 .gridContainerRoot{
@@ -32,16 +33,14 @@
   justify-content: center;
 }
 
-.MuiGridList-root{
-  display: block;
-  justify-content: left;
-  padding-left: 7% !important;
-  padding-right: 8% !important;
-}
-.MuiCardContent-root{
+/*.MuiCardContent-root{
+.cardContentRoot{
   height:100% !important;
 }
-.MuiGrid-root.Home-innerroot-3.MuiGrid-item{
+*/
+
+/*.MuiGrid-root.Home-innerroot-3.MuiGrid-item*/
+.gridItemRoot{
   height:800 !important;
 }
 
@@ -50,15 +49,8 @@ display:flex;
 padding-left:2%;
 width:75% !important;
   }
-.cardHeader {
-  display:flex;
-  float:flex-start;
-}
-.cardContent {
-  display:flex;
-  justify-content: center;
-}
-.likesProp {
+
+  .likesProp {
   font-size: 40px;
   display:flex;
   justify-content: flex-start;
