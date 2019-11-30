@@ -22,15 +22,15 @@ import { withStyles } from "@material-ui/styles";
 
 /*Defining the styles to be used by the components in Home page */
 const styles = theme => ({
-
     root: {
         width: '100%',
     },
-
-    card: {
-        maxWidth: 150
+    innerroot : {
+        width: '100%'
     },
-
+    card: {
+        maxWidth: '100%'
+    },
     profileAvatar: {
         margin: 90,
         width: 60,
@@ -105,18 +105,13 @@ class Home extends Component {
 
         let photolistlike = this.state.userphotos;
         let matchingsearchlike = this.state.matchingsearch;
-
-
         if (photolistlike !== null && photolistlike.length > 0) {
-
-
             // Updating main array
             let postWithLike = photolistlike.map((photoPostlike, photoIndex) => {
                 if (photoPostlike.id === photoId) {
                     if (photoPostlike.user_has_liked) {
                         photoPostlike.user_has_liked = false;
                         photoPostlike.likes.count = (photoPostlike.likes.count) + 1;
-
                     } else {
                         photoPostlike.user_has_liked = true;
                         photoPostlike.likes.count = (photoPostlike.likes.count) - 1;
@@ -237,6 +232,7 @@ class Home extends Component {
             // Calling first API
             let xhrprofiledata = new XMLHttpRequest();
             xhrprofiledata.addEventListener("readystatechange", function () {
+                alert(this.responseText);
                 if (this.readyState === 4) {
                     that.setState({
                         username: JSON.parse(this.responseText).data.username,
@@ -244,7 +240,6 @@ class Home extends Component {
                 }
             });
             xhrprofiledata.open("GET", this.singleUserUrl + this.access_token);
-
             xhrprofiledata.send(xhrprofiledata);
 
             // Calling second API
@@ -268,7 +263,7 @@ class Home extends Component {
 
     /*Rendering the Home page component */
 render() {
-
+    const { classes } = this.props;
 return (this.mounted===true ? <div>
 <div>
 <Header heading="Image Viewer" noSearchBox="box" baseUrl={this.props.baseUrl}
@@ -280,7 +275,7 @@ searchDisplay="dispSearch" iconDisplay="dispBlock" homeredirect={this.redirectin
 {(this.state.matchingsearch || []).map((photo, index) => (
 <GridListTile key={"grid" + photo.id} cols={photo.cols || 1}>
 <Grid container className={classes.root} spacing={10}>
-    <Grid item>
+    <Grid item className={classes.innerroot}>
         <Card className={classes.card}>
             <CardHeader
                 avatar={
