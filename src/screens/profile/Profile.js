@@ -101,7 +101,15 @@ constructor(props) {
     this.singleUserUrl = "https://api.instagram.com/v1/users/self/?access_token=";
    // this.access_token=sessionStorage.getItem("access-token")
 }
+
+//To avoid state update operation on an unmounted component
+componentDidMount() {
+  this.mounted = true;
+}
 componentWillMount() {
+        //To avoid state update operation on an unmounted component
+        this.mounted = false;
+
         let data_UserProfile = null;
         let baseUrl=this.props.baseUrl;
         let xhr_UserProfile = new XMLHttpRequest();
@@ -386,7 +394,7 @@ if(matchingsearch!==null && matchingsearch.length>0){
 
 render(){
     const { classes } = this.props;
-    return(
+    return(this.mounted===true ?
     <div>
         <div>
             <Header heading="Image Viewer" 
@@ -598,6 +606,8 @@ render(){
           )}
         </Container>
       </div>
+      :
+      ""
     );
   }
 }
