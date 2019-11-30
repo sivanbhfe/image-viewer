@@ -42,4 +42,35 @@
     word-break: break-all;
   }
   
+.gridCotainer{
+  height:100% !important;
+  display:flex;
+  flex-direction: row;
+}
+
+  .gridItem{
+    height:100% !important; 
+  }
+
+  .gridComment{
+width:200px !important;
+  }
+
+  .innercommentbox{
+    display: flex;
+    flex-direction: row;
+    width:100% !important;
+  }
+
+  .commentinputbox{
+    display: inline-block;
+    width:110% !important;
+    margin-right: 2% !important;
+  }
+  
+  .addcommentbutton{
+    display: inline-block;
+    width:25%;
+  }
+
 

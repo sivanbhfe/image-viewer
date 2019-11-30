@@ -45,7 +45,8 @@ const styles = theme => ({
   
   paper_big: {
     position: "absolute",
-    width: 600,
+    width: '50%',
+    height: '40%',
     backgroundColor: "white",
     padding: 16,
     outline: "none",
@@ -334,11 +335,11 @@ render(){
           {this.state.selectedPost !== null ? (
             <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.postOpen} onClose={this.ClickPostImageCloseHandler}>
               <div className={classes.paper_big}>
-                <Grid container spacing={3}>
-                  <Grid item xs={6}>
-                    <img width="100%" src={ this.state.selectedPost.images.standard_resolution.url} alt={this.state.selectedPost.caption.text.split("\n")[0]}/>
+                <Grid className="gridCotainer"  container spacing={3}>
+                  <Grid  className="gridItem" item xs={6}>
+                    <img width="100%" height='100%' src={ this.state.selectedPost.images.standard_resolution.url} alt={this.state.selectedPost.caption.text.split("\n")[0]}/>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid className="gridItem" item xs={6}>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
                     <Grid item>  
                      <Avatar src={this.state.selectedPost.user.profile_picture} alt={this.state.selectedPost.user.username} />
@@ -365,7 +366,7 @@ render(){
                     <Grid item className="min-height-comments-box">
                         {(this.state.selectedPost.comments.data || []).map((comment, i) => {
                             return (
-                              <Typography key={comment.id} variant="caption" display="block">
+                              <Typography  key={comment.id} variant="caption" display="block">
                               <strong>{comment.comment_by} :</strong>{" "}
                                 {comment.comment_value}
                               </Typography>
@@ -391,17 +392,19 @@ render(){
                         <Typography variant="caption">{this.state.selectedPost.likes.count} likes </Typography>
                       </Grid>
                     </Grid>
-                    <Grid container spacing={3} alignItems="center" justify="flex-start"  >
-                    <Grid item>
-                        <FormControl className="formControl">
+                    <div className="innercommentbox">
+                    <Grid className="gridCommentContainer" container spacing={3} alignItems="center" justify="flex-start"  >
+                    <Grid className="gridComment" item>
+                        <FormControl className="commentinputbox">
                           <InputLabel htmlFor="addcomment">Add a comment{" "}</InputLabel>
                           <Input id="addcomment" type="text" onChange={this.inputAddCommentHandler} value={this.state.newComment}/>
                           </FormControl>
                       </Grid>
-                      <Grid item>
-                        <Button variant="contained" color="primary" onClick={this.AddCommentHandler}>ADD</Button>
+                      <Grid className="addcommentbutton" item>
+                        <Button  variant="contained" color="primary" onClick={this.AddCommentHandler}>ADD</Button>
                          </Grid>
                     </Grid>
+                    </div>
                   </Grid>
                 </Grid>
               </div>

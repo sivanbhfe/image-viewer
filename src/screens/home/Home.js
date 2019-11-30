@@ -310,7 +310,7 @@ return(this.mounted===true ? <div>
                         </FormHelperText>
                     </FormControl> <br></br>  <br></br>
                     <FormControl className="commentinputbox">
-                        <InputLabel htmlFor="comment">Add a Comment</InputLabel>
+                        <InputLabel htmlFor={"comment"+photo.id}>Add a Comment</InputLabel>
                         <Input id={"comment" + photo.id} type="text" />
                     </FormControl>
                     <Button className="addcommentbutton" id={"addcomment" + photo.id} variant="contained" color="primary" 
