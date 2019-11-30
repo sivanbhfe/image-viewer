@@ -73,17 +73,18 @@ loginClickHandler = () => {
 render(){
 return(
 
-<div >
+<div>
 <div className="header-container">
 <Header heading="Image Viewer" searchDisplay="dispNone" iconDisplay="dispNone"/><br />
 </div>
+<div class="card-main">
 <div className="card-container">
 <Card className="cardStyle">
 <CardContent>
 	<Typography variant="h3" >
 	LOGIN
 	</Typography>
-	<FormControl required>
+	<FormControl className="inputUsername" required>
 		<InputLabel htmlFor="username">Username</InputLabel>
 		<Input id="username" type="text" username={this.state.username} onChange={this.inputUsernameChangeHandler} />
 		<FormHelperText className={this.state.usernameRequired}>
@@ -91,7 +92,7 @@ return(
 		</FormHelperText>
 	</FormControl>
 	<br /><br />
-	<FormControl required>
+	<FormControl className="inputPassword" required>
 		<InputLabel htmlFor="loginPassword">Password</InputLabel>
 		<Input id="loginPassword" type="password" loginpassword={this.state.loginPassword} onChange={this.inputLoginPasswordChangeHandler} />
 		<FormHelperText className={this.state.loginPasswordRequired}>
@@ -111,6 +112,7 @@ return(
 	<Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
 </CardContent>
 </Card>
+</div>
 </div>
 </div>)
 }
