@@ -292,9 +292,9 @@ return(this.mounted===true ? <div>
                                          <span >{(photo.likes.count)} likes</span>
                                             </div>
                                     </div>
-                                    <div className="comemntbox">
+                                    <div >
                     <Grid>
-                        <Grid className="gridComment">
+                        <Grid >
                             {(photo.comments.data || []).map((comment) => {
                                 return<div> <Typography className="commentTypography" key={comment.id}>
                                    <span className="userNameSpan"><b>{comment.commentUser}:</b></span>
@@ -311,7 +311,7 @@ return(this.mounted===true ? <div>
                     </FormControl> <br></br>  <br></br>
                     <FormControl className="commentinputbox">
                         <InputLabel htmlFor={"comment"+photo.id}>Add a Comment</InputLabel>
-                        <Input id={"comment" + photo.id} type="text" />
+                        <Input id={"comment"+photo.id} type="text"  />
                     </FormControl>
                     <Button className="addcommentbutton" id={"addcomment" + photo.id} variant="contained" color="primary" 
                         onClick={this.addCommentOnClickHandler.bind(this, photo.id, index)}>ADD

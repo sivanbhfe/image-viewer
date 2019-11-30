@@ -21,18 +21,23 @@
     cursor: pointer;
   }
 
+  .userNameEdit{
+    height:20% !important;
+  }
+
   .MuiGridListTile-tile{
     display:flex !important;
     flex-direction:row !important;
     margin:5px !important;
   }
-
+/*
   .MuiGridList-root{
     width:100% !important;
     height:100%  !important;
     padding-left: 0% !important;
     padding-right: 0% !important;
   }
+  */
   .MuiGridListTile-imgFullWidth{
     width:98% !important;
   }
@@ -42,7 +47,7 @@
     word-break: break-all;
   }
   
-.gridCotainer{
+.gridContainer{
   height:100% !important;
   display:flex;
   flex-direction: row;
@@ -50,10 +55,6 @@
 
   .gridItem{
     height:100% !important; 
-  }
-
-  .gridComment{
-width:200px !important;
   }
 
   .innercommentbox{
@@ -73,4 +74,10 @@ width:200px !important;
     width:25%;
   }
 
+.tagSize{
+  font-size: 16px !important;
+}
 
+.gridUserDetails{
+  width:40% !important;
+}

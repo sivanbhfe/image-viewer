@@ -25,22 +25,22 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 const styles = theme => ({
   bigAvatar: {
     margin: 10,
-    width: 50,
-    height: 50
+    width: 80,
+    height: 80
   },
   fab: {
-    margin: 8
+    width:50
   },
   
   paper: {
     position: "absolute",
-    width: 250,
+    width: '100%',
     backgroundColor: "white",
     padding: 16,
     outline: "none",
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, -50%)`
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
   },
   
   paper_big: {
@@ -50,9 +50,9 @@ const styles = theme => ({
     backgroundColor: "white",
     padding: 16,
     outline: "none",
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, -50%)`
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   }
   
   
@@ -290,20 +290,20 @@ render(){
             (<span key={"grid" + profile.id}>
                 <p><img src={profile.images.low_resolution.url} alt="User Profile Logo"></img></p></span>))}
         <Container fixed>
-          <Grid container spacing={3} alignItems="center" style={{ justifyContent: "center" }} >
+          <Grid width={40} container spacing={3} alignItems="center" style={{ justifyContent: "center" }} >
             <Grid item>
                 <Avatar className={classes.bigAvatar} alt={this.state.username} src={this.state.profile_picture} />
             </Grid>
 
-          <Grid item><Typography variant="h6" component="h6"> {this.state.username} </Typography>
+          <Grid className="gridUserDetails" item><Typography variant="h6" component="h6"> {this.state.username} </Typography>
            <Grid container spacing={3} alignItems="center" justify="space-between"  >
            <Grid item><Typography variant="subtitle2">Posts: {this.state.media}</Typography></Grid> 
            <Grid item><Typography variant="subtitle2">Follows: {this.state.follows}</Typography></Grid> 
            <Grid item><Typography variant="subtitle2">Followed By: {this.state.followed_by}</Typography></Grid>
            </Grid>       
-           <Grid container spacing={2}  alignItems="center" justify="flex-start" >
+           <Grid  container spacing={2}  alignItems="center" justify="flex-start" >
            <Grid item><Typography variant="h6">{this.state.full_name}</Typography></Grid>
-           <Grid item><Fab color="secondary"  aria-label="Edit"  className={classes.fab}  onClick={this.EditFullNameModalOpenHandler}>      
+           <Grid className="userNameEdit" item><Fab color="secondary"  aria-label="Edit"  className={classes.fab}  onClick={this.EditFullNameModalOpenHandler}>      
            <Create /> </Fab>
            <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.editNameOpen} onClose={this.EditFullNameModalCloseHandler} >
            <div className={classes.paper}><Typography variant="h6" id="modal-title" className="modal-heading"> Edit  </Typography> 
@@ -322,8 +322,8 @@ render(){
             </Grid>
           </Grid>
            
-
-          <GridList cellHeight={320} cols={3}>
+           <div className="allImages">
+             <GridList cellHeight={320} cols={3}>
             {this.state.userPosts.map((post, index) => (
               <GridListTile key={post.id} className="grid-content"
                onClick={() => this.ClickPostImageHandler(post.id, index)}
@@ -332,10 +332,11 @@ render(){
                 </GridListTile>    
             ))}      
           </GridList>
+          </div>
           {this.state.selectedPost !== null ? (
             <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.postOpen} onClose={this.ClickPostImageCloseHandler}>
               <div className={classes.paper_big}>
-                <Grid className="gridCotainer"  container spacing={3}>
+                <Grid className="gridContainer"  container spacing={3}>
                   <Grid  className="gridItem" item xs={6}>
                     <img width="100%" height='100%' src={ this.state.selectedPost.images.standard_resolution.url} alt={this.state.selectedPost.caption.text.split("\n")[0]}/>
                   </Grid>
@@ -349,14 +350,14 @@ render(){
                     </Grid>
                     <Divider light />
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
-                    <Grid item><Typography variant="caption"> {this.state.selectedPost.caption.text.split("\n")[0]}</Typography>
+                    <Grid item><Typography variant="h6"> {this.state.selectedPost.caption.text.split("\n")[0]}</Typography>
                      </Grid>
                     </Grid>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
                       <Grid item>
                         {(this.state.selectedPost.tags || []).map((tag, i) => {
                           return (<Typography key={tag} variant="caption" color="primary">{" "}
-                              #{tag} 
+                              <span className="tagSize">#{tag}</span> 
                              </Typography>
                           );
                         })}
@@ -366,7 +367,7 @@ render(){
                     <Grid item className="min-height-comments-box">
                         {(this.state.selectedPost.comments.data || []).map((comment, i) => {
                             return (
-                              <Typography  key={comment.id} variant="caption" display="block">
+                              <Typography  key={comment.id} variant="h8" display="block">
                               <strong>{comment.comment_by} :</strong>{" "}
                                 {comment.comment_value}
                               </Typography>
@@ -389,7 +390,7 @@ render(){
                         
                       </Grid>
                       <Grid item>
-                        <Typography variant="caption">{this.state.selectedPost.likes.count} likes </Typography>
+                        <Typography fontSize={12}>{this.state.selectedPost.likes.count} likes </Typography>
                       </Grid>
                     </Grid>
                     <div className="innercommentbox">

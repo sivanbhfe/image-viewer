@@ -4,12 +4,14 @@
   width:37%
 }
 /*
-/*MuiGridListTile-tile
+/*MuiGridListTile-tile*/
 .HomeGridListTile{
   overflow: visible !important;
   width:50% !important;
   margin-top: 20px;
 }
+
+
 
 .HomeGridListRoot{
   display: block;
@@ -17,8 +19,8 @@
   padding-left: 7% !important;
   padding-right: 8% !important;
 }
-
-/*MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded
+/*
+MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded
 .cardRoot{
   width:95% !important;
 }
@@ -28,7 +30,7 @@
   box-shadow: 2px 5px 10px #888888 !important;
 }
 
-/*.MuiGrid-root.Home-root-1.MuiGrid-container
+.MuiGrid-root.Home-root-1.MuiGrid-container
 .gridContainerRoot{
   display: block;
   justify-content: center;
@@ -38,13 +40,14 @@
 .cardContentRoot{
   height:100% !important;
 }
-
-
-/*.MuiGrid-root.Home-innerroot-3.MuiGrid-item
+*/
+/*
+.MuiGrid-root.Home-innerroot-3.MuiGrid-item
+*/
 .gridItemRoot{
   height:800 !important;
+  width:80% !important;
 }
-*/
 .imageProp{
 display:flex;
 padding-left:2%;
@@ -151,12 +154,7 @@ width:75% !important;
   display: block;
   justify-content: center;
 }
-.MuiGridList-root{
-  display: block;
-  justify-content: left;
-  padding-left: 7% !important;
-  padding-right: 8% !important;
-}
+
 .MuiCardContent-root{
   height:100% !important;
 }
