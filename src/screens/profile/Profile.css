@@ -81,3 +81,6 @@
 .gridUserDetails{
   width:40% !important;
 }
+.addedComments{
+  word-break: break-all;
+}

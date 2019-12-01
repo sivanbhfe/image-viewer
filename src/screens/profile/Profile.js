@@ -372,7 +372,7 @@ render(){
                             return (
                               <Typography  key={comment.id} variant="h8" display="block">
                               <strong>{comment.comment_by} :</strong>{" "}
-                                {comment.comment_value}
+                               <span className="addedComments"> {comment.comment_value} </span>
                               </Typography>
                             );
                           }
