@@ -84,3 +84,10 @@
 .addedComments{
   word-break: break-all;
 }
+
+.menuRule{
+  background-color: grey;
+  display:block;
+  width:100%;
+  height:1px;
+}

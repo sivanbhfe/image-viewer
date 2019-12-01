@@ -357,7 +357,7 @@ render(){
                       <Grid item><Typography variant="h6">{this.state.selectedPost.user.username}</Typography>
                       </Grid>
                     </Grid>
-                    <Divider light />
+                    <hr className="menuRule"/>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
                     <Grid item><Typography variant="h7"> {this.state.selectedPost.caption.text.split("\n")[0]}</Typography>
                      </Grid>
