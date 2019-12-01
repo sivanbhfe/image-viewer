@@ -42,14 +42,12 @@ const styles = theme => ({
   
   paper: {
     position: "absolute",
-    width: '20%',
-    height:'20%',
     backgroundColor: "white",
     padding: 16,
     outline: "none",
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)'
+    transform: 'translate(-50%, -50%)',
   },
   
   paper_big: {
@@ -342,10 +340,10 @@ render(){
             <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.postOpen} onClose={this.ClickPostImageCloseHandler}>
               <div className={classes.paper_big}>
                 <Grid className="gridContainer"  container spacing={3}>
-                  <Grid  className="gridItem" item xs={6}>
-                    <img width="100%" height='100%' src={ this.state.selectedPost.images.standard_resolution.url} alt={this.state.selectedPost.caption.text.split("\n")[0]}/>
+                  <Grid  className="gridItemImage" item xs={6}>
+                    <img className="imageDisplay" src={ this.state.selectedPost.images.standard_resolution.url} alt={this.state.selectedPost.caption.text.split("\n")[0]}/>
                   </Grid>
-                  <Grid className="gridItem" item xs={6}>
+                  <Grid className="gridItemComments" item xs={6}>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
                     <Grid item>  
                      <Avatar className={classes.profileAvatar}src={this.state.selectedPost.user.profile_picture} alt={this.state.selectedPost.user.username} />
@@ -373,7 +371,7 @@ render(){
                     <Grid item className="min-height-comments-box">
                         {(this.state.selectedPost.comments.data || []).map((comment, i) => {
                             return (
-                              <Typography  key={comment.id} variant="h7" display="block">
+                              <Typography  key={comment.id} variant="h6" display="block">
                               <strong>{comment.comment_by} :</strong>{" "}
                                <span className="addedComments"> {comment.comment_value} </span>
                               </Typography>
