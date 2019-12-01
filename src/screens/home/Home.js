@@ -270,10 +270,10 @@ profileredirect={this.profileredirect} logoutHandler={this.loginredirect} /></di
 <GridList className="HomeGridListRoot" cellHeight={"auto"} cols={2}>
 {(this.state.matchingsearch || []).map((photo, index) => (
 <GridListTile className="HomeGridListTile" key={"grid" + photo.id} cols={photo.cols || 1}>
-<Grid className="gridContainerRoot" container className={classes.root} spacing={10}>
+<Grid className="gridContainerRoot" container spacing={10}>
     <Grid className="gridItemRoot" item>
         <Card className="cardRoot">
-            <CardHeader className="imageTitle" subheaderTypographyProps={{ variant: 'h10' }}
+            <CardHeader className="imageTitle" subheaderTypographyProps={{ variant: 'h6'}}
                 titleTypographyProps={{ variant: 'h6' }}
                 avatar={
 

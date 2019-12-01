@@ -18,7 +18,6 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import Grid from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
@@ -305,7 +304,7 @@ render(){
            <Grid item><Typography variant="subtitle2">Followed By: {this.state.followed_by}</Typography></Grid>
            </Grid>       
            <Grid  container spacing={2}  alignItems="center" justify="flex-start" >
-           <Grid item><Typography variant="h8">{this.state.full_name}</Typography></Grid>
+           <Grid item><Typography className="userFullName" variant="h6">{this.state.full_name}</Typography></Grid>
            <Grid className="userNameEdit" item><Fab color="secondary"  aria-label="Edit"  className={classes.fab}  onClick={this.EditFullNameModalOpenHandler}>      
            <Create /> </Fab>
            <Modal className="profileModal" aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.editNameOpen} onClose={this.EditFullNameModalCloseHandler} >
