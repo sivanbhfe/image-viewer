@@ -29,14 +29,17 @@ constructor() {
 	}
 }
 
+// Username field handler
 inputUsernameChangeHandler = (e) => {
 	this.setState({ username: e.target.value });
 }
 
+// Password field handler
 inputLoginPasswordChangeHandler = (e) => {
 	this.setState({ loginPassword: e.target.value });
 }
 
+//Login button handler
 loginClickHandler = () => {
 
 	let accessToken = "8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
@@ -47,10 +50,11 @@ loginClickHandler = () => {
 	let that = this;
 	if(that.state.username===username &&  that.state.loginPassword===password ){  
 			sessionStorage.setItem("access-token", accessToken);
-			//Route to home here  
+			//Route to home here when credentials are valid
 				this.props.history.push({pathname:'/home',state:{ accessToken: accessToken
 				, loggedIn:true}});
 		} else {
+			// Set logged in status to false and remain in the login page
 			sessionStorage.setItem("access-token", "null");
 			if(that.state.username==="" || that.state.loginPassword===""){
 				this.state.username === "" ? this.setState({ usernameRequired: "dispBlock" }) : this.setState({ usernameRequired: "dispNone" });
@@ -107,7 +111,6 @@ return(
 			</span>
 		</FormControl>
 	}
-
 	<br /><br />
 	<Button variant="contained" color="primary" onClick={this.loginClickHandler}>LOGIN</Button>
 </CardContent>
