@@ -355,17 +355,18 @@ render(){
                      <Avatar className={classes.profileAvatar}src={this.state.selectedPost.user.profile_picture} alt={this.state.selectedPost.user.username} />
                      </Grid>
                       <Grid item><Typography variant="h6">{this.state.selectedPost.user.username}</Typography>
-                      </Grid>
+                     
+                      </Grid> 
                     </Grid>
-                    <hr className="menuRule"/>
+                    <hr className="modalRule"/>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
-                    <Grid item><Typography variant="h7"> {this.state.selectedPost.caption.text.split("\n")[0]}</Typography>
+                    <Grid item><Typography variant="h6"> {this.state.selectedPost.caption.text.split("\n")[0]}</Typography>
                      </Grid>
                     </Grid>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
                       <Grid item>
                         {(this.state.selectedPost.tags || []).map((tag, i) => {
-                          return (<Typography key={tag} variant="caption" color="primary">{" "}
+                          return (<Typography key={tag} variant="h7" color="primary">{" "}
                               <span className="tagSize">#{tag}</span> 
                              </Typography>
                           );
