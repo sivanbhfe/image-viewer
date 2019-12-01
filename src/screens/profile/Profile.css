@@ -36,8 +36,9 @@
   width:40% !important;
 }
 
-.tagSize{
-  font-size: 16px !important;
+.hash-tags {
+  font-size: 20px;
+  color: #5cc1dd;
 }
 
 .imageDisplay{

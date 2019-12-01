@@ -358,10 +358,9 @@ render(){
                     </Grid>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
                       <Grid item>
-                        {(this.state.selectedPost.tags || []).map((tag, i) => {
-                          return (<Typography key={tag} variant="h7" color="primary">{" "}
-                              <span className="tagSize">#{tag}</span> 
-                             </Typography>
+                        {(this.state.selectedPost.tags || []).map((tag, index) => {
+                          return (<span key={"span" + this.state.selectedPost.id + index}
+                          className="hash-tags">#{tag} </span>
                           );
                         })}
                       </Grid>

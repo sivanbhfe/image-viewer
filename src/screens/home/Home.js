@@ -311,10 +311,10 @@ profileredirect={this.profileredirect} logoutHandler={this.loginredirect} /></di
                 <div >
                     <Grid>
                         <Grid >
-                            {(photo.comments.data || []).map((comment) => {
-                                return <div> <Typography variant='h7' key={comment.id}>
-                                    <span className="userNameSpan"><b>{comment.commentUser}:</b></span>
-                                    <span className="commenttext"> {comment.commentInput}</span>
+                            {(photo.comments.data || []).map((comment,index) => {
+                                return <div key={"div"+comment.id+index}> <Typography variant='h6' key={comment.id+index}>
+                                    <span key={"span1"+comment.id+index} className="userNameSpan"><b>{comment.commentUser}:</b></span>
+                                    <span key={"span2"+comment.id+index} className="commenttext"> {comment.commentInput}</span>
                                 </Typography></div>
                             })}
                         </Grid>
