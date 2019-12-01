@@ -359,7 +359,7 @@ render(){
                     </Grid>
                     <Divider light />
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
-                    <Grid item><Typography variant="h6"> {this.state.selectedPost.caption.text.split("\n")[0]}</Typography>
+                    <Grid item><Typography variant="h7"> {this.state.selectedPost.caption.text.split("\n")[0]}</Typography>
                      </Grid>
                     </Grid>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
@@ -376,7 +376,7 @@ render(){
                     <Grid item className="min-height-comments-box">
                         {(this.state.selectedPost.comments.data || []).map((comment, i) => {
                             return (
-                              <Typography  key={comment.id} variant="h8" display="block">
+                              <Typography  key={comment.id} variant="h7" display="block">
                               <strong>{comment.comment_by} :</strong>{" "}
                                <span className="addedComments"> {comment.comment_value} </span>
                               </Typography>
