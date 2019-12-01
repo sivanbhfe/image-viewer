@@ -83,12 +83,12 @@
 /*Add comment and display added comments properties*/
 .userNameSpan{
   font-weight: bolder;
-  font-size:16px;
+  font-size:20px;
 }
 
 .commenttext{
   color:black;
-  font-size:15px;
+  font-size:20px;
   word-break: break-all;
 }
 

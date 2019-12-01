@@ -312,7 +312,7 @@ profileredirect={this.profileredirect} logoutHandler={this.loginredirect} /></di
                     <Grid>
                         <Grid >
                             {(photo.comments.data || []).map((comment) => {
-                                return <div> <Typography className="commentTypography" key={comment.id}>
+                                return <div> <Typography variant='h7' key={comment.id}>
                                     <span className="userNameSpan"><b>{comment.commentUser}:</b></span>
                                     <span className="commenttext"> {comment.commentInput}</span>
                                 </Typography></div>
