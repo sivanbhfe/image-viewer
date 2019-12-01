@@ -1,7 +1,9 @@
+/*FormHelperText properties*/
 .red {
     color: red;
 }
 
+/* CSS properties to toggle display between different pages*/
 .dispNone{
     display:none;
 }
@@ -9,6 +11,7 @@
     display:flex;
 }
 
+/* Log in input fields and button container*/
 .card-container{
     width:25% !important;
     align-self:center !important;
