@@ -19,18 +19,15 @@ loggedIn: sessionStorage.getItem("access-token") == null ? false : true
 }
 this.searchData='';
 }
-serachInputHandler = (e) => {
-      this.searchData= e.target.value;
-}
 
+// Opening menu that contains the profile and logout link
   openMenuHandler = () => {
-     
       this.setState({
           menuIsOpen: true,
       });
- 
   }
 
+// Opening menu that contains the profile and logout link
   closeMenuHandler = () => {
       this.setState({
           menuIsOpen: false
@@ -38,7 +35,10 @@ serachInputHandler = (e) => {
   }
 
 componentWillMount() {
-// Get owner info after authenticating the  accessToken generated 
+// Get owner info after authenticating the  accessToken generated
+/*Session Validation is already done in Home and Profile page try 
+block is to avoid exception on Login page
+*/
     try{
 let ownerData = null;
 let xhr = new XMLHttpRequest();
