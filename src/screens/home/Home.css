@@ -1,10 +1,12 @@
+/*Search box properties*/
 .dispSearch {
   padding-top:20px;
   text-align: right;
   width:37%
 }
-/*
-/*MuiGridListTile-tile*/
+
+
+/*Display alignment size properties of the Grid*/
 .HomeGridListTile{
   overflow: visible !important;
   width:50% !important;
@@ -18,65 +20,47 @@
   padding-right: 8% !important;
 }
 
-
 .imageTitle{
   font-size: 20px;
 }
-/*
-MuiPaper-root.MuiPaper-elevation1.MuiCard-root.MuiPaper-rounded
-.cardRoot{
-  width:95% !important;
-}
-
-/*.MuiPaper-elevation1
-.cardRoot.MuiPaper-elevation1 {
-  box-shadow: 2px 5px 10px #888888 !important;
-}
-
-.MuiGrid-root.Home-root-1.MuiGrid-container
-.gridContainerRoot{
-  display: block;
-  justify-content: center;
-}
-
-/*.MuiCardContent-root{
-.cardContentRoot{
-  height:100% !important;
-}
-*/
-/*
-.MuiGrid-root.Home-innerroot-3.MuiGrid-item
-*/
 .gridItemRoot{
   height:800 !important;
   width: 102% !important;
 }
+
+
+/*Card container properties*/
+.cardHeader {
+  display:flex;
+  float:flex-start;
+}
+.cardContent {
+  display:flex;
+  justify-content: center;
+}
+
 .imageProp{
-display:flex;
-padding-left:2%;
-width:75% !important;
+  display:flex;
+  padding-left:2%;
+  width:75% !important;
+    }
+    
+  .likesProp {
+    font-size: 40px;
+    display:flex;
+    justify-content: flex-start;
+    vertical-align: center;
+  }
+  .image-Text{
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .hash-tags {
+    font-size: 20px;
+    color: #5cc1dd;
   }
 
-  .likesProp {
-  font-size: 40px;
-  display:flex;
-  justify-content: flex-start;
-  vertical-align: center;
-}
-.image-Text{
-  font-size: 22px;
-  font-weight: bold;
-}
-.hash-tags {
-  font-size: 20px;
-  color: #5cc1dd;
-}
-.dispComment {
-  display:block;
-  color: black;
-  font-size: 16px;
-}
-
+/*Like icon and text properties*/
 .black {
   color: none;
   cursor: pointer;
@@ -96,6 +80,7 @@ width:75% !important;
   margin-left: 2px;
 }
 
+/*Add comment and display added comments properties*/
 .userNameSpan{
   font-weight: bolder;
   font-size:16px;
@@ -123,17 +108,16 @@ width:75% !important;
   width:12%;
 }
 
+.dispComment {
+  display:block;
+  color: black;
+  font-size: 16px;
+}
+
+/*Manipulated the common MUI propertie to achieve desired display results*/
 .MuiTypography-root.MuiTypography-body1{
   color: black;
   font-size: 20px;
-}
-.cardHeader {
-  display:flex;
-  float:flex-start;
-}
-.cardContent {
-  display:flex;
-  justify-content: center;
 }
 
 .MuiGridListTile-tile{
