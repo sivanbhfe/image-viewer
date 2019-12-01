@@ -54,17 +54,13 @@ const styles = theme => ({
   
   paper_big: {
     position: "absolute",
-    width: '50%',
-    height: '40%',
     backgroundColor: "white",
     padding: 16,
     outline: "none",
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%, -50%)'
   }
-  
-  
 });
 
 class Profile extends Component {
@@ -314,7 +310,7 @@ render(){
            <Grid item><Typography variant="h8">{this.state.full_name}</Typography></Grid>
            <Grid className="userNameEdit" item><Fab color="secondary"  aria-label="Edit"  className={classes.fab}  onClick={this.EditFullNameModalOpenHandler}>      
            <Create /> </Fab>
-           <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.editNameOpen} onClose={this.EditFullNameModalCloseHandler} >
+           <Modal className="profileModal" aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.editNameOpen} onClose={this.EditFullNameModalCloseHandler} >
            <div className={classes.paper}><Typography variant="h6" id="modal-title" className="modal-heading"> Edit  </Typography> 
            <FormControl required className="formControl">
                 <InputLabel htmlFor="username">Full Name </InputLabel>

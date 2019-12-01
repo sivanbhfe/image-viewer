@@ -99,4 +99,9 @@
     word-break: break-all;
   }
 
+  .profileModal{
+    display:flex !important;
+    height: 500px !important;
+  }
+
   
