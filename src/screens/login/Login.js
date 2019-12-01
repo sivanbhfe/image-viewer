@@ -48,7 +48,7 @@ loginClickHandler = () => {
 	if(that.state.username===username &&  that.state.loginPassword===password ){  
 			sessionStorage.setItem("access-token", accessToken);
 			//Route to home here  
-				this.props.history.push({pathname:'/home/',state:{ accessToken: accessToken
+				this.props.history.push({pathname:'/home',state:{ accessToken: accessToken
 				, loggedIn:true}});
 		} else {
 			sessionStorage.setItem("access-token", "null");

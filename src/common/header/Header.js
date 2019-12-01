@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './Header.css';
 import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+import Input from '@material-ui/core/Input';
+import Search from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -57,7 +58,6 @@ xhr.send(ownerData);} catch (exception) {
 
 render(){
 return (<div className='header'>
-
 <span className="header-text">
 {this.props.iconDisplay==="dispNone"?<span>{this.props.heading}</span>:
 <span onClick={this.props.homeredirect}>{this.props.heading}</span>
@@ -68,10 +68,10 @@ return (<div className='header'>
 <span className={this.props.noSearchBox}>
 <span className="searchcIcon">
 <IconButton className="iconButton" >
-            <SearchIcon />
+            <Search />
           </IconButton>
 </span>
-<InputBase id="testing" placeholder="Search…"  onChange={this.props.searchenable} />
+<Input id="testing" placeholder="Search…" disableUnderline={true} onChange={this.props.searchenable} />
 </span>
       </div>
 <div className={this.props.iconDisplay}>
@@ -89,7 +89,7 @@ return (<div className='header'>
                 >
                     {this.props.noSearchBox ==="box" ?
                     
-                       <span> <MenuItem onClick={this.props.profileredirect}>My Account</MenuItem><hr/></span>:""}
+                       <span> <MenuItem onClick={this.props.profileredirect}>My Account</MenuItem><hr className="menuRule"/></span>:""}
                         <MenuItem onClick={this.props.logoutHandler}>Logout</MenuItem>
                 </Menu>
             </div>

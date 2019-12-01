@@ -227,7 +227,7 @@ EditFullNameModalCloseHandler = () => {
   redirecting =()=>{
    let accessToken = sessionStorage.getItem("access-token");
 			//Route to home here  
-				this.props.history.push({pathname:'/home/',state:{ accessToken: accessToken
+				this.props.history.push({pathname:'/home',state:{ accessToken: accessToken
 				, loggedIn:true}});
 }
 

@@ -1,20 +1,25 @@
 .header{
-
     background-color: #263238;
-    color:#fff;
     font-weight:bold;
-    font-size:18px;
     display:flex;
     flex-direction: row;
     height:80px;
     align-items: center ;
     flex-grow: 1;
     }
+
+    .innerHeaderContainer{
+        display:inline-block;
+        height:100%;
+    }
     
     .header-text{
     display:inline-block;
     width:60%;
+    color:#fff;
     text-transform: capitalize;
+    font-size:18px;
+    padding-left:1%;
     }
     .dispNone {
     display:none;
@@ -43,6 +48,7 @@
     .dispIcon{
     display: inline-block;
     width: 3%;
+    border-radius: 50%;
     }
     
     .image{
@@ -54,4 +60,15 @@
     .iconButton{
     display:inline-block;
     color:black;
+    }
+
+    .menuRule{
+        background-color: grey;
+        display:block;
+        width:80%;
+        height:1px;
+    }
+    #simple-menu{
+        display: inline-block;
+        border-radius: 10px;
     }

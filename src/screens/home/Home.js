@@ -76,7 +76,7 @@ this.props.history.push({pathname:'/'});
 }
 profileredirect=()=>{
 let accessToken = sessionStorage.getItem("access-token");
-this.props.history.push({pathname:'/profile/',state:{accessToken: accessToken
+this.props.history.push({pathname:'/profile',state:{accessToken: accessToken
     , loggedIn:'true'}});
 }
 
@@ -261,7 +261,7 @@ return(this.mounted===true ? <div>
         <Grid className="gridContainerRoot" container className={classes.root} spacing={10}>
             <Grid className="gridItemRoot"item>
             <Card className="cardRoot">
-            <CardHeader 
+            <CardHeader className="imageTitle"  subheaderTypographyProps ={{variant:'h10'}} titleTypographyProps={{variant:'h6'}}
                         avatar={
                             
                             <Avatar className={classes.profileAvatar} src={photo.user.profile_picture} alt="User-Profile-logo">
