@@ -77,7 +77,7 @@ return(
 <div className="header-container">
 <Header heading="Image Viewer" searchDisplay="dispNone" iconDisplay="dispNone"/><br />
 </div>
-<div class="card-main">
+<div className="card-main">
 <div className="card-container">
 <Card className="cardStyle">
 <CardContent>

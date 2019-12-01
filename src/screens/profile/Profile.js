@@ -26,7 +26,7 @@ const styles = theme => ({
   bigAvatar: {
     margin: 10,
     width: 120,
-    height: 120,
+    height:120,
     boxShadow: '1px 2px 2px grey',
     marginRight:80
   },
@@ -36,7 +36,8 @@ const styles = theme => ({
   
   paper: {
     position: "absolute",
-    width: '100%',
+    width: '20%',
+    height:'20%',
     backgroundColor: "white",
     padding: 16,
     outline: "none",
