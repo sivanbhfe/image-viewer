@@ -30,6 +30,12 @@ const styles = theme => ({
     boxShadow: '1px 2px 2px grey',
     marginRight:80
   },
+  profileAvatar: {
+    margin: 10,
+    width: 60,
+    height: 60,
+    boxShadow: '1px 2px 2px grey'
+},
   fab: {
     width:50
   },
@@ -298,14 +304,14 @@ render(){
                 <Avatar className={classes.bigAvatar} alt={this.state.username} src={this.state.profile_picture} />
             </Grid>
 
-          <Grid className="gridUserDetails" item><Typography variant="h6" component="h6"> {this.state.username} </Typography>
+          <Grid className="gridUserDetails" item><Typography variant="h6"> {this.state.username} </Typography>
            <Grid container spacing={3} alignItems="center" justify="space-between"  >
            <Grid item><Typography variant="subtitle2">Posts: {this.state.media}</Typography></Grid> 
            <Grid item><Typography variant="subtitle2">Follows: {this.state.follows}</Typography></Grid> 
            <Grid item><Typography variant="subtitle2">Followed By: {this.state.followed_by}</Typography></Grid>
            </Grid>       
            <Grid  container spacing={2}  alignItems="center" justify="flex-start" >
-           <Grid item><Typography variant="h6">{this.state.full_name}</Typography></Grid>
+           <Grid item><Typography variant="h8">{this.state.full_name}</Typography></Grid>
            <Grid className="userNameEdit" item><Fab color="secondary"  aria-label="Edit"  className={classes.fab}  onClick={this.EditFullNameModalOpenHandler}>      
            <Create /> </Fab>
            <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description" open={this.state.editNameOpen} onClose={this.EditFullNameModalCloseHandler} >
@@ -346,9 +352,9 @@ render(){
                   <Grid className="gridItem" item xs={6}>
                     <Grid container spacing={3} alignItems="center" justify="flex-start"  >
                     <Grid item>  
-                     <Avatar src={this.state.selectedPost.user.profile_picture} alt={this.state.selectedPost.user.username} />
+                     <Avatar className={classes.profileAvatar}src={this.state.selectedPost.user.profile_picture} alt={this.state.selectedPost.user.username} />
                      </Grid>
-                      <Grid item><Typography variant="subtitle2">{this.state.selectedPost.user.username}</Typography>
+                      <Grid item><Typography variant="h6">{this.state.selectedPost.user.username}</Typography>
                       </Grid>
                     </Grid>
                     <Divider light />
